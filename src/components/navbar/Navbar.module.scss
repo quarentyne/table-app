@@ -1,0 +1,16 @@
+@import "../../scss/vars.scss";
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  align-items: center;
+
+  &__link{
+    color: $text-color;
+    &:hover{
+      color: $text-color-hover;
+      opacity: 0.8;
+    }
+  }
+}

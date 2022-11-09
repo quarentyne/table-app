@@ -1,0 +1,14 @@
+@import "scss/reset.scss";
+@import "scss/fonts.scss";
+@import "scss/vars.scss";
+
+html {
+  box-sizing: border-box;
+  font-family: $font-base;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.active {
+  text-decoration: underline;
+}
