@@ -13,7 +13,9 @@ export const Layout: FC = () => {
         <Navbar />    
         <LanguagesChanger />
       </header>
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }

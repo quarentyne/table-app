@@ -13,4 +13,12 @@
       opacity: 0.8;
     }
   }
+
+  &__item{
+    display: flex;
+    align-items: center;
+    >img{
+      margin-right: 5px;
+    }
+  }
 }
