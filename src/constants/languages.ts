@@ -1,3 +1,122 @@
+// export interface ILanguage {
+//   en: {
+//     menu: {
+//       addDriver: string;
+//       addCar: string;
+//       drivers: string;
+//       cars: string;
+//       lang: string;
+//     },
+//     driver: {
+//       name: string;
+//       registered: string;
+//       born: string;
+//       status: string;
+//       actions: string;
+//     },
+//     car: {
+//       name: string;
+//       mark: string;
+//       model: string;
+//       number: string;
+//       year: string;
+//       status: string;
+//       actions: string;
+//     },
+//     actions: {
+//       delete: string;
+//       look: string;
+//     },
+//   },
+//   ru: {
+//     menu: {
+//       addDriver: string;
+//       addCar: string;
+//       drivers: string;
+//       cars: string;
+//       lang: string;
+//     },
+//     driver: {
+//       name: string;
+//       registered: string;
+//       born: string;
+//       status: string;
+//       actions: string;
+//     },
+//     car: {
+//       name: string;
+//       mark: string;
+//       model: string;
+//       number: string;
+//       year: string;
+//       status: string;
+//       actions: string;
+//     },
+//     actions: {
+//       delete: string;
+//       look: string;
+//     },
+//   },
+//   de: {
+//     menu: {
+//       addDriver: string;
+//       addCar: string;
+//       drivers: string;
+//       cars: string;
+//       lang: string;
+//     },
+//     driver: {
+//       name: string;
+//       registered: string;
+//       born: string;
+//       status: string;
+//       actions: string;
+//     },
+//     car: {
+//       name: string;
+//       mark: string;
+//       model: string;
+//       number: string;
+//       year: string;
+//       status: string;
+//       actions: string;
+//     },
+//     actions: {
+//       delete: string;
+//       look: string;
+//     },
+//   },
+//   ua: {
+//     menu: {
+//       addDriver: string;
+//       addCar: string;
+//       drivers: string;
+//       cars: string;
+//       lang: string;
+//     },
+//     driver: {
+//       name: string;
+//       registered: string;
+//       born: string;
+//       status: string;
+//       actions: string;
+//     },
+//     car: {
+//       name: string;
+//       mark: string;
+//       model: string;
+//       number: string;
+//       year: string;
+//       status: string;
+//       actions: string;
+//     },
+//     actions: {
+//       delete: string;
+//       look: string;
+//     },
+//   },
+// };
+
 export const languages = {
   ru: {
     menu: {
