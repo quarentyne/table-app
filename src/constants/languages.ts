@@ -1,123 +1,49 @@
-// export interface ILanguage {
-//   en: {
-//     menu: {
-//       addDriver: string;
-//       addCar: string;
-//       drivers: string;
-//       cars: string;
-//       lang: string;
-//     },
-//     driver: {
-//       name: string;
-//       registered: string;
-//       born: string;
-//       status: string;
-//       actions: string;
-//     },
-//     car: {
-//       name: string;
-//       mark: string;
-//       model: string;
-//       number: string;
-//       year: string;
-//       status: string;
-//       actions: string;
-//     },
-//     actions: {
-//       delete: string;
-//       look: string;
-//     },
-//   },
-//   ru: {
-//     menu: {
-//       addDriver: string;
-//       addCar: string;
-//       drivers: string;
-//       cars: string;
-//       lang: string;
-//     },
-//     driver: {
-//       name: string;
-//       registered: string;
-//       born: string;
-//       status: string;
-//       actions: string;
-//     },
-//     car: {
-//       name: string;
-//       mark: string;
-//       model: string;
-//       number: string;
-//       year: string;
-//       status: string;
-//       actions: string;
-//     },
-//     actions: {
-//       delete: string;
-//       look: string;
-//     },
-//   },
-//   de: {
-//     menu: {
-//       addDriver: string;
-//       addCar: string;
-//       drivers: string;
-//       cars: string;
-//       lang: string;
-//     },
-//     driver: {
-//       name: string;
-//       registered: string;
-//       born: string;
-//       status: string;
-//       actions: string;
-//     },
-//     car: {
-//       name: string;
-//       mark: string;
-//       model: string;
-//       number: string;
-//       year: string;
-//       status: string;
-//       actions: string;
-//     },
-//     actions: {
-//       delete: string;
-//       look: string;
-//     },
-//   },
-//   ua: {
-//     menu: {
-//       addDriver: string;
-//       addCar: string;
-//       drivers: string;
-//       cars: string;
-//       lang: string;
-//     },
-//     driver: {
-//       name: string;
-//       registered: string;
-//       born: string;
-//       status: string;
-//       actions: string;
-//     },
-//     car: {
-//       name: string;
-//       mark: string;
-//       model: string;
-//       number: string;
-//       year: string;
-//       status: string;
-//       actions: string;
-//     },
-//     actions: {
-//       delete: string;
-//       look: string;
-//     },
-//   },
-// };
+export interface ILanguageMenu {
+  addDriver: string;
+  addCar: string;
+  drivers: string;
+  cars: string;
+  lang: string;
+};
 
-export const languages = {
+export interface ILanguageDriver{
+  name: string;
+  registered: string;
+  born: string;
+  status: string;
+  actions: string;
+};
+
+export interface ILanguageCar{
+  name: string;
+  mark: string;
+  model: string;
+  number: string;
+  year: string;
+  status: string;
+  actions: string;
+};
+
+export interface ILanguageActions{
+  delete: string;
+  look: string;
+};
+
+interface ILanguage {
+  menu: ILanguageMenu;
+  driver: ILanguageDriver;
+  car: ILanguageCar;
+  actions: ILanguageActions;
+}
+
+interface ILanguages{
+  ru: ILanguage,
+  en: ILanguage,
+  ua: ILanguage,
+  de: ILanguage,
+}
+
+export const languages: ILanguages = {
   ru: {
     menu: {
       addDriver: 'Добавить водителя',

@@ -1,7 +1,8 @@
-import { FC } from "react"
+import { FC } from "react";
+import { DriverName } from "../../components/driverName/DriverName";
 
 export const Driverpage: FC = () => {
   return (
-    <div>Driverpage</div>
-  )
-}
+    <div><DriverName firstName="Oleh" lastName="Kukuruza"/></div>
+  );
+};

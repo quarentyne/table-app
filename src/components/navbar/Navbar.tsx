@@ -4,9 +4,10 @@ import classes from './Navbar.module.scss';
 import driver from '../../assets/driver.svg'
 import taxi from '../../assets/taxi.svg'
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { ILanguageMenu } from "../../constants/languages";
 
 export const Navbar: FC = () => {
-  const menuLang = useTypedSelector(lang => lang.language.language.menu);  
+  const menuLang: ILanguageMenu = useTypedSelector(lang => lang.language.language.menu);  
 
   return (
     <nav className={classes.nav}>

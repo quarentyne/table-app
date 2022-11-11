@@ -14,7 +14,9 @@ export const Layout: FC = () => {
         <LanguagesChanger />
       </header>
       <main>
-        <Outlet />
+        <div className="container">
+          <Outlet />
+        </div>
       </main>
     </>
   );

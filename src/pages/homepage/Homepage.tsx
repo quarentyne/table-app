@@ -1,7 +1,7 @@
-import { FC } from "react"
+import { FC } from "react";
 
 export const Homepage: FC = () => {
   return (
-    <div className="container">Homepage</div>
-  )
-}
+    <div>Homepage</div>
+  );
+};
