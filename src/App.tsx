@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { Carpage } from './pages/car/Carpage';
-import { Driverpage } from './pages/driver/Driverpage';
+import { Driverpage } from './pages/driver/Driver';
 import { Homepage } from './pages/homepage/Homepage';
 
 function App() {
