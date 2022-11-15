@@ -1,4 +1,4 @@
-import { languages } from "../../constants/languages";
+import { ILanguage, languages } from "../../constants/languages";
 
 enum LanuageTypes{
   en = 'en',
@@ -11,7 +11,7 @@ export interface ILanguageAction{
   type: LanuageTypes;
 } 
 
-const defaultLanguage = () => {
+const defaultLanguage = ():ILanguage => {
   const lang = localStorage.getItem('language');
   if (lang) {
     return JSON.parse(lang);
@@ -19,11 +19,11 @@ const defaultLanguage = () => {
   return languages.en;
 };
 
-const defaultState = {
+export const defaultLanguageState = {
   language: defaultLanguage(),
 };
 
-export const languagesReducer = (state = defaultState, action: ILanguageAction) => {
+export const languagesReducer = (state = defaultLanguageState, action: ILanguageAction) => {
   switch (action.type) {
     case LanuageTypes.en:
       localStorage.setItem('language', JSON.stringify(languages.en));

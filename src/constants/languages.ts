@@ -4,6 +4,7 @@ export interface ILanguageMenu {
   drivers: string;
   cars: string;
   lang: string;
+  value: string;
 };
 
 export interface ILanguageDriver{
@@ -12,6 +13,12 @@ export interface ILanguageDriver{
   born: string;
   status: string;
   actions: string;
+  statuses: {
+    active: string;
+    blocked: string;
+    fired: string;
+    not_active: string;
+  };
 };
 
 export interface ILanguageCar{
@@ -29,7 +36,7 @@ export interface ILanguageActions{
   look: string;
 };
 
-interface ILanguage {
+export interface ILanguage {
   menu: ILanguageMenu;
   driver: ILanguageDriver;
   car: ILanguageCar;
@@ -41,6 +48,7 @@ interface ILanguages{
   en: ILanguage,
   ua: ILanguage,
   de: ILanguage,
+  [index: string]: ILanguage;
 }
 
 export const languages: ILanguages = {
@@ -51,6 +59,7 @@ export const languages: ILanguages = {
       drivers: 'Водители',
       cars: 'Автомобили',
       lang: 'Русский',
+      value: 'ru',
     },
     driver: {
       name: 'ФИО',
@@ -58,6 +67,12 @@ export const languages: ILanguages = {
       born: 'Дата рождения',
       status: 'Статус',
       actions: 'Действия',
+      statuses: {
+        active: "Активный",
+        blocked: "Заблокирован",
+        fired: "Уволенный",
+        not_active: "Не активный",
+      },
     },
     car: {
       name: 'ФИО водителя',
@@ -80,6 +95,7 @@ export const languages: ILanguages = {
       drivers: 'Водії',
       cars: 'Автомобілі',
       lang: 'Українська',
+      value: 'ua',
     },
     driver: {
       name: 'ПІБ',
@@ -87,6 +103,12 @@ export const languages: ILanguages = {
       born: 'Дата народження',
       status: 'Статус',
       actions: 'Дії',
+      statuses: {
+        active: "Активний",
+        blocked: "Заблокований",
+        fired: "Звільнений",
+        not_active: "Не активний",
+      },
     },
     car: {
       name: 'ПІБ водія',
@@ -109,6 +131,7 @@ export const languages: ILanguages = {
       drivers: 'Drivers',
       cars: 'Cars',
       lang: 'English',
+      value: 'en',
     },
     driver: {
       name: 'Full name',
@@ -116,6 +139,12 @@ export const languages: ILanguages = {
       born: 'Date of birth',
       status: 'Status',
       actions: 'Actions',
+      statuses: {
+        active: "Active",
+        blocked: "Blocked",
+        fired: "Fired",
+        not_active: "Not active",
+      },
     },
     car: {
       name: 'Driver\'s name',
@@ -138,6 +167,7 @@ export const languages: ILanguages = {
       drivers: 'Treiber',
       cars: 'Autos',
       lang: 'Deutsch',
+      value: 'de',
     },
     driver: {
       name: 'Voller Name',
@@ -145,6 +175,12 @@ export const languages: ILanguages = {
       born: 'Geburtsdatum',
       status: 'Status',
       actions: 'Aktionen',
+      statuses: {
+        active: "Aktiv",
+        blocked: "Verstopft",
+        fired: "Gefeuert",
+        not_active: "Nicht aktiv",
+      },
     },
     car: {
       name: 'Fahrername',

@@ -1,3 +1,6 @@
 .editedInput{
   width: 100px;
+  &:focus{
+    background-color: rgba(135, 206, 235, 0.4);
+  }
 }
