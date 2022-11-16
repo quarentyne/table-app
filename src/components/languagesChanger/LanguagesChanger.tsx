@@ -1,10 +1,10 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, ReactElement } from "react";
 import { useDispatch } from "react-redux";
 import { languages } from "../../constants/languages";
 import { defaultLanguageState } from "../../redux/reducers/languagesReducer";
 import classes from './LanguagesChanger.module.scss';
 
-export const LanguagesChanger = () => {
+export const LanguagesChanger = (): ReactElement => {
   const actualLanguage = defaultLanguageState.language;
   const dispatch = useDispatch();
   
@@ -14,12 +14,16 @@ export const LanguagesChanger = () => {
   
   return (
     <div>
-      <select name='lang' className={classes.select} onChange={changeLanguage}>
+      <select
+        defaultValue={actualLanguage.menu.value}
+        name='lang' className={classes.select}
+        onChange={changeLanguage}
+      >
         {Object.keys(languages).map((key, i) =>
           <option
             value={languages[key].menu.value}
             key={i}
-            selected={languages[key].menu.value === actualLanguage.menu.value}>
+          >
             {languages[key].menu.lang}
           </option>)}
       </select>

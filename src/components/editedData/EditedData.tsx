@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { ReactElement, useRef, useState } from "react";
 import classes from './EditedData.module.scss';
 
 interface IEditedData{
@@ -6,7 +6,7 @@ interface IEditedData{
 };
 
 
-export const EditedData = ({ value }: IEditedData)  => {
+export const EditedData = ({ value }: IEditedData): ReactElement  => {
   const [isElementEdit, setElementEdit] = useState(false);
   const [currentValue, setCurrentValue] = useState(value);
   const rootEl = useRef<HTMLInputElement>(null);
@@ -15,6 +15,7 @@ export const EditedData = ({ value }: IEditedData)  => {
     if (!rootEl.current) {
       return;
     };
+
     const onClickPosition = {
       top: e.y,
       left: e.x,
@@ -26,11 +27,13 @@ export const EditedData = ({ value }: IEditedData)  => {
       width: elementOnEditParams.width,
       height: elementOnEditParams.height,
     };
+    
     if ((onClickPosition.left < elementOnScreen.left) || (onClickPosition.left > (elementOnScreen.left + elementOnScreen.width)) ||
         (onClickPosition.top < elementOnScreen.top) ||(onClickPosition.top > (elementOnScreen.top + elementOnScreen.height))) {
       setElementEdit(false);
     };    
   };
+
   document.removeEventListener('click', onClick);
 
   if (isElementEdit) { 

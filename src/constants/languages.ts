@@ -18,6 +18,7 @@ export interface ILanguageDriver{
     blocked: string;
     fired: string;
     not_active: string;
+    [index: string]: string;
   };
 };
 
