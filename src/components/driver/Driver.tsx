@@ -1,5 +1,8 @@
 import { ReactElement } from "react";
+import { ILanguageActions } from "../../constants/languages";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import classes from "../../scss/DriversTable.module.scss";
+import { Actions } from "../actions/Actions";
 import { DriverName } from "../driverName/DriverName";
 import { DriverStatus } from "../driverStatus/DriverStatus";
 
@@ -17,9 +20,11 @@ interface IDriver {
   };
 };
 
-export const Driver = ({ driver } : IDriver ): ReactElement => {
+export const Driver = ({ driver }: IDriver): ReactElement => {
   const birthDate: Date = new Date(driver.date_birth);
   const joinDate: Date = new Date(driver.date_created);
+
+  const menuLang: ILanguageActions = useTypedSelector(lang => lang.language.language.actions);  
 
   const renderDate = (date: Date): string => {
     return (date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear());
@@ -32,7 +37,7 @@ export const Driver = ({ driver } : IDriver ): ReactElement => {
       <li>{renderDate(birthDate)}</li>
       <li>{renderDate(joinDate)}</li>
       <li><DriverStatus value={driver.status.code} /></li>
-      <li>actions</li>
+      <li><Actions eyeText={menuLang.autos} deleteText={menuLang.delete} /></li>
     </ul>
   );
 };

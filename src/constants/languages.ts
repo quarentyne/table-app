@@ -34,7 +34,8 @@ export interface ILanguageCar{
 
 export interface ILanguageActions{
   delete: string;
-  look: string;
+  autos: string;
+  drivers: string;
 };
 
 export interface ILanguage {
@@ -86,7 +87,8 @@ export const languages: ILanguages = {
     },
     actions: {
       delete: 'Удалить',
-      look: 'Посмотреть автомобили',
+      autos: 'Посмотреть автомобили',
+      drivers: 'Посмотреть владельца',
     },
   },
   ua: {
@@ -122,7 +124,8 @@ export const languages: ILanguages = {
     },
     actions: {
       delete: 'Видалити',
-      look: 'Переглянути автомобілі',
+      autos: 'Переглянути автомобілі',
+      drivers: 'Переглянути власника',
     },
   },
   en: {
@@ -158,7 +161,8 @@ export const languages: ILanguages = {
     },
     actions: {
       delete: 'Remove',
-      look: 'View cars',
+      autos: 'View cars',
+      drivers: 'View owner',
     },
   },
   de: {
@@ -194,7 +198,8 @@ export const languages: ILanguages = {
     },
     actions: {
       delete: 'Entfernen',
-      look: 'Autos ansehen',
+      autos: 'Autos ansehen',
+      drivers: 'Besitzer anzeigen',
     },
   },
 };
