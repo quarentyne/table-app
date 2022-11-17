@@ -1,0 +1,27 @@
+.driverpage_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.add{
+  margin-right: 5px;
+}
+
+.add_driver{
+  font-weight: normal;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #737DF9;
+  padding: 8px 16px;
+  background: #F4F5FF;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  &:hover{
+    border: 1px solid #737DF9;
+  }
+}

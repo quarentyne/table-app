@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ReactElement } from "react";
 import { ILanguageDriver } from "../../constants/languages";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import classes from "./DriverStatus.module.scss";
@@ -8,7 +8,7 @@ interface IDriverStatus{
   value: string;
 };
 
-export const DriverStatus = ({value}: IDriverStatus) => {
+export const DriverStatus = ({value}: IDriverStatus): ReactElement => {
   const [status, setStatus] = useState(value);
   const [isEdit, setIsEdit] = useState(false);
   const driverLang: ILanguageDriver = useTypedSelector(lang => lang.language.language.driver);  

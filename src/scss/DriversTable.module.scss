@@ -1,0 +1,19 @@
+.drivers_table {
+  display: grid;
+  grid-template-columns: 0.3fr 2fr 1fr 1fr 1.5fr 0.8fr;
+  justify-items: center;
+  gap: 10px;
+}
+
+.drivers_table_header{
+  >li{
+    padding-bottom: 5px;
+  }
+}
+
+.drivers_table_element {
+  border-top: 1px solid #EEEEEE;
+  >li{
+    padding: 15px;
+  }
+}
