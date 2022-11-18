@@ -32,6 +32,13 @@ export interface ILanguageCar{
   actions: string;
 };
 
+export interface IAddDriver{
+  firstName: string;
+  lastName: string;
+  birth: string;
+  status: string;
+};
+
 export interface ILanguageActions{
   delete: string;
   autos: string;
@@ -41,6 +48,7 @@ export interface ILanguageActions{
 export interface ILanguage {
   menu: ILanguageMenu;
   driver: ILanguageDriver;
+  addDriver: IAddDriver;
   car: ILanguageCar;
   actions: ILanguageActions;
 }
@@ -75,6 +83,12 @@ export const languages: ILanguages = {
         fired: "Уволенный",
         not_active: "Не активный",
       },
+    },
+    addDriver: {
+      firstName: 'Введите имя',
+      lastName: 'Введите фамилию',
+      birth: 'Введите дату рождения в формате дд.мм.гггг',
+      status: 'Выберите статус',
     },
     car: {
       name: 'ФИО водителя',
@@ -113,6 +127,12 @@ export const languages: ILanguages = {
         not_active: "Не активний",
       },
     },
+    addDriver: {
+      firstName: 'Введіть ім\'я',
+      lastName: 'Введіть прізвище',
+      birth: 'Введіть дату народження у форматі дд.мм.гггг',
+      status: 'Виберіть статус',
+    },
     car: {
       name: 'ПІБ водія',
       mark: 'Марка автомобіля',
@@ -150,6 +170,12 @@ export const languages: ILanguages = {
         not_active: "Not active",
       },
     },
+    addDriver: {
+      firstName: 'Enter a name',
+      lastName: 'Enter last name',
+      birth: 'Enter your date of birth in the format dd.mm.yyyy',
+      status: 'Select status',
+    },
     car: {
       name: 'Driver\'s name',
       mark: 'Car brand',
@@ -186,6 +212,12 @@ export const languages: ILanguages = {
         fired: "Gefeuert",
         not_active: "Nicht aktiv",
       },
+    },
+    addDriver: {
+      firstName: 'Gib deinen Namen ein',
+      lastName: 'Nachnamen eingeben',
+      birth: 'Geben Sie Ihr Geburtsdatum im Format TT.MM.JJJJ ein',
+      status: 'Status auswählen',
     },
     car: {
       name: 'Fahrername',
