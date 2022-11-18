@@ -27,7 +27,10 @@ export const Driver = ({ driver }: IDriver): ReactElement => {
   const menuLang: ILanguageActions = useTypedSelector(lang => lang.language.language.actions);  
 
   const renderDate = (date: Date): string => {
-    return (date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear());
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    const checker = (value: number): string => '0' + value;
+    return ((day < 10 ? checker(day) : day) + '.' + (month < 10 ? checker(month) : month) + '.' + date.getFullYear());
   };
 
   return (
