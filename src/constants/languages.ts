@@ -30,12 +30,28 @@ export interface ILanguageCar{
   year: string;
   status: string;
   actions: string;
+  statuses: {
+    econom: string;
+    standart: string;
+    bussiness: string;
+    eco: string;
+    [index: string]: string;
+  };
 };
 
 export interface IAddDriver{
   firstName: string;
   lastName: string;
   birth: string;
+  status: string;
+};
+
+export interface IAddCar{
+  owner: string;
+  mark: string;
+  model: string;
+  number: string;
+  year: string;
   status: string;
 };
 
@@ -49,6 +65,7 @@ export interface ILanguage {
   menu: ILanguageMenu;
   driver: ILanguageDriver;
   addDriver: IAddDriver;
+  addCar: IAddCar;
   car: ILanguageCar;
   actions: ILanguageActions;
 }
@@ -98,6 +115,20 @@ export const languages: ILanguages = {
       year: 'Год выпуска',
       status: 'Статус',
       actions: 'Действия',
+      statuses: {
+        eco: 'Эко',
+        econom: 'Эконом',
+        bussiness: 'Бизнесс',
+        standart: 'Стандарт',
+      },
+    },
+    addCar: {
+      owner: 'Владелец',
+      mark: 'Марка',
+      model: 'Модель',
+      year: 'Год выпуска',
+      number: 'Номер',
+      status: 'Класс',
     },
     actions: {
       delete: 'Удалить',
@@ -141,6 +172,20 @@ export const languages: ILanguages = {
       year: 'Рік випуску',
       status: 'Статус',
       actions: 'Дії',
+      statuses: {
+        eco: 'Еко',
+        econom: 'Економ',
+        bussiness: 'Бізнес',
+        standart: 'Стандарт',
+      },
+    },
+    addCar: {
+      owner: 'Власник',
+      mark: 'Марка',
+      model: 'Модель',
+      year: 'Рік випуску',
+      number: 'Номер',
+      status: 'Клас',
     },
     actions: {
       delete: 'Видалити',
@@ -184,6 +229,20 @@ export const languages: ILanguages = {
       year: 'Graduation year',
       status: 'Status',
       actions: 'Actions',
+      statuses: {
+        eco: 'Eco',
+        econom: 'Econom',
+        bussiness: 'Bussiness',
+        standart: 'Standard',
+      },
+    },
+    addCar: {
+      owner: 'Owner',
+      mark: 'Mark',
+      model: 'Model',
+      year: 'Release year',
+      number: 'Number',
+      status: 'Class',
     },
     actions: {
       delete: 'Remove',
@@ -227,6 +286,20 @@ export const languages: ILanguages = {
       year: 'Abschlussjahr',
       status: 'Status',
       actions: 'Aktionen',
+      statuses: {
+        eco: 'Öko',
+        econom: 'Wirtschaft',
+        bussiness: 'Geschäft',
+        standart: 'Standard',
+      },
+    },
+    addCar: {
+      owner: 'Eigentümer',
+      mark: 'Marke',
+      model: 'Modell',
+      year: 'Baujahr',
+      number: 'Nummer',
+      status: 'Klasse',
     },
     actions: {
       delete: 'Entfernen',
