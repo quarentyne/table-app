@@ -1,10 +1,9 @@
 import { IAddDriver, ILanguage, ILanguageDriver } from "../../constants/languages";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import classes from "./AddDriverForm.module.scss";
-import confirm from "../../assets/confirm.svg";
-import cancel from "../../assets/delete.svg";
 import { useState } from "react";
 import { DRIVER_STATUSES } from "../../constants/statuses";
+import { FormButtons } from "../formButtons/FormButtons";
 
 interface IAddDriverForm {
   onHandler: () => void;
@@ -60,18 +59,10 @@ export const AddDriverForm = ({onHandler}: IAddDriverForm) => {
         <option value='fired'>{driverLang.statuses.fired}</option>
         <option value='not_active'>{driverLang.statuses.not_active}</option>
       </select>
-      <div className={classes.form_buttons}>
-        <button type="submit">
-          <img src={confirm} alt="Add" width={25} height={25} />
-        </button>
-        <button type="button" onClick={() => {
+      <FormButtons onHandler={() => {
           onHandler();
           cancelHandler();
-        }
-        }>
-          <img src={cancel} alt="Cancel" width={25} height={25} />
-        </button>
-      </div>
+        }}/>
     </form>
   );
 };

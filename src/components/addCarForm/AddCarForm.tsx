@@ -1,10 +1,9 @@
 import { IAddCar, ILanguage, ILanguageCar } from "../../constants/languages";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import classes from "./AddCarForm.module.scss";
-import confirm from "../../assets/confirm.svg";
-import cancel from "../../assets/delete.svg";
 import { useState } from "react";
 import { CARS_CLASSES } from "../../constants/carsClasses";
+import { FormButtons } from "../formButtons/FormButtons";
 
 interface IAddCarForm {
   onHandler: () => void;
@@ -69,18 +68,10 @@ export const AddCarForm = ({onHandler}: IAddCarForm) => {
         <option value='bussiness'>{carLang.statuses.bussiness}</option>
         <option value='standart'>{carLang.statuses.standart}</option>
       </select>
-      <div className={classes.form_buttons}>
-        <button type="submit">
-          <img src={confirm} alt="Add" width={25} height={25} />
-        </button>
-        <button type="button" onClick={() => {
+      <FormButtons onHandler={() => {
           onHandler();
           cancelHandler();
-        }
-        }>
-          <img src={cancel} alt="Cancel" width={25} height={25} />
-        </button>
-      </div>
+        }}/>
     </form>
   );
 };

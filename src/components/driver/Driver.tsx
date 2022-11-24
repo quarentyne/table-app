@@ -6,9 +6,8 @@ import { Actions } from "../actions/Actions";
 import driverStatusClasses from "./DriverStatus.module.scss";
 import classes from "../addDriverForm/AddDriverForm.module.scss";
 import driverpageClasses from "../../pages/driver/Driverpage.module.scss";
-import confirm from "../../assets/confirm.svg";
-import cancel from "../../assets/delete.svg";
 import { driverClassesByStatus } from "./DriverStatusClasses";
+import { FormButtons } from "../formButtons/FormButtons";
 
 interface IDriver {
   driver: {
@@ -74,17 +73,9 @@ export const Driver = ({ driver }: IDriver): ReactElement => {
         }}>
           <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
           <input type='text' value={lastName} onChange={(e) => setLastName(e.target.value)} />
-          <div className={classes.form_buttons}>
-            <button type="submit">
-              <img src={confirm} alt="Add" width={25} height={25} />
-            </button>
-            <button type="button" onClick={() => {
+          <FormButtons onHandler={() => {
               cancelHandler();
-            }
-            }>
-              <img src={cancel} alt="Cancel" width={25} height={25} />
-            </button>
-          </div>
+            }}/>
         </form>
       </div>
       <div className={driverpageClasses.wrapper} style={isEditStatus ? {display: 'block'} : {display: 'none'}}>
@@ -100,17 +91,9 @@ export const Driver = ({ driver }: IDriver): ReactElement => {
             <option value='fired'>{driverLang.statuses.fired}</option>
             <option value='not_active'>{driverLang.statuses.not_active}</option>
           </select>
-          <div className={classes.form_buttons}>
-            <button type="submit">
-              <img src={confirm} alt="Add" width={25} height={25} />
-            </button>
-            <button type="button" onClick={() => {
+          <FormButtons onHandler={() => {
               cancelHandler();
-            }
-            }>
-              <img src={cancel} alt="Cancel" width={25} height={25} />
-            </button>
-          </div>
+            }}/>
         </form>
       </div>
     </>
