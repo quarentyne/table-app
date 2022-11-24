@@ -113,7 +113,7 @@ export const languages: ILanguages = {
       model: 'Модель автомобиля',
       number: 'Номер автомобиля',
       year: 'Год выпуска',
-      status: 'Статус',
+      status: 'Класс',
       actions: 'Действия',
       statuses: {
         eco: 'Эко',
@@ -170,7 +170,7 @@ export const languages: ILanguages = {
       model: 'Модель автомобіля',
       number: 'Номер автомобіля',
       year: 'Рік випуску',
-      status: 'Статус',
+      status: 'Клас',
       actions: 'Дії',
       statuses: {
         eco: 'Еко',
@@ -227,7 +227,7 @@ export const languages: ILanguages = {
       model: 'Car model',
       number: 'Vehicle number',
       year: 'Graduation year',
-      status: 'Status',
+      status: 'Class',
       actions: 'Actions',
       statuses: {
         eco: 'Eco',
@@ -284,7 +284,7 @@ export const languages: ILanguages = {
       model: 'Auto Model',
       number: 'Fahrzeugnummer',
       year: 'Abschlussjahr',
-      status: 'Status',
+      status: 'Klasse',
       actions: 'Aktionen',
       statuses: {
         eco: 'Öko',

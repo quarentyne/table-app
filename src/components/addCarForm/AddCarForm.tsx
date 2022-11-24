@@ -65,8 +65,8 @@ export const AddCarForm = ({onHandler}: IAddCarForm) => {
       <select id="carsClass" name="carsClass" defaultValue={carsClass} onChange={(e) => setCarsClass(e.target.value)}>
         <option value='econom'>{carLang.statuses.econom}</option>
         <option value='eco'>{carLang.statuses.eco}</option>
-        <option value='bussiness'>{carLang.statuses.bussiness}</option>
         <option value='standart'>{carLang.statuses.standart}</option>
+        <option value='bussiness'>{carLang.statuses.bussiness}</option>
       </select>
       <FormButtons onHandler={() => {
           onHandler();

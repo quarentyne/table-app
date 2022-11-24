@@ -1,0 +1,30 @@
+.preview {
+  width: 120px;
+  height: 24px;
+  padding: 4px 8px;
+  border-radius: 8px;
+
+  &__econom {
+    color: #c1b124;
+    background: #f8f9eb;
+  }
+
+  &__standart {
+    color: #1500d0;
+    background: #ebe8fe;
+  }
+
+  &__bussiness {
+    color: #852292;
+    background: #e1d5e9;
+  }
+
+  &__eco {
+    color: #26C124;
+    background: #EBF9EB;
+  }
+}
+
+.status_changer {
+  border-radius: 40px;
+}
