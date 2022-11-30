@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Driver } from "../../components/driver/Driver";
 import { ILanguageMenu } from "../../constants/languages";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
@@ -6,22 +6,26 @@ import add from "../../assets/add.svg";
 import classes from "./Driverpage.module.scss";
 import { DriversTableHeader } from "../../components/driversTableHeader/DriversTableHeader";
 import { AddDriverForm } from "../../components/addDriverForm/AddDriverForm";
-
-const a = {
-  first_name: "John",
-  last_name: "Doe",
-  date_birth: 855007200000,
-  date_created: 1667392616000,
-  id: 6,
-  status: {
-    title: "Не активный",
-    code: "not_active",
-  },
-};  
+import { useDispatch } from "react-redux";
+import { ASYNC_GET_DRIVERS } from "../../redux/reducers/driversReducer";
+import { LoadingError } from "../../components/loadingError/LoadingError";
 
 export const Driverpage: FC = () => {
   const menuLang: ILanguageMenu = useTypedSelector(lang => lang.language.language.menu);  
   const [isVisibleForm, setIsVisibleForm] = useState(false);  
+
+  const dispatch = useDispatch();
+  let drivers = useTypedSelector(state => state.drivers)
+
+  useEffect(() => {
+    dispatch({type: ASYNC_GET_DRIVERS})
+  }, [dispatch]);
+
+  if(drivers.isError){
+    return (
+      <LoadingError />
+    );
+  };
 
   return (
     <div className={classes.driverpage}>
@@ -34,7 +38,7 @@ export const Driverpage: FC = () => {
         </button>
       </div>
       <DriversTableHeader />
-      <Driver driver={a} />
+      {drivers.data.map(driver => <Driver driver={driver} key={driver.id} />)}
       <div className={classes.wrapper} style={isVisibleForm ? {display: 'block'} : {display: 'none'}}>
         <AddDriverForm onHandler={() => setIsVisibleForm(false)} />
       </div>

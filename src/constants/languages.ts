@@ -61,6 +61,10 @@ export interface ILanguageActions{
   drivers: string;
 };
 
+export interface ILanguageError{
+  loadingError: string;
+};
+
 export interface ILanguage {
   menu: ILanguageMenu;
   driver: ILanguageDriver;
@@ -68,6 +72,7 @@ export interface ILanguage {
   addCar: IAddCar;
   car: ILanguageCar;
   actions: ILanguageActions;
+  error: ILanguageError;
 }
 
 interface ILanguages{
@@ -135,6 +140,9 @@ export const languages: ILanguages = {
       autos: 'Посмотреть автомобили',
       drivers: 'Посмотреть владельца',
     },
+    error: {
+      loadingError: 'Произошла ошибка при загрузке данных',
+    },
   },
   ua: {
     menu: {
@@ -191,6 +199,9 @@ export const languages: ILanguages = {
       delete: 'Видалити',
       autos: 'Переглянути автомобілі',
       drivers: 'Переглянути власника',
+    },
+    error: {
+      loadingError: 'Сталася помилка під час завантаження даних',
     },
   },
   en: {
@@ -249,6 +260,9 @@ export const languages: ILanguages = {
       autos: 'View cars',
       drivers: 'View owner',
     },
+    error: {
+      loadingError: 'An error occurred while loading data',
+    },
   },
   de: {
     menu: {
@@ -305,6 +319,9 @@ export const languages: ILanguages = {
       delete: 'Entfernen',
       autos: 'Autos ansehen',
       drivers: 'Besitzer anzeigen',
+    },
+    error: {
+      loadingError: 'Beim Laden der Daten ist ein Fehler aufgetreten',
     },
   },
 };

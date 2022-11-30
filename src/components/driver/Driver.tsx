@@ -9,7 +9,7 @@ import driverpageClasses from "../../pages/driver/Driverpage.module.scss";
 import { driverClassesByStatus } from "./DriverStatusClasses";
 import { FormButtons } from "../formButtons/FormButtons";
 
-interface IDriver {
+export interface IDriver {
   driver: {
     id: number;
     first_name: string;
@@ -20,12 +20,12 @@ interface IDriver {
       code: string;
       title: string;
     };
-  };
+  };  
 };
 
-export const Driver = ({ driver }: IDriver): ReactElement => {
-  const birthDate: Date = new Date(driver.date_birth);
-  const joinDate: Date = new Date(driver.date_created);
+export const Driver = (props: IDriver): ReactElement => {
+  const birthDate: Date = new Date(props.driver.date_birth);
+  const joinDate: Date = new Date(props.driver.date_created);
 
 
   const language: ILanguage = useTypedSelector(lang => lang.language.language);
@@ -42,14 +42,14 @@ export const Driver = ({ driver }: IDriver): ReactElement => {
 
   const [isEditName, setIsEditName] = useState(false);
   const [isEditStatus, setIsEditStatus] = useState(false);
-  const [firstName, setFirstName] = useState(driver.first_name);
-  const [lastName, setLastName] = useState(driver.last_name);
-  const [status, setStatus] = useState(driver.status.code);
+  const [firstName, setFirstName] = useState(props.driver.first_name);
+  const [lastName, setLastName] = useState(props.driver.last_name);
+  const [status, setStatus] = useState(props.driver.status.code);
 
   const cancelHandler = () => {
-    setFirstName(driver.first_name);
-    setLastName(driver.last_name);
-    setStatus(driver.status.code);
+    setFirstName(props.driver.first_name);
+    setLastName(props.driver.last_name);
+    setStatus(props.driver.status.code);
     setIsEditName(false);
     setIsEditStatus(false);
   };
@@ -58,7 +58,7 @@ export const Driver = ({ driver }: IDriver): ReactElement => {
   return (
     <>
       <ul className={tableClasses.drivers_table + ' ' + tableClasses.drivers_table_element}>
-        <li>{driver.id}</li>
+        <li>{props.driver.id}</li>
         <li onClick={() => setIsEditName(true)}>{firstName} {lastName}</li>
         <li>{renderDate(birthDate)}</li>
         <li>{renderDate(joinDate)}</li>
