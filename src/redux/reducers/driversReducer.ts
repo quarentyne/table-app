@@ -1,3 +1,5 @@
+import { GET_DRIVERS_REQUESTED, GET_DRIVERS_SUCCESS } from "../../sagas/actions";
+
 interface IDriver {
   id: number;
   first_name: string;
@@ -10,13 +12,11 @@ interface IDriver {
   };
 };
 
-export const GET_DRIVERS = 'GET_DRIVERS';
-export const ASYNC_GET_DRIVERS = 'ASYNC_GET_DRIVERS';
-
 export interface IDriversDeafaultState {
   isError: boolean;
   status: string;
   data: IDriver[];
+  loading: boolean;
 };
 
 interface IDraversActions{
@@ -28,12 +28,15 @@ const defaultState: IDriversDeafaultState = {
   isError: false,
   status: 'idle',
   data: [],
+  loading: false,
 };
 
-export const driversReducer = (state = defaultState, action: IDraversActions) => {
+export const getDriversReducer = (state = defaultState, action: IDraversActions) => {
   switch (action.type) {    
-    case GET_DRIVERS:
-      return { ...state, ...action.payload };
+    case GET_DRIVERS_SUCCESS:
+      return { ...state, ...action.payload, loading: false };
+    case GET_DRIVERS_REQUESTED:
+      return { ...state, loading: true };
     default:
       return state;
   };

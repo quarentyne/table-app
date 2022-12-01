@@ -4,6 +4,8 @@ import classes from "./AddDriverForm.module.scss";
 import { useState } from "react";
 import { DRIVER_STATUSES } from "../../constants/statuses";
 import { FormButtons } from "../formButtons/FormButtons";
+import { useDispatch } from "react-redux";
+import { addDriver } from "../../sagas/actions";
 
 interface IAddDriverForm {
   onHandler: () => void;
@@ -19,19 +21,22 @@ export const AddDriverForm = ({onHandler}: IAddDriverForm) => {
   const [lastName, setLastName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [status, setStatus] = useState('active');
+  const dispatch = useDispatch();
   
   const addHandler = (): void => {
-    const obj = {
-      firstName: firstName,
-      lastName: lastName,
-      birthDate: Date.parse(birthDate),
+    const newDriver = JSON.stringify({
+      first_name: firstName,
+      last_name: lastName,
+      date_birth: Date.parse(birthDate),
       status: {
         code: status,
         title: DRIVER_STATUSES[status],
       },
-    };
+    });
     cancelHandler();
-    console.log(obj);    
+    dispatch(addDriver(newDriver));
+    console.log(newDriver);
+    
   };
 
   const cancelHandler = (): void => {
@@ -41,7 +46,7 @@ export const AddDriverForm = ({onHandler}: IAddDriverForm) => {
   };
 
   const namePattern = '[a-zA-Z]{2,}';
-  const datePattern = '^([0][1-2]|[1][0-2])\\.([0][1-2]|[1][0-2])\\.[1-2]\\d{3}$';
+  const datePattern = '^([0][1-9]|[1-2][0-9]|[3][0-1])\\.([0][1-9]|[1][0-2])\\.[1-2]\\d{3}$';
 
   return (
     <form className={classes.add_driver_form} onSubmit={(e) => {
@@ -59,7 +64,7 @@ export const AddDriverForm = ({onHandler}: IAddDriverForm) => {
         <option value='fired'>{driverLang.statuses.fired}</option>
         <option value='not_active'>{driverLang.statuses.not_active}</option>
       </select>
-      <FormButtons onHandler={() => {
+      <FormButtons onCancel={() => {
           onHandler();
           cancelHandler();
         }}/>

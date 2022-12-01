@@ -80,7 +80,7 @@ export const Car = ({ car }: ICar): ReactElement => {
           <input type='text' required pattern={namePattern} placeholder={formLang.model} value={model} onChange={(e) => setModel(e.target.value)} />
           <input type='text' required pattern={numberPattern} placeholder={formLang.number} value={number} onChange={(e) => setNumber(e.target.value)} />
           <input type='text' required pattern={yearPatter} placeholder={formLang.year} value={year} onChange={(e) => setYear(Number(e.target.value))} />
-          <FormButtons onHandler={() => {
+          <FormButtons onCancel={() => {
               cancelHandler();
             }}/>
         </form>
@@ -98,7 +98,7 @@ export const Car = ({ car }: ICar): ReactElement => {
             <option value='standart'>{carLang.statuses.standart}</option>
             <option value='bussiness'>{carLang.statuses.bussiness}</option>
           </select>
-          <FormButtons onHandler={() => {
+          <FormButtons onCancel={() => {
               cancelHandler();
             }}/>
         </form>

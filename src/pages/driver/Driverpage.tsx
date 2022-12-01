@@ -7,8 +7,9 @@ import classes from "./Driverpage.module.scss";
 import { DriversTableHeader } from "../../components/driversTableHeader/DriversTableHeader";
 import { AddDriverForm } from "../../components/addDriverForm/AddDriverForm";
 import { useDispatch } from "react-redux";
-import { ASYNC_GET_DRIVERS } from "../../redux/reducers/driversReducer";
 import { LoadingError } from "../../components/loadingError/LoadingError";
+import { Loading } from "../../components/loading/Loading";
+import { requestDrivers } from "../../sagas/actions";
 
 export const Driverpage: FC = () => {
   const menuLang: ILanguageMenu = useTypedSelector(lang => lang.language.language.menu);  
@@ -18,12 +19,18 @@ export const Driverpage: FC = () => {
   let drivers = useTypedSelector(state => state.drivers)
 
   useEffect(() => {
-    dispatch({type: ASYNC_GET_DRIVERS})
+    dispatch(requestDrivers())
   }, [dispatch]);
 
   if(drivers.isError){
     return (
       <LoadingError />
+    );
+  };
+
+  if (drivers.loading) {
+    return (
+      <Loading />
     );
   };
 

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 interface IActions{
   eyeText: string;
   deleteText: string;
+  onDelete?: () => void;
 }
 
 export const Actions = (props: IActions): ReactElement => {
@@ -31,7 +32,7 @@ export const Actions = (props: IActions): ReactElement => {
           style={isEyeShowHelper ? { display: 'block' } : { display: 'none' }}
         >{props.eyeText}</span>
       </li>
-      <li className={classes.actions_item}>
+      <li className={classes.actions_item} onClick={props.onDelete}>
         <img
           src={deleteSVG}
           alt="look"

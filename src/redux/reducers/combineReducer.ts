@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import { driversReducer } from "./driversReducer";
+import { getDriversReducer } from "./driversReducer";
 import { languagesReducer } from "./languagesReducer";
 
 export const rootReducer = combineReducers({
   language: languagesReducer,
-  drivers: driversReducer,
+  drivers: getDriversReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

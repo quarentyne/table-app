@@ -68,7 +68,7 @@ export const AddCarForm = ({onHandler}: IAddCarForm) => {
         <option value='standart'>{carLang.statuses.standart}</option>
         <option value='bussiness'>{carLang.statuses.bussiness}</option>
       </select>
-      <FormButtons onHandler={() => {
+      <FormButtons onCancel={() => {
           onHandler();
           cancelHandler();
         }}/>

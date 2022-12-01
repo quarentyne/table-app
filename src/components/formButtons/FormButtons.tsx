@@ -4,16 +4,17 @@ import classes from './FormButtons.module.scss';
 import { ReactElement } from 'react';
 
 interface IFormButtons{
-  onHandler: () => void;
+  onCancel: () => void;
+  onConfirm?: () => void;
 }
 
-export const FormButtons = ({onHandler}: IFormButtons): ReactElement => {
+export const FormButtons = ({onCancel, onConfirm}: IFormButtons): ReactElement => {
   return (
     <div className={classes.form_buttons}>
-        <button type="submit">
+        <button type="button" onClick={onConfirm}>
           <img src={confirm} alt="Add" width={25} height={25} />
         </button>
-        <button type="button" onClick={onHandler}>
+        <button type="button" onClick={onCancel}>
           <img src={cancel} alt="Cancel" width={25} height={25} />
         </button>
       </div>

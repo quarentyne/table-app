@@ -8,6 +8,9 @@ import classes from "../addDriverForm/AddDriverForm.module.scss";
 import driverpageClasses from "../../pages/driver/Driverpage.module.scss";
 import { driverClassesByStatus } from "./DriverStatusClasses";
 import { FormButtons } from "../formButtons/FormButtons";
+import { useDispatch } from "react-redux";
+import { deleteDriver, patchDriver } from "../../sagas/actions";
+import { DRIVER_STATUSES } from "../../constants/statuses";
 
 export interface IDriver {
   driver: {
@@ -45,6 +48,7 @@ export const Driver = (props: IDriver): ReactElement => {
   const [firstName, setFirstName] = useState(props.driver.first_name);
   const [lastName, setLastName] = useState(props.driver.last_name);
   const [status, setStatus] = useState(props.driver.status.code);
+  const dispatch = useDispatch();
 
   const cancelHandler = () => {
     setFirstName(props.driver.first_name);
@@ -63,17 +67,28 @@ export const Driver = (props: IDriver): ReactElement => {
         <li>{renderDate(birthDate)}</li>
         <li>{renderDate(joinDate)}</li>
         <li onClick={() => setIsEditStatus(true)}><span className={driverStatusClasses.preview + ' ' + driverClassesByStatus[status]}>{driverLang.statuses[status]}</span></li>
-        <li><Actions eyeText={menuLang.autos} deleteText={menuLang.delete} /></li>
+        <li><Actions eyeText={menuLang.autos} deleteText={menuLang.delete} onDelete={() => dispatch(deleteDriver(props.driver.id))} /></li>
       </ul>
       <div className={driverpageClasses.wrapper} style={isEditName ? {display: 'block'} : {display: 'none'}}>
-        <form className={classes.add_driver_form} onSubmit={(e) => {
-          e.preventDefault();
-          setIsEditName(false);
-          console.log(firstName, lastName);          
-        }}>
+        <form className={classes.add_driver_form} >
           <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
           <input type='text' value={lastName} onChange={(e) => setLastName(e.target.value)} />
-          <FormButtons onHandler={() => {
+          <FormButtons
+            onConfirm={() => {
+              const driver = JSON.stringify(
+                {
+                  first_name: firstName,
+                  last_name: lastName,
+                  status: {
+                    code: status,
+                    title: DRIVER_STATUSES[status],
+                  },
+                }
+              );
+              setIsEditName(false); 
+              dispatch(patchDriver(props.driver.id, driver));
+            }}
+            onCancel={() => {
               cancelHandler();
             }}/>
         </form>
@@ -91,7 +106,7 @@ export const Driver = (props: IDriver): ReactElement => {
             <option value='fired'>{driverLang.statuses.fired}</option>
             <option value='not_active'>{driverLang.statuses.not_active}</option>
           </select>
-          <FormButtons onHandler={() => {
+          <FormButtons onCancel={() => {
               cancelHandler();
             }}/>
         </form>
