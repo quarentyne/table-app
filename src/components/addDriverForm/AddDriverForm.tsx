@@ -6,12 +6,11 @@ import { DRIVER_STATUSES } from "../../constants/statuses";
 import { FormButtons } from "../formButtons/FormButtons";
 import { useDispatch } from "react-redux";
 import { addDriver } from "../../sagas/actions";
+import { datePattern, namePattern } from "../../constants/inputPatterns";
 
 interface IAddDriverForm {
   onHandler: () => void;
 };
-
-
 
 export const AddDriverForm = ({onHandler}: IAddDriverForm) => {
   const language: ILanguage = useTypedSelector(lang => lang.language.language);
@@ -35,8 +34,6 @@ export const AddDriverForm = ({onHandler}: IAddDriverForm) => {
     });
     cancelHandler();
     dispatch(addDriver(newDriver));
-    console.log(newDriver);
-    
   };
 
   const cancelHandler = (): void => {
@@ -44,9 +41,6 @@ export const AddDriverForm = ({onHandler}: IAddDriverForm) => {
     setLastName('');
     setBirthDate('');
   };
-
-  const namePattern = '[a-zA-Z]{2,}';
-  const datePattern = '^([0][1-9]|[1-2][0-9]|[3][0-1])\\.([0][1-9]|[1][0-2])\\.[1-2]\\d{3}$';
 
   return (
     <form className={classes.add_driver_form} onSubmit={(e) => {

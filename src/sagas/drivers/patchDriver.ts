@@ -3,12 +3,12 @@ import { API_KEY, DRIVER_PATH, PATH } from "../../constants/api";
 import {  PATCH_DRIVER } from "../actions";
 import { getDrivers } from "./getDrivers";
 
-const fetchPath = (data: TDriver) => fetch(PATH + DRIVER_PATH + data.data.id + '/', {
+const fetchPath = (id: number, data: string) => fetch(PATH + DRIVER_PATH + id + '/', {
   method: 'PATCH',
   headers: {
     'X-Authorization': API_KEY,
   },
-  body: data.data.driver,
+  body: data,
 });
 
 type TDriver = {
@@ -20,7 +20,7 @@ type TDriver = {
 }
 
 function* patchDriver(data: TDriver) {     
-  yield fetchPath(data);
+  yield fetchPath(data.data.id, data.data.driver);
   yield getDrivers();
 };
 
