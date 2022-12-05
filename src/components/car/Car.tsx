@@ -1,14 +1,16 @@
-import { ReactElement, useState } from "react";
-import { IAddCar, ILanguage, ILanguageActions, ILanguageCar } from "../../constants/languages";
+import { ReactElement } from "react";
+import { ILanguage, ILanguageActions } from "../../constants/languages";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import tableClasses from '../../scss/CarsTable.module.scss';
 import { Actions } from "../actions/Actions";
 import { carClassesByClass } from "./CarClasses";
 import carClasses from './CarClasses.module.scss';
-import carPageClasses from '../../pages/car/Carpage.module.scss';
-import carFormClasses from '../addCarForm/AddCarForm.module.scss';
-import { FormButtons } from "../formButtons/FormButtons";
-
+import { TextDataEditor } from "../textDataEditor/TextDataEditor";
+import { modelPattern, namePattern, numberPattern, yearPattern } from "../../constants/inputPatterns";
+import { deleteCar, patchCar } from "../../sagas/actions";
+import { useDispatch } from "react-redux";
+import { CarClasses } from "../carClasses.tsx/CarClasses";
+import { CARS_CLASSES } from "../../constants/carsClasses";
 
 interface ICar{
   car: {
@@ -27,48 +29,40 @@ interface ICar{
 
 export const Car = ({ car }: ICar): ReactElement => {
   const language: ILanguage = useTypedSelector(lang => lang.language.language);
+  const drivers = useTypedSelector(state => state.drivers.data);
+  const owner = drivers.find(driver => driver.id === car.driver_id);
+  
   const menuLang: ILanguageActions = language.actions;
-  const carLang: ILanguageCar = language.car;
-  const formLang: IAddCar = language.addCar;
+  const dispatch = useDispatch();
 
-  const [mark, setMark] = useState(car.mark);
-  const [model, setModel] = useState(car.model);
-  const [number, setNumber] = useState(car.number);
-  const [year, setYear] = useState(car.year);
-  const [carsClass, setCarsClass] = useState(car.status.code);
-  const [isEdit, setIsEdit] = useState(false);
-  const [isEditClass, setIsEditClass] = useState(false);
-
-
-  const namePattern = '[a-zA-Z]{2,}';
-  const numberPattern = '[A-Z]{2}[0-9]{4}[A-Z]{2}';
-  const yearPatter = '([1][9][6-9][0-9]|[2][0-2][0-9]{2})';
-
-  const cancelHandler = () => {
-    setMark(car.mark);
-    setModel(car.model);
-    setNumber(car.number);
-    setYear(car.year);
-    setCarsClass(car.status.code);
-    setIsEdit(false);
-    setIsEditClass(false);
+  
+  const saveCarMark = (mark: string) => {
+    dispatch(patchCar(Number(car.id), JSON.stringify({ mark })));
   };
-
-  const saveCarOptions = () => {
-    
+  const saveCarModel = (model: string) => {
+    dispatch(patchCar(Number(car.id), JSON.stringify({ model })));
+  };
+  const saveCarNumber = (number: string) => {
+    dispatch(patchCar(Number(car.id), JSON.stringify({ number })));
+  };
+  const saveCarYear = (year: string) => {
+    dispatch(patchCar(Number(car.id), JSON.stringify({ year: Number(year) })));
+  };
+  const saveStatus = (status: string) => {
+    dispatch(patchCar(Number(car.id), JSON.stringify({ status: { code: status, title: CARS_CLASSES[status] } })));
   };
 
   return (
     <>
       <ul className={tableClasses.cars_table + ' ' + tableClasses.cars_table_element}>
         <li>{car.id}</li>
-        <li>{car.driver_id}</li>
-        <li onClick={() => setIsEdit(true)}>{mark}</li>
-        <li onClick={() => setIsEdit(true)}>{model}</li>
-        <li onClick={() => setIsEdit(true)}>{number}</li>
-        <li onClick={() => setIsEdit(true)}>{year}</li>
-        <li onClick={() => setIsEditClass(true)}><span className={carClasses.preview + ' ' + carClassesByClass[carsClass]}>{carLang.statuses[carsClass]}</span></li>
-        <li><Actions eyeText={menuLang.drivers} deleteText={menuLang.delete} /></li>
+        <li>{owner?.first_name + ' ' + owner?.last_name}</li>
+        <li><TextDataEditor value={car.mark} pattern={namePattern} onSave={saveCarMark} /></li>
+        <li><TextDataEditor value={car.model} pattern={modelPattern} onSave={saveCarModel} /></li>
+        <li><TextDataEditor value={car.number} pattern={numberPattern} onSave={saveCarNumber} /></li>
+        <li><TextDataEditor value={String(car.year)} pattern={yearPattern} onSave={saveCarYear} /></li>
+        <li><CarClasses status={car.status.code} statusStyle={carClasses.preview + ' ' + carClassesByClass[car.status.code]} onSave={saveStatus} /></li>
+        <li><Actions eyeText={menuLang.drivers} deleteText={menuLang.delete} onDelete={() => dispatch(deleteCar(Number(car.id)))} /></li>
       </ul>
     </>
   );

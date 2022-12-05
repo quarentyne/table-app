@@ -16,7 +16,11 @@ export const patchDriver = (id: number, driver: string) => ({ type: PATCH_DRIVER
 export const GET_CARS_SUCCESS = 'GET_CARS_SUCCESS';
 export const GET_CARS_REQUESTED = 'GET_CARS_REQUESTED';
 export const POST_CAR = 'POST_CAR';
+export const PATCH_CAR = 'PATCH_CAR';
+export const DELETE_CAR = 'DELETE_CAR';
 
 export const requestCars = () => ({ type: GET_CARS_REQUESTED });
 export const responseCars = (data: ICarsDeafaultState) => ({ type: GET_CARS_SUCCESS, payload: data });
 export const addCar = (car: string) => ({ type: POST_CAR, payload: car });
+export const patchCar = (id: number, car: string) => ({ type: PATCH_CAR, data: { id, car } });
+export const deleteCar = (id: number) => ({ type: DELETE_CAR, id });

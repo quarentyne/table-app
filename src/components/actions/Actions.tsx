@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 interface IActions{
   eyeText: string;
   deleteText: string;
-  onDelete?: () => void;
+  onDelete: () => void;
 }
 
 export const Actions = (props: IActions): ReactElement => {
