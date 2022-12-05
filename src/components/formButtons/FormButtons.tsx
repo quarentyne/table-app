@@ -5,13 +5,12 @@ import { ReactElement } from 'react';
 
 interface IFormButtons{
   onCancel: () => void;
-  onConfirm?: () => void;
-}
+};
 
-export const FormButtons = ({onCancel, onConfirm}: IFormButtons): ReactElement => {
+export const FormButtons = ({onCancel}: IFormButtons): ReactElement => {
   return (
     <div className={classes.form_buttons}>
-        <button type="button" onClick={onConfirm}>
+        <button type="submit">
           <img src={confirm} alt="Add" width={25} height={25} />
         </button>
         <button type="button" onClick={onCancel}>

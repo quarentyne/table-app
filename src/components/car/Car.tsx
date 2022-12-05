@@ -12,6 +12,7 @@ import { FormButtons } from "../formButtons/FormButtons";
 
 interface ICar{
   car: {
+    id: string;
     model: string,
     mark: string,
     year: number,
@@ -53,11 +54,15 @@ export const Car = ({ car }: ICar): ReactElement => {
     setIsEditClass(false);
   };
 
+  const saveCarOptions = () => {
+    
+  };
+
   return (
     <>
       <ul className={tableClasses.cars_table + ' ' + tableClasses.cars_table_element}>
+        <li>{car.id}</li>
         <li>{car.driver_id}</li>
-        <li>Name</li>
         <li onClick={() => setIsEdit(true)}>{mark}</li>
         <li onClick={() => setIsEdit(true)}>{model}</li>
         <li onClick={() => setIsEdit(true)}>{number}</li>
@@ -65,44 +70,6 @@ export const Car = ({ car }: ICar): ReactElement => {
         <li onClick={() => setIsEditClass(true)}><span className={carClasses.preview + ' ' + carClassesByClass[carsClass]}>{carLang.statuses[carsClass]}</span></li>
         <li><Actions eyeText={menuLang.drivers} deleteText={menuLang.delete} /></li>
       </ul>
-      <div className={carPageClasses.wrapper} style={isEdit ? {display: 'block'} : {display: 'none'}}>
-        <form className={carFormClasses.add_car_form} onSubmit={(e) => {
-          e.preventDefault();
-          setIsEdit(false);
-          console.log({
-            model: model,
-            mark: mark,
-            year: year,
-            number: number,
-          });          
-        }}>
-          <input type='text' required pattern={namePattern} placeholder={formLang.mark} value={mark} onChange={(e) => setMark(e.target.value)} />
-          <input type='text' required pattern={namePattern} placeholder={formLang.model} value={model} onChange={(e) => setModel(e.target.value)} />
-          <input type='text' required pattern={numberPattern} placeholder={formLang.number} value={number} onChange={(e) => setNumber(e.target.value)} />
-          <input type='text' required pattern={yearPatter} placeholder={formLang.year} value={year} onChange={(e) => setYear(Number(e.target.value))} />
-          <FormButtons onCancel={() => {
-              cancelHandler();
-            }}/>
-        </form>
-      </div>
-      <div className={carPageClasses.wrapper} style={isEditClass ? {display: 'block'} : {display: 'none'}}>
-        <form className={carFormClasses.add_car_form} onSubmit={(e) => {
-          e.preventDefault();
-          setIsEditClass(false);
-          console.log(carsClass);          
-        }}>
-          <label htmlFor="carsClass">{formLang.status}</label>
-          <select id="carsClass" name="carsClass" defaultValue={carsClass} onChange={(e) => setCarsClass(e.target.value)}>
-            <option value='econom'>{carLang.statuses.econom}</option>
-            <option value='eco'>{carLang.statuses.eco}</option>
-            <option value='standart'>{carLang.statuses.standart}</option>
-            <option value='bussiness'>{carLang.statuses.bussiness}</option>
-          </select>
-          <FormButtons onCancel={() => {
-              cancelHandler();
-            }}/>
-        </form>
-      </div>
     </>
   );
 };
