@@ -24,6 +24,7 @@ export interface IDriver {
       title: string;
     };
   };  
+  targetId?: number;
 };
 
 export const Driver = (props: IDriver): ReactElement => {
@@ -50,7 +51,7 @@ export const Driver = (props: IDriver): ReactElement => {
         last_name: fullName[1],
       }
     );
-    dispatch(patchDriver(props.driver.id, driver));
+    dispatch(patchDriver(props.driver.id, driver, props.targetId));
   };
 
   const saveBirthDate = (data: string) => {
@@ -59,7 +60,7 @@ export const Driver = (props: IDriver): ReactElement => {
         date_birth: Date.parse(data),
       }
     );
-    dispatch(patchDriver(props.driver.id, driver));
+    dispatch(patchDriver(props.driver.id, driver, props.targetId));
   };
 
   const saveStatus = (data: string) => {
@@ -69,7 +70,7 @@ export const Driver = (props: IDriver): ReactElement => {
         title: DRIVER_STATUSES[data],
       },
     });
-    dispatch(patchDriver(props.driver.id, driver));
+    dispatch(patchDriver(props.driver.id, driver, props.targetId));
   };
 
   return (

@@ -7,11 +7,11 @@ export const POST_DRIVER = 'POST_DRIVER';
 export const DELETE_DRIVER = 'DELETE_DRIVER';
 export const PATCH_DRIVER = 'PATCH_DRIVER';
 
-export const requestDrivers = () => ({ type: GET_DRIVERS_REQUESTED });
+export const requestDrivers = (id?: number) => ({ type: GET_DRIVERS_REQUESTED, id });
 export const responseDrivers = (data: IDriversDeafaultState) => ({ type: GET_DRIVERS_SUCCESS, payload: data });
 export const addDriver = (driver: string) => ({ type: POST_DRIVER, payload: driver });
 export const deleteDriver = (id: number) => ({ type: DELETE_DRIVER, id });
-export const patchDriver = (id: number, driver: string) => ({ type: PATCH_DRIVER, data: { id, driver } });
+export const patchDriver = (id: number, driver: string, currentId?: number) => ({ type: PATCH_DRIVER, data: { id, driver, currentId } });
 
 export const GET_CARS_SUCCESS = 'GET_CARS_SUCCESS';
 export const GET_CARS_REQUESTED = 'GET_CARS_REQUESTED';
@@ -22,5 +22,5 @@ export const DELETE_CAR = 'DELETE_CAR';
 export const requestCars = () => ({ type: GET_CARS_REQUESTED });
 export const responseCars = (data: ICarsDeafaultState) => ({ type: GET_CARS_SUCCESS, payload: data });
 export const addCar = (car: string) => ({ type: POST_CAR, payload: car });
-export const patchCar = (id: number, car: string) => ({ type: PATCH_CAR, data: { id, car } });
+export const patchCar = (id: number, car: string, currentId?: number) => ({ type: PATCH_CAR, data: { id, car } });
 export const deleteCar = (id: number) => ({ type: DELETE_CAR, id });

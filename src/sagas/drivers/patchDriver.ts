@@ -16,12 +16,17 @@ type TDriver = {
   data: {
     id: number;
     driver: string;
-  }
-}
+    currentId?: number;
+  };
+};
 
 function* patchDriver(data: TDriver) {     
-  yield fetchPath(data.data.id, data.data.driver);
-  yield getDrivers();
+  yield fetchPath(data.data.id, data.data.driver);  
+  if (data.data.currentId) {
+    yield getDrivers({ id: data.data.currentId });    
+  } else {
+    yield getDrivers();    
+  }
 };
 
 export function* watchPatchDriver() {

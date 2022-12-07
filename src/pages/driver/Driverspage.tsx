@@ -10,33 +10,30 @@ import { useDispatch } from "react-redux";
 import { LoadingError } from "../../components/loadingError/LoadingError";
 import { Loading } from "../../components/loading/Loading";
 import { requestDrivers } from "../../sagas/actions";
-import { useParams } from "react-router-dom";
 
-export const Driverpage: FC = () => {
+export const Driverspage: FC = () => {
   const menuLang: ILanguageMenu = useTypedSelector(lang => lang.language.language.menu);  
   const [isVisibleForm, setIsVisibleForm] = useState(false);  
 
   const dispatch = useDispatch();
-  const driver = useTypedSelector(state => state.drivers)
-  
-  const { id } = useParams();
+  const drivers = useTypedSelector(state => state.drivers)
 
   useEffect(() => {
-      dispatch(requestDrivers(Number(id)))
-  }, [dispatch, id]);
+      dispatch(requestDrivers())
+  }, [dispatch]);
 
-  if(driver.isError){
+  if(drivers.isError){
     return (
       <LoadingError />
     );
   };
 
-  if (driver.loading || driver.status === 'idle') {
+  if (drivers.loading) {
     return (
       <Loading />
     );
   };  
-  
+
   return (
     <div className={classes.driverpage}>
       <div className={classes.driverpage_header}>
@@ -48,7 +45,7 @@ export const Driverpage: FC = () => {
         </button>
       </div>
       <DriversTableHeader />
-      <Driver driver={driver.data[0]} targetId={Number(id)} />
+      { drivers.data.map(driver => <Driver driver={driver} key={driver.id} />) }
       <div className={classes.wrapper} style={isVisibleForm ? {display: 'block'} : {display: 'none'}}>
         <AddDriverForm onHandler={() => setIsVisibleForm(false)} />
       </div>

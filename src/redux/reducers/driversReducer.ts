@@ -19,19 +19,26 @@ export interface IDriversDeafaultState {
   loading: boolean;
 };
 
+export interface IDriverDeafaultState {
+  isError: boolean;
+  status: string;
+  data: IDriver;
+  loading: boolean;
+};
+
 interface IDraversActions{
   type: string;
   payload: IDriversDeafaultState;
 };
 
-const defaultState: IDriversDeafaultState = {
+const defaultState: IDriversDeafaultState= {
   isError: false,
   status: 'idle',
   data: [],
   loading: false,
 };
 
-export const getDriversReducer = (state = defaultState, action: IDraversActions) => {
+export const getDriversReducer = (state = defaultState, action: IDraversActions) => {  
   switch (action.type) {    
     case GET_DRIVERS_SUCCESS:
       return { ...state, ...action.payload, loading: false };
