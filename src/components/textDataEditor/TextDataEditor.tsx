@@ -42,7 +42,9 @@ export const TextDataEditor = ({ value, pattern, onSave}: ITextDataEditor): Reac
     if (regex.test(currentValue)) {
       setElementEdit(false);   
       document.removeEventListener('click', onClick);
-      onSave(currentValue);
+      if (currentValue !== value) {
+        onSave(currentValue);        
+      }
     } else {
       rootEl.current?.focus();
     }
