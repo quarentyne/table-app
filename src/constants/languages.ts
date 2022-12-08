@@ -5,6 +5,7 @@ export interface ILanguageMenu {
   cars: string;
   lang: string;
   value: string;
+  back: string;
 };
 
 export interface ILanguageDriver{
@@ -92,6 +93,7 @@ export const languages: ILanguages = {
       cars: 'Автомобили',
       lang: 'Русский',
       value: 'ru',
+      back: 'Вернуться назад',
     },
     driver: {
       name: 'ФИО',
@@ -152,6 +154,7 @@ export const languages: ILanguages = {
       cars: 'Автомобілі',
       lang: 'Українська',
       value: 'ua',
+      back: 'Повернутися назад',
     },
     driver: {
       name: 'ПІБ',
@@ -212,6 +215,7 @@ export const languages: ILanguages = {
       cars: 'Cars',
       lang: 'English',
       value: 'en',
+      back: 'Come back',
     },
     driver: {
       name: 'Full name',
@@ -272,6 +276,7 @@ export const languages: ILanguages = {
       cars: 'Autos',
       lang: 'Deutsch',
       value: 'de',
+      back: 'Zurückkommen',
     },
     driver: {
       name: 'Voller Name',

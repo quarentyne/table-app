@@ -62,7 +62,12 @@ export const Car = ({ car }: ICar): ReactElement => {
         <li><TextDataEditor value={car.number} pattern={numberPattern} onSave={saveCarNumber} /></li>
         <li><TextDataEditor value={String(car.year)} pattern={yearPattern} onSave={saveCarYear} /></li>
         <li><CarClasses status={car.status.code} statusStyle={carClasses.preview + ' ' + carClassesByClass[car.status.code]} onSave={saveStatus} /></li>
-        <li><Actions eyeText={menuLang.drivers} deleteText={menuLang.delete} onDelete={() => dispatch(deleteCar(Number(car.id)))} /></li>
+        <li><Actions
+          eyeText={menuLang.drivers}
+          deleteText={menuLang.delete}
+          onDelete={() => dispatch(deleteCar(Number(car.id)))}
+          linkTo={`/driver/${car.driver_id}`}
+        /></li>
       </ul>
     </>
   );

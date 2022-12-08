@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { Driver } from "../../components/driver/Driver";
 import { ILanguageMenu } from "../../constants/languages";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import add from "../../assets/add.svg";
+import back from "../../assets/back.svg";
 import classes from "./Driverpage.module.scss";
 import { DriversTableHeader } from "../../components/driversTableHeader/DriversTableHeader";
 import { AddDriverForm } from "../../components/addDriverForm/AddDriverForm";
@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { LoadingError } from "../../components/loadingError/LoadingError";
 import { Loading } from "../../components/loading/Loading";
 import { requestDrivers } from "../../sagas/actions";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const Driverpage: FC = () => {
   const menuLang: ILanguageMenu = useTypedSelector(lang => lang.language.language.menu);  
@@ -20,6 +20,7 @@ export const Driverpage: FC = () => {
   const driver = useTypedSelector(state => state.drivers)
   
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
       dispatch(requestDrivers(Number(id)))
@@ -40,11 +41,8 @@ export const Driverpage: FC = () => {
   return (
     <div className={classes.driverpage}>
       <div className={classes.driverpage_header}>
-        <span>{menuLang.drivers}</span>
-        <button type="button" className={classes.add_driver} onClick={() => {
-          setIsVisibleForm(true);
-        }}>
-          <img src={add} width={15} height={15} alt="add" className={classes.add}/>{menuLang.addDriver}
+        <button type="button" className={classes.add_driver} onClick={() => navigate(-1)}>
+          <img src={back} width={15} height={15} alt="back" className={classes.add}/>{menuLang.back}
         </button>
       </div>
       <DriversTableHeader />

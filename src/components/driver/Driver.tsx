@@ -85,7 +85,12 @@ export const Driver = (props: IDriver): ReactElement => {
           statusStyle={driverStatusClasses.preview + ' ' + driverClassesByStatus[props.driver.status.code]}
           onSave={saveStatus} />
         </li>
-        <li><Actions eyeText={menuLang.autos} deleteText={menuLang.delete} onDelete={() => dispatch(deleteDriver(props.driver.id))} /></li>
+        <li><Actions
+          eyeText={menuLang.autos}
+          deleteText={menuLang.delete}
+          onDelete={() => dispatch(deleteDriver(props.driver.id))}
+          linkTo={'/car'}
+        /></li>
       </ul>
     </>
   );

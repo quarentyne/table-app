@@ -36,7 +36,7 @@ export const Carpage: FC = () => {
   return (
     <div>
       <div className={classes.carpage_header}>
-        <span>{menuLang.cars}</span>
+        <span>{menuLang.cars + ' (' + cars.data.length + ')'}</span>
         <button type="button" className={classes.add_car} onClick={() => {
           setIsVisibleForm(true);
         }}>
@@ -44,7 +44,6 @@ export const Carpage: FC = () => {
         </button></div>
       <CarsTableHeader />
       {cars.data.map(car => <Car car={car} key={car.id} />)}
-      {/* <Car car={car} /> */}
 
       <div className={classes.wrapper} style={isVisibleForm ? {display: 'block'} : {display: 'none'}}>
         <AddCarForm onHandler={() => setIsVisibleForm(false)} />

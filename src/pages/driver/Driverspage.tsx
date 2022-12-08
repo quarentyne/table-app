@@ -37,7 +37,7 @@ export const Driverspage: FC = () => {
   return (
     <div className={classes.driverpage}>
       <div className={classes.driverpage_header}>
-        <span>{menuLang.drivers}</span>
+        <span>{menuLang.drivers + ' (' + drivers.data.length + ')'}</span>
         <button type="button" className={classes.add_driver} onClick={() => {
           setIsVisibleForm(true);
         }}>

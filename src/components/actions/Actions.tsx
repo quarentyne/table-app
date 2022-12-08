@@ -8,6 +8,7 @@ interface IActions{
   eyeText: string;
   deleteText: string;
   onDelete: () => void;
+  linkTo: string;
 }
 
 export const Actions = (props: IActions): ReactElement => {
@@ -17,7 +18,7 @@ export const Actions = (props: IActions): ReactElement => {
   return (
     <ul className={classes.actions}>
       <li className={classes.actions_item}>
-        <Link to='/car'>
+        <Link to={props.linkTo}>
           <img
             src={eye}
             alt="look"
