@@ -13,11 +13,16 @@ const fetchPath = (id: number) => fetch(PATH + CAR_PATH + id + '/', {
 type TCar = {
   id: number;
   type: string;
+  currentId?: number;
 };
 
-function* deleteCar({id} :TCar){ 
+function* deleteCar({id, currentId} :TCar){ 
   yield fetchPath(id);
-  yield getCars();
+  if (currentId) {
+    yield getCars({ id: currentId });   
+  } else {
+    yield getCars();    
+  };
 };
 
 export function* watchDeleteCar() {

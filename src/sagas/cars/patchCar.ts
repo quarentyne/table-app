@@ -16,12 +16,17 @@ type TCar = {
   data: {
     id: number;
     car: string;
+    currentId?: number;
   }
 }
 
 function* patchCar(data: TCar) {     
   yield fetchPath(data.data.id, data.data.car);
-  yield getCars();
+  if (data.data.currentId) {
+    yield getCars({ id: data.data.currentId });   
+  } else {
+    yield getCars();    
+  };
 };
 
 export function* watchPatchCar() {

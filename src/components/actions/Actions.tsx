@@ -9,6 +9,7 @@ interface IActions{
   deleteText: string;
   onDelete: () => void;
   linkTo: string;
+  state?: number;
 }
 
 export const Actions = (props: IActions): ReactElement => {
@@ -18,7 +19,7 @@ export const Actions = (props: IActions): ReactElement => {
   return (
     <ul className={classes.actions}>
       <li className={classes.actions_item}>
-        <Link to={props.linkTo}>
+        <Link to={props.linkTo} state={props.state}>
           <img
             src={eye}
             alt="look"

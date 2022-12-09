@@ -25,9 +25,10 @@ interface ICar{
       code: string,
     },
   };
+  targetId?: number;
 };
 
-export const Car = ({ car }: ICar): ReactElement => {
+export const Car = ({ car, targetId }: ICar): ReactElement => {
   const language: ILanguage = useTypedSelector(lang => lang.language.language);
   const drivers = useTypedSelector(state => state.drivers.data);
   const owner = drivers.find(driver => driver.id === car.driver_id);
@@ -37,19 +38,19 @@ export const Car = ({ car }: ICar): ReactElement => {
 
   
   const saveCarMark = (mark: string) => {
-    dispatch(patchCar(Number(car.id), JSON.stringify({ mark })));
+    dispatch(patchCar(Number(car.id), JSON.stringify({ mark }), targetId));
   };
   const saveCarModel = (model: string) => {
-    dispatch(patchCar(Number(car.id), JSON.stringify({ model })));
+    dispatch(patchCar(Number(car.id), JSON.stringify({ model }), targetId));
   };
   const saveCarNumber = (number: string) => {
-    dispatch(patchCar(Number(car.id), JSON.stringify({ number })));
+    dispatch(patchCar(Number(car.id), JSON.stringify({ number }), targetId));
   };
   const saveCarYear = (year: string) => {
-    dispatch(patchCar(Number(car.id), JSON.stringify({ year: Number(year) })));
+    dispatch(patchCar(Number(car.id), JSON.stringify({ year: Number(year) }), targetId));
   };
   const saveStatus = (status: string) => {
-    dispatch(patchCar(Number(car.id), JSON.stringify({ status: { code: status, title: CARS_CLASSES[status] } })));
+    dispatch(patchCar(Number(car.id), JSON.stringify({ status: { code: status, title: CARS_CLASSES[status] } }), targetId));
   };
 
   return (
@@ -65,7 +66,7 @@ export const Car = ({ car }: ICar): ReactElement => {
         <li><Actions
           eyeText={menuLang.drivers}
           deleteText={menuLang.delete}
-          onDelete={() => dispatch(deleteCar(Number(car.id)))}
+          onDelete={() => dispatch(deleteCar(Number(car.id), targetId))}
           linkTo={`/driver/${car.driver_id}`}
         /></li>
       </ul>

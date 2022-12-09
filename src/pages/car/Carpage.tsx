@@ -10,16 +10,18 @@ import { requestCars } from "../../sagas/actions";
 import { useDispatch } from "react-redux";
 import { LoadingError } from "../../components/loadingError/LoadingError";
 import { Loading } from "../../components/loading/Loading";
+import { useLocation } from "react-router-dom";
 
 export const Carpage: FC = () => {
   const menuLang: ILanguageMenu = useTypedSelector(lang => lang.language.language.menu);  
   const [isVisibleForm, setIsVisibleForm] = useState(false);  
   const dispatch = useDispatch();
-  const cars = useTypedSelector(state=>state.cars)
-
+  const cars = useTypedSelector(state => state.cars)
+  const { state } = useLocation();  
+  
   useEffect(() => {
-    dispatch(requestCars())
-  }, [dispatch]);
+    dispatch(requestCars(state))
+  }, [dispatch, state]);
 
   if(cars.isError){
     return (
@@ -43,7 +45,13 @@ export const Carpage: FC = () => {
           <img src={add} width={15} height={15} alt="add" className={classes.add}/>{menuLang.addCar}
         </button></div>
       <CarsTableHeader />
-      {cars.data.map(car => <Car car={car} key={car.id} />)}
+      {cars.data.map(car => {
+        let targetID;
+        if (state) {
+          targetID = car.driver_id;
+        };
+        return (<Car car={car} targetId={targetID} key={car.id} />)})
+      }
 
       <div className={classes.wrapper} style={isVisibleForm ? {display: 'block'} : {display: 'none'}}>
         <AddCarForm onHandler={() => setIsVisibleForm(false)} />

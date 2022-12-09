@@ -90,6 +90,7 @@ export const Driver = (props: IDriver): ReactElement => {
           deleteText={menuLang.delete}
           onDelete={() => dispatch(deleteDriver(props.driver.id))}
           linkTo={'/car'}
+          state={props.driver.id}
         /></li>
       </ul>
     </>
