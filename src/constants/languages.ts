@@ -6,6 +6,8 @@ export interface ILanguageMenu {
   lang: string;
   value: string;
   back: string;
+  welcome: string;
+  statistics: string;
 };
 
 export interface ILanguageDriver{
@@ -94,6 +96,8 @@ export const languages: ILanguages = {
       lang: 'Русский',
       value: 'ru',
       back: 'Вернуться назад',
+      welcome: 'Добро пожаловать в панель управления TAXI-depot',
+      statistics: 'Статистика',
     },
     driver: {
       name: 'ФИО',
@@ -155,6 +159,8 @@ export const languages: ILanguages = {
       lang: 'Українська',
       value: 'ua',
       back: 'Повернутися назад',
+      welcome: 'Ласкаво просимо до панелі керування TAXI-depot',
+      statistics: 'Статистика',
     },
     driver: {
       name: 'ПІБ',
@@ -216,6 +222,8 @@ export const languages: ILanguages = {
       lang: 'English',
       value: 'en',
       back: 'Come back',
+      welcome: 'Welcome to TAXI-depot control panel',
+      statistics: 'Statistics',
     },
     driver: {
       name: 'Full name',
@@ -277,6 +285,8 @@ export const languages: ILanguages = {
       lang: 'Deutsch',
       value: 'de',
       back: 'Zurückkommen',
+      welcome: 'Willkommen in der TAXI-Depot-Zentrale',
+      statistics: 'Statistiken',
     },
     driver: {
       name: 'Voller Name',
