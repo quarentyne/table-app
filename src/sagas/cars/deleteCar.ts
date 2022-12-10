@@ -1,14 +1,8 @@
 import { takeEvery } from "redux-saga/effects";
-import { API_KEY, CAR_PATH, PATH } from "../../constants/api";
+import { CAR_PATH } from "../../constants/api";
 import { DELETE_CAR } from "../actions";
+import { fetchPath } from "../fetchPath";
 import { getCars } from "./getCars";
-
-const fetchPath = (id: number) => fetch(PATH + CAR_PATH + id + '/', {
-  method: 'DELETE',
-  headers: {
-    'X-Authorization': API_KEY,
-  },
-});
 
 type TCar = {
   id: number;
@@ -17,12 +11,8 @@ type TCar = {
 };
 
 function* deleteCar({id, currentId} :TCar){ 
-  yield fetchPath(id);
-  if (currentId) {
-    yield getCars({ id: currentId });   
-  } else {
-    yield getCars();    
-  };
+  yield fetchPath({method: 'DELETE', path: CAR_PATH, id: id});
+  yield getCars({ id: currentId });   
 };
 
 export function* watchDeleteCar() {

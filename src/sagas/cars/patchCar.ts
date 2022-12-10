@@ -1,15 +1,8 @@
 import { takeEvery } from "redux-saga/effects";
-import { API_KEY, CAR_PATH, PATH } from "../../constants/api";
-import {  PATCH_CAR } from "../actions";
+import { CAR_PATH } from "../../constants/api";
+import { PATCH_CAR } from "../actions";
+import { fetchPath } from "../fetchPath";
 import { getCars } from "./getCars";
-
-const fetchPath = (id: number, data: string) => fetch(PATH + CAR_PATH + id + '/', {
-  method: 'PATCH',
-  headers: {
-    'X-Authorization': API_KEY,
-  },
-  body: data,
-});
 
 type TCar = {
   type: string;
@@ -18,15 +11,25 @@ type TCar = {
     car: string;
     currentId?: number;
   }
-}
+};
+
+type TPatchCarRequest = {
+  method: string;
+  path: string;
+  id: number;
+  body: string;
+};
 
 function* patchCar(data: TCar) {     
-  yield fetchPath(data.data.id, data.data.car);
-  if (data.data.currentId) {
-    yield getCars({ id: data.data.currentId });   
-  } else {
-    yield getCars();    
-  };
+  const request: TPatchCarRequest = {
+    method: 'PATCH',
+    body: data.data.car,
+    path: CAR_PATH,
+    id: data.data.id,
+  };  
+
+  yield fetchPath(request);
+  yield getCars({ id: data.data.currentId });    
 };
 
 export function* watchPatchCar() {
