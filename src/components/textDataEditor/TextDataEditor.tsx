@@ -65,10 +65,12 @@ export const TextDataEditor = ({ value, pattern, onSave}: ITextDataEditor): Reac
             }}
             className={classes.editedInput} />
           
-          : <span onClick={() => {
-            setElementEdit(true);
-            document.addEventListener('click', onClick);
-          }}>{currentValue}</span>
+          : <span
+            style={{cursor:"pointer"}}
+            onClick={() => {
+              setElementEdit(true);
+              document.addEventListener('click', onClick);
+            }}>{currentValue}</span>
       }
     </>
   );

@@ -51,6 +51,7 @@ export const DriversStatus = ({status, statusStyle, onSave}: IDriversStatus) => 
             <option value='not_active'>{language.not_active}</option>
           </select>
         : <span
+          style={{cursor:"pointer"}}
           onClick={() => {
             setIsEdit(true);
             document.addEventListener('click', onClick);
