@@ -1,4 +1,5 @@
-import { API_KEY, PATH } from "../constants/api";
+import { API_KEY } from "../api/authAPI";
+import { BASE_API_URL } from "../api/constants";
 
 interface IFetchPath{
   path: string;
@@ -14,7 +15,7 @@ type THeaders = {
 };
 
 export const fetchPath = async (request: IFetchPath) => { 
-  const path = PATH + request.path + (request.id ? request.id + '/' : "")
+  const path = BASE_API_URL + request.path + (request.id ? request.id + '/' : "")
   const headers: THeaders = {
     'X-Authorization': API_KEY,
   };
@@ -22,6 +23,7 @@ export const fetchPath = async (request: IFetchPath) => {
     headers['E-Driver-Id'] = request.headers;
   };
   const body = request.body ? request.body : null;
+  
   try {
     const respone = await fetch(path, {
       method: request.method,

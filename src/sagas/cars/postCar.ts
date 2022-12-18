@@ -1,6 +1,6 @@
 import { takeEvery } from 'redux-saga/effects';
-import { CAR_PATH } from '../../constants/api';
-import { POST_CAR } from '../actions';
+import { Endpoints } from '../../api/endpoints';
+import { POST_CAR } from '../../modules/car/models';
 import { fetchPath } from '../fetchPath';
 import { getCars } from './getCars';
 
@@ -10,7 +10,7 @@ type TCar = {
 };
   
 export function* postCar(car: TCar) {  
-  yield fetchPath({method: 'POST', path: CAR_PATH, body: car.payload}); 
+  yield fetchPath({method: 'POST', path: Endpoints.CARS, body: car.payload}); 
   yield getCars();
 };
 

@@ -1,0 +1,13 @@
+{
+  "name": "Full name",
+  "registered": "Registration Date",
+  "born": "Date of birth",
+  "status": "Status",
+  "actions": "Actions",
+  "statuses": {
+    "active": "Active",
+    "blocked": "Blocked",
+    "fired": "Fired",
+    "not_active": "Not active"
+  }
+}

@@ -1,6 +1,6 @@
 import { takeEvery } from "redux-saga/effects";
-import { CAR_PATH } from "../../constants/api";
-import { PATCH_CAR } from "../actions";
+import { Endpoints } from "../../api/endpoints";
+import { PATCH_CAR } from "../../modules/car/models";
 import { fetchPath } from "../fetchPath";
 import { getCars } from "./getCars";
 
@@ -24,7 +24,7 @@ function* patchCar(data: TCar) {
   const request: TPatchCarRequest = {
     method: 'PATCH',
     body: data.data.car,
-    path: CAR_PATH,
+    path: Endpoints.CARS,
     id: data.data.id,
   };  
 

@@ -1,24 +1,24 @@
 import { put, takeEvery, call } from 'redux-saga/effects';
-import { CAR_PATH } from '../../constants/api';
-import { ICarsDeafaultState } from '../../redux/reducers/carsReducer';
-import { GET_CARS_REQUESTED,  responseCars } from '../actions';
+import { Endpoints } from '../../api/endpoints';
+import { GET_CARS_REQUESTED, ICarsDeafaultState } from '../../modules/car/models';
+import { responseCars } from '../../modules/car/selectors';
 import { fetchPath } from '../fetchPath';
 
-type IGetCars = {
+type TGetCars = {
   type?: string;
   id?: number;
 };
 
-export type IGetCarsRequest = {
+export type TGetCarsRequest = {
   method: string;
   path: string;
   headers?: string;
 };
 
-export function* getCars(request?: IGetCars) {
-  const getCarsRequest: IGetCarsRequest = {
+export function* getCars(request?: TGetCars) {
+  const getCarsRequest: TGetCarsRequest = {
     method: 'GET',
-    path: CAR_PATH,
+    path: Endpoints.CARS,
   };
 
   if (request?.id) {

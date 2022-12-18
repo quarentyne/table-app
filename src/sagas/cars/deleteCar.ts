@@ -1,6 +1,6 @@
 import { takeEvery } from "redux-saga/effects";
-import { CAR_PATH } from "../../constants/api";
-import { DELETE_CAR } from "../actions";
+import { Endpoints } from "../../api/endpoints";
+import { DELETE_CAR } from "../../modules/car/models";
 import { fetchPath } from "../fetchPath";
 import { getCars } from "./getCars";
 
@@ -11,7 +11,7 @@ type TCar = {
 };
 
 function* deleteCar({id, currentId} :TCar){ 
-  yield fetchPath({method: 'DELETE', path: CAR_PATH, id: id});
+  yield fetchPath({method: 'DELETE', path: Endpoints.CARS, id: id});
   yield getCars({ id: currentId });   
 };
 

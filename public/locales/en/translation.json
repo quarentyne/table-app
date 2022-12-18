@@ -1,0 +1,63 @@
+{
+  "actions": {
+    "delete": "Remove",
+    "autos": "View cars",
+    "drivers": "View owner"
+  },
+  "addCar": {
+    "owner": "Owner",
+    "mark": "Mark",
+    "model": "Model",
+    "year": "Release year",
+    "number": "Number",
+    "status": "Class"
+  },
+  "addDriver": {
+    "firstName": "Enter a name",
+    "lastName": "Enter last name",
+    "birth": "Enter your date of birth in the format dd.mm.yyyy",
+    "status": "Select status"
+  },
+  "car": {
+    "name": "Driver's name",
+    "mark": "Car brand",
+    "model": "Car model",
+    "number": "Vehicle number",
+    "year": "Graduation year",
+    "status": "Class",
+    "actions": "Actions",
+    "statuses": {
+      "eco": "Eco",
+      "econom": "Econom",
+      "bussiness": "Bussiness",
+      "standart": "Standard"
+    }
+  },
+  "driver": {
+    "name": "Full name",
+    "registered": "Registration Date",
+    "born": "Date of birth",
+    "status": "Status",
+    "actions": "Actions",
+    "statuses": {
+      "active": "Active",
+      "blocked": "Blocked",
+      "fired": "Fired",
+      "not_active": "Not active"
+    }
+  },
+  "error": {
+    "loadingError": "An error occurred while loading data"
+  },
+  "menu": {
+    "addDriver": "Add a driver",
+    "addCar": "Add a car",
+    "drivers": "Drivers",
+    "cars": "Cars",
+    "lang": "English",
+    "value": "en",
+    "back": "Come back",
+    "welcome": "Welcome to TAXI-depot control panel",
+    "statistics": "Statistics"
+  }
+}

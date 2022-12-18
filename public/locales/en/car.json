@@ -1,0 +1,15 @@
+{
+  "name": "Driver's name",
+  "mark": "Car brand",
+  "model": "Car model",
+  "number": "Vehicle number",
+  "year": "Graduation year",
+  "status": "Class",
+  "actions": "Actions",
+  "statuses": {
+    "eco": "Eco",
+    "econom": "Econom",
+    "bussiness": "Bussiness",
+    "standart": "Standard"
+  }
+}
