@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { addDriver } from "../../../modules/driver/selectors";
-import { DRIVER_STATUSES } from "../../constants/driverStatuses";
-import { datePattern, namePattern } from "../../constants/regexp";
-import { FormButtons } from "../formButtons/FormButtons";
+import { addDriver } from "../../selectors";
+import { DRIVER_STATUSES } from "../../../../shared/constants/driverStatuses";
+import { datePattern, namePattern } from "../../../../shared/constants/regexp";
+import { FormButtons } from "../../../../shared/components/formButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 
 interface IAddDriverForm{
