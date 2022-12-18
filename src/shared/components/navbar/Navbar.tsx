@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-// import { NavLink } from "react-router-dom";
 import driver from "../../../assets/svg/driver.svg";
 import taxi from "../../../assets/svg/taxi.svg";
 import { NavbarItem, NavbarLink, NavbarNav } from "./styles";
