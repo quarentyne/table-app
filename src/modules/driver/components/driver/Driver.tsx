@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Actions } from "../../../../shared/components/actions/Actions";
 import { DataEditor } from "../../../../shared/components/dataEditor/DataEditor";
+import { DriversStatuses } from "../../../../shared/components/statuses/DriversStatuses";
+import { StatusEditor } from "../../../../shared/components/statuses/StatusEditor";
 import { datePattern, fullNamePattern } from "../../../../shared/constants/regexp";
 import { DriversTable, DriversTableInnerItems } from "../driversTable/styles";
 
@@ -22,7 +24,7 @@ interface IDriver{
 export const Driver = (props: IDriver) => {
   const { t } = useTranslation();
   // const dispatch = useDispatch();
-  
+
   const birthDate: Date = new Date(props.date_birth);
   const joinDate: Date = new Date(props.date_created);
 
@@ -35,9 +37,10 @@ export const Driver = (props: IDriver) => {
   
   const [fullName, setFullName] = useState(props.first_name + ' ' + props.last_name);
   const [birth, setBirth] = useState(renderDate(birthDate));
-  
+  const [status, setStatus] = useState(props.status.code);
+
   const save = () => {
-    console.log(fullName);
+    console.log(status);
   };
 
   return (
@@ -60,7 +63,13 @@ export const Driver = (props: IDriver) => {
           onSave={save} />
       </DriversTableInnerItems>
       <DriversTableInnerItems>{renderDate(joinDate)}</DriversTableInnerItems>
-      <DriversTableInnerItems>{props.status.code}</DriversTableInnerItems>
+      <DriversTableInnerItems>
+        <StatusEditor
+          status={status}
+          onSave={save}
+          onChange={setStatus}
+          options={<DriversStatuses />} />
+      </DriversTableInnerItems>
       <DriversTableInnerItems>
         <Actions
           eyeText={t("actions.autos")}
