@@ -58,6 +58,7 @@ export const StatusEditor = ({status, onSave, options, onChange}: IStatusEditor)
           {options}
           </select>
         : <EditorSpan
+          code={status}
           onClick={() => {
             setIsEdit(true);
           }}

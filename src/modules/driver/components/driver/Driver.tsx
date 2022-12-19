@@ -1,11 +1,13 @@
-// import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import { Actions } from "../../../../shared/components/actions/Actions";
 import { DataEditor } from "../../../../shared/components/dataEditor/DataEditor";
 import { DriversStatuses } from "../../../../shared/components/statuses/DriversStatuses";
 import { StatusEditor } from "../../../../shared/components/statuses/StatusEditor";
+import { DRIVER_STATUSES } from "../../../../shared/constants/driverStatuses";
 import { datePattern, fullNamePattern } from "../../../../shared/constants/regexp";
+import { deleteDriver, patchDriver } from "../../selectors";
 import { DriversTable, DriversTableInnerItems } from "../driversTable/styles";
 
 interface IDriver{
@@ -23,7 +25,7 @@ interface IDriver{
 
 export const Driver = (props: IDriver) => {
   const { t } = useTranslation();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const birthDate: Date = new Date(props.date_birth);
   const joinDate: Date = new Date(props.date_created);
@@ -39,8 +41,19 @@ export const Driver = (props: IDriver) => {
   const [birth, setBirth] = useState(renderDate(birthDate));
   const [status, setStatus] = useState(props.status.code);
 
-  const save = () => {
-    console.log(status);
+  const saveDriver = () => {
+    const name = fullName.split(' ');    
+    const driver = JSON.stringify({
+      first_name: name[0],
+      last_name: name[1],
+      date_birth: Date.parse(birth),
+      status: {
+        code: status,
+        title: DRIVER_STATUSES[status],
+      },
+    });
+
+    dispatch(patchDriver(props.id, driver, props.targetId));
   };
 
   return (
@@ -53,20 +66,20 @@ export const Driver = (props: IDriver) => {
           value={fullName}
           pattern={fullNamePattern}
           onChange={setFullName}
-          onSave={save} />
+          onSave={saveDriver} />
       </DriversTableInnerItems>
       <DriversTableInnerItems>
         <DataEditor
           value={birth}
           pattern={datePattern}
           onChange={setBirth}
-          onSave={save} />
+          onSave={saveDriver} />
       </DriversTableInnerItems>
       <DriversTableInnerItems>{renderDate(joinDate)}</DriversTableInnerItems>
       <DriversTableInnerItems>
         <StatusEditor
           status={status}
-          onSave={save}
+          onSave={saveDriver}
           onChange={setStatus}
           options={<DriversStatuses />} />
       </DriversTableInnerItems>
@@ -74,8 +87,8 @@ export const Driver = (props: IDriver) => {
         <Actions
           eyeText={t("actions.autos")}
           deleteText={t("actions.delete")}
-          linkTo=""
-          onDelete={() => 1}
+          linkTo="/car"
+          onDelete={() => dispatch(deleteDriver(props.id))}
           state={props.id}
         />
       </DriversTableInnerItems>
