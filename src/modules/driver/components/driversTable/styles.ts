@@ -8,6 +8,11 @@ export const DriversTable = styled.ul`
   padding-bottom: 5px;
 `;
 
-export const DriversTableHeaderItems = styled.li`
+export const DriversHeaderTableItems = styled.li`
   font-weight: 700;
+`;
+
+export const DriversTableInnerItems = styled.li`
+  font-weight: 500;
+  margin-top: 20px;
 `;

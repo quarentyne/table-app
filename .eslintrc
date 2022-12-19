@@ -9,7 +9,7 @@
     "@typescript-eslint/no-explicit-any": "error",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-no-useless-fragment": "off",
-    "no-console": ["error", { "allow": ["warn", "error"] }],
+    // "no-console": ["error", { "allow": ["warn", "error"] }],
     "import/order": ["error", { "groups": [["builtin", "external"]] }],
     "import/no-duplicates": ["error"],
     "react/self-closing-comp": [

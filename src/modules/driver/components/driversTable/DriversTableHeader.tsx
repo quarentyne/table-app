@@ -1,17 +1,17 @@
 import { useTranslation } from "react-i18next";
-import { DriversTable, DriversTableHeaderItems } from "./styles";
+import { DriversTable, DriversHeaderTableItems } from "./styles";
 
 export const DriversTableHeader = () => { 
   const { t } = useTranslation();
 
   return (
     <DriversTable>
-      <DriversTableHeaderItems>ID</DriversTableHeaderItems>
-      <DriversTableHeaderItems>{t("driver.name")}</DriversTableHeaderItems>
-      <DriversTableHeaderItems>{t("driver.born")}</DriversTableHeaderItems>
-      <DriversTableHeaderItems>{t("driver.registered")}</DriversTableHeaderItems>
-      <DriversTableHeaderItems>{t("driver.status")}</DriversTableHeaderItems>
-      <DriversTableHeaderItems>{t("driver.actions")}</DriversTableHeaderItems>
+      <DriversHeaderTableItems>ID</DriversHeaderTableItems>
+      <DriversHeaderTableItems>{t("driver.name")}</DriversHeaderTableItems>
+      <DriversHeaderTableItems>{t("driver.born")}</DriversHeaderTableItems>
+      <DriversHeaderTableItems>{t("driver.registered")}</DriversHeaderTableItems>
+      <DriversHeaderTableItems>{t("driver.status")}</DriversHeaderTableItems>
+      <DriversHeaderTableItems>{t("driver.actions")}</DriversHeaderTableItems>
     </DriversTable>
   );
 };

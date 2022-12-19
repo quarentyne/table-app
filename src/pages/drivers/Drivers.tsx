@@ -8,6 +8,7 @@ import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import { AddDriverButton, DriversHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
 import { AddDriverForm } from "../../modules/driver/components/addDriverForm/AddDriverForm";
+import { Driver } from "../../modules/driver/components/driver/Driver";
 
 export const Drivers = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,16 @@ export const Drivers = () => {
         </AddDriverButton>
       </DriversHeaderBlock>
       <DriversTableHeader />
+      {drivers.data.map(driver =>
+        <Driver
+          key={driver.id}
+          id={driver.id}
+          status={driver.status}
+          first_name={driver.first_name}
+          last_name={driver.last_name}
+          date_birth={driver.date_birth}
+          date_created={driver.date_created} />
+      )}
       <FormWrapper isVisible={isVisibleForm}>
         <AddDriverForm onFinish={() => setIsVisibleForm(false)}/>
       </FormWrapper>
