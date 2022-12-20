@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { EditorSpan } from "./styles";
+import { DRIVER_STATUSES } from "../../constants/driverStatuses";
+import { CarsStatusEditor } from "./cars/CarsStatusEditor";
+import { DriversStatusEditor } from "./drivers/DriversStatusEditor";
 
 interface IStatusEditor { 
   status: string;
@@ -12,7 +13,6 @@ interface IStatusEditor {
 export const StatusEditor = ({status, onSave, options, onChange}: IStatusEditor) => {
   const [isEdit, setIsEdit] = useState(false);
   const rootEl = useRef<HTMLSelectElement>(null);
-  const { t } = useTranslation();
 
   const saveData = () => {
     setIsEdit(false);
@@ -57,12 +57,9 @@ export const StatusEditor = ({status, onSave, options, onChange}: IStatusEditor)
           }}>
           {options}
           </select>
-        : <EditorSpan
-          code={status}
-          onClick={() => {
-            setIsEdit(true);
-          }}
-          >{t(`driver.statuses.${status}`)}</EditorSpan>
+        : DRIVER_STATUSES.hasOwnProperty(status)
+          ? <DriversStatusEditor onClick={() => setIsEdit(true)} status={status} />
+          : <CarsStatusEditor onClick={() => setIsEdit(true)} status={status} />        
       }
     </>
   );

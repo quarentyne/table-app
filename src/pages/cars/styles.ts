@@ -5,7 +5,7 @@ type Props = {
   isVisible: boolean;
 };
 
-export const DriversHeaderBlock = styled.div`
+export const CarsHeaderBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,7 +13,7 @@ export const DriversHeaderBlock = styled.div`
   margin-bottom: 20px;
 `;
 
-export const AddDriverButton = styled.button`
+export const AddCarButton = styled.button`
   font-weight: 700;
   display: flex;
   justify-content: space-between;

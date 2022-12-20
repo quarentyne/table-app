@@ -1,5 +1,6 @@
 import { useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { requestDrivers } from "../../modules/driver/selectors";
 import { DriversTableHeader } from "../../modules/driver/components/driversTable/DriversTableHeader";
@@ -15,17 +16,18 @@ export const Drivers = () => {
   const drivers = useTypedSelector(state => state.drivers)
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(requestDrivers())
-  }, [dispatch]);
+    dispatch(requestDrivers(Number(id)))
+  }, [dispatch, id]);
 
-  if (drivers.loading) {
+  if (drivers.loading || drivers.status === 'idle') {
     return <Loading />
-  }
+  };
 
   return (
-    <div>
+    <>
       <DriversHeaderBlock>
         <span>{t("menu.drivers") + ' (' + drivers.data.length + ')'}</span>
         <AddDriverButton onClick={() => setIsVisibleForm(true)}>
@@ -46,6 +48,6 @@ export const Drivers = () => {
       <FormWrapper isVisible={isVisibleForm}>
         <AddDriverForm onFinish={() => setIsVisibleForm(false)}/>
       </FormWrapper>
-    </div>
+    </>
   );
 };

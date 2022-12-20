@@ -3,12 +3,12 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Actions } from "../../../../shared/components/actions/Actions";
 import { DataEditor } from "../../../../shared/components/dataEditor/DataEditor";
-import { DriversStatuses } from "../../../../shared/components/statuses/DriversStatuses";
+import { DriversStatuses } from "../../../../shared/components/statuses/drivers/DriversStatuses";
 import { StatusEditor } from "../../../../shared/components/statuses/StatusEditor";
 import { DRIVER_STATUSES } from "../../../../shared/constants/driverStatuses";
 import { datePattern, fullNamePattern } from "../../../../shared/constants/regexp";
 import { deleteDriver, patchDriver } from "../../selectors";
-import { DriversTable, DriversTableInnerItems } from "../driversTable/styles";
+import { DriversTable, DriversTableInnerItems } from "./styles";
 
 interface IDriver{
   id: number;

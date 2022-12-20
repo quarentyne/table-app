@@ -6,12 +6,13 @@ import { DRIVER_STATUSES } from "../../../../shared/constants/driverStatuses";
 import { datePattern, namePattern } from "../../../../shared/constants/regexp";
 import { FormButtons } from "../../../../shared/components/formButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
+import { DriversStatuses } from "../../../../shared/components/statuses/drivers/DriversStatuses";
 
 interface IAddDriverForm{
   onFinish: () => void;
 };
 
-export const AddDriverForm = ({onFinish}: IAddDriverForm) => {
+export const AddDriverForm = ({ onFinish }: IAddDriverForm) => {
   const { t } = useTranslation();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -29,7 +30,7 @@ export const AddDriverForm = ({onFinish}: IAddDriverForm) => {
         title: DRIVER_STATUSES[status],
       },
     })));
-    cancelHandler();    
+    cancelHandler();
   };
 
   const cancelHandler = (): void => {
@@ -70,12 +71,9 @@ export const AddDriverForm = ({onFinish}: IAddDriverForm) => {
         onChange={(e) => setBirthDate(e.target.value)} />
       <FormLabel htmlFor="select">{t("addDriver.status")}</FormLabel>
       <FormSelect id="select" value={status} onChange={(e) => setStatus(e.target.value)}>
-        <option value='active'>{t("driver.statuses.active")}</option>
-        <option value='blocked'>{t("driver.statuses.blocked")}</option>
-        <option value='fired'>{t("driver.statuses.fired")}</option>
-        <option value='not_active'>{t("driver.statuses.not_active")}</option>
+        <DriversStatuses />
       </FormSelect>
       <FormButtons onCancel={() => cancelHandler()} />
     </AddForm>
   );
-}
+};
