@@ -21,10 +21,12 @@ export const AddDriverForm = ({ onFinish }: IAddDriverForm) => {
   const dispatch = useDispatch();
 
   const addHandler = (): void => {
+    const date = birthDate.split('.');
+    const refactoredDate = date[1] + '.' + date[0] + '.' + date[2];
     dispatch(addDriver(JSON.stringify({
       first_name: firstName,
       last_name: lastName,
-      date_birth: Date.parse(birthDate),
+      date_birth: Date.parse(refactoredDate),
       status: {
         code: status,
         title: DRIVER_STATUSES[status],

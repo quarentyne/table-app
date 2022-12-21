@@ -23,7 +23,4 @@ export const NavbarLink = styled(NavLink)`
     color: ${Colors.hover};
     opacity: 0.8;
   };
-  &.acive{
-    color: red;
-  };
 `;

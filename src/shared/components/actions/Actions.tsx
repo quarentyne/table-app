@@ -26,15 +26,14 @@ export const Actions = (props: IActions) => {
         </Link>
       </ActionsItem>
       <ActionsItem>
-        <Link to={props.linkTo} state={props.state}>
-          <img
-            src={del}
-            alt="look"
-            width={20}
-            height={20}
-            title={props.deleteText}
-          />
-        </Link>
+        <img
+          src={del}
+          alt="delete"
+          width={20}
+          height={20}
+          title={props.deleteText}
+          onClick={props.onDelete}
+        />
       </ActionsItem>
     </ActionsList>
   );

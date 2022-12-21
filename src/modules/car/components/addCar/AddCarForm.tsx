@@ -45,6 +45,7 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
     setModel('');
     setNumber('');
     setYear('');
+    onFinish();
   };
 
   const markPlaceholder = t("addCar.mark");
@@ -92,12 +93,12 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
         type='text'
         placeholder={yearPlaceholder}
         value={year}
-        onChange={(e) => setYear(e.target.value)} />
+        onChange={(e) => setYear(e.target.value.toUpperCase())} />
       <FormLabel htmlFor="select">{t("addCar.status")}</FormLabel>
       <FormSelect id="select" value={carsClass} onChange={(e) => setCarsClass(e.target.value)}>
         <CarsStatuses />
       </FormSelect>
-      <FormButtons onCancel={() => onFinish()} />
+      <FormButtons onCancel={() => cancelHandler()} />
     </AddForm>
   );
 };

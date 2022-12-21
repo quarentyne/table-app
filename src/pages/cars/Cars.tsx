@@ -28,6 +28,12 @@ export const Cars = () => {
     return <Loading />
   };
 
+  const checkState = (id: number) => { 
+    if (state) {
+      return id;
+    };
+    return;
+  };
 
   return (
     <>
@@ -40,10 +46,7 @@ export const Cars = () => {
       </CarsHeaderBlock>
       <CarsTableHeader />
       {cars.data.map(car => {
-        let targetID: number | null = null;
-        if (state) {
-          targetID = car.driver_id;
-        };
+        let targetID = checkState(car.driver_id);
         return (<Car
           key={car.id}
           id={car.id}
@@ -52,7 +55,7 @@ export const Cars = () => {
           model={car.model}
           number={car.number}
           status={car.status}
-          year={car.year}        
+          year={car.year}
           targetId={targetID}
         />);
       })}

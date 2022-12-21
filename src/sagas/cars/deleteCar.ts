@@ -10,7 +10,7 @@ type TCar = {
   currentId?: number;
 };
 
-function* deleteCar({id, currentId} :TCar){ 
+function* deleteCar({ id, currentId }: TCar) { 
   yield fetchPath({method: 'DELETE', path: Endpoints.CARS, id: id});
   yield getCars({ id: currentId });   
 };

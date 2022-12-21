@@ -22,7 +22,7 @@ interface ICar{
     title: string,
     code: string,
   },
-  targetId: number | null;
+  targetId?: number;
 };
 
 export const Car = (props: ICar) => {
@@ -95,8 +95,8 @@ export const Car = (props: ICar) => {
       </CarsTableInnerItem>
       <CarsTableInnerItem>
         <Actions
-          eyeText={t("menu.drivers")}
-          deleteText={t("menu.delete")}
+          eyeText={t("actions.drivers")}
+          deleteText={t("actions.delete")}
           onDelete={() => dispatch(deleteCar(Number(props.id), props.targetId))}
           linkTo={`/driver/${props.driver_id}`}/>
       </CarsTableInnerItem>
