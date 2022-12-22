@@ -1,14 +1,13 @@
 import { useTranslation } from "react-i18next";
+import { DRIVER_STATUSES } from "../../../constants/driverStatuses";
 
 export const DriversStatuses = () => {
   const { t } = useTranslation();
+  const statuses = Object.keys(DRIVER_STATUSES);
 
   return (
     <>
-      <option value='active'>{t("driver.statuses.active")}</option>
-      <option value='blocked'>{t("driver.statuses.blocked")}</option>
-      <option value='fired'>{t("driver.statuses.fired")}</option>
-      <option value='not_active'>{t("driver.statuses.not_active")}</option>
+      {statuses.map(status => <option value={status}>{t(`driver.statuses.${status}`)}</option>)}
     </>
   );
 };
