@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { DRIVER_STATUSES } from "../../constants/driverStatuses";
-import { CarsStatusEditor } from "./cars/CarsStatusEditor";
-import { DriversStatusEditor } from "./drivers/DriversStatusEditor";
+import { StatusEditorSpan } from "./EditorSpan";
 
 interface IStatusEditor { 
   status: string;
@@ -57,9 +55,7 @@ export const StatusEditor = ({status, onSave, options, onChange}: IStatusEditor)
           }}>
           {options}
           </select>
-        : DRIVER_STATUSES.hasOwnProperty(status)
-          ? <DriversStatusEditor onClick={() => setIsEdit(true)} status={status} />
-          : <CarsStatusEditor onClick={() => setIsEdit(true)} status={status} />        
+        : <StatusEditorSpan onClick={() => setIsEdit(true)} status={status} />     
       }
     </>
   );
