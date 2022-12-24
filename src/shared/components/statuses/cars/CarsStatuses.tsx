@@ -7,7 +7,7 @@ export const CarsStatuses = () => {
 
   return (
     <>
-      {statuses.map(status => <option value={status}>{t(`car.statuses.${status}`)}</option>)}
+      {statuses.map((status, i) => <option key={i} value={status}>{t(`car.statuses.${status}`)}</option>)}
     </>
   );
 };

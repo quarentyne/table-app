@@ -7,7 +7,7 @@ export const DriversStatuses = () => {
 
   return (
     <>
-      {statuses.map(status => <option value={status}>{t(`driver.statuses.${status}`)}</option>)}
+      {statuses.map((status, i) => <option key={i} value={status}>{t(`driver.statuses.${status}`)}</option>)}
     </>
   );
 };
