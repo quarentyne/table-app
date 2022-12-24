@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const CarsTable = styled.ul`
   display: grid;
-  grid-template-columns: 0.3fr 1.7fr 1fr 1fr 1fr 0.6fr 1fr 0.8fr;
+  grid-template-columns: 0.4fr 1.5fr 1fr 1fr 1.2fr 0.7fr 1.2fr 0.6fr;
   justify-items: center;
   gap: 10px;
+  align-items: center;
   text-align: center;
 `;
 

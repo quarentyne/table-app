@@ -10,5 +10,5 @@ export const DriversTable = styled.ul`
 `;
 export const DriversTableInnerItems = styled.li`
   font-weight: 500;
-  padding: 15px;
+  padding: 15px 0;
 `;

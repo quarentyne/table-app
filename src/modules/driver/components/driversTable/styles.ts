@@ -6,6 +6,7 @@ export const DriversTable = styled.ul`
   justify-items: center;
   gap: 10px;
   text-align: center;
+  align-items: center;
 `;
 
 export const DriversHeaderTableItems = styled.li`

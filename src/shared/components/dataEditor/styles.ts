@@ -6,6 +6,7 @@ export const EditorSpan = styled.span`
 
 export const EditorInput = styled.input`
   text-align: center;
+  width: 100%;
   &:focus{
     background-color: rgba(135, 206, 235, 0.4);
   }
