@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { requestCars } from "../../modules/car/selectors";
 import { requestDrivers } from "../../modules/driver/selectors";
-import { DataBlock, DataImage, DataObject, HomepageBlock, HomepageLabel, HomepageWrapper } from "./styles";
+import { DataBlock, DataImage, DataObject, HomepageBlock, HomepageLabel, HomepageParagraph, HomepageWrapper } from "./styles";
 import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import people from "../../assets/svg/main-people.svg";
 import car from "../../assets/svg/main-car.svg";
@@ -24,7 +24,7 @@ export const Home = () => {
 
   return (
     <HomepageBlock>
-      <p>{t("menu.welcome")}</p>
+      <HomepageParagraph>{t("menu.welcome")}</HomepageParagraph>
       <HomepageWrapper>
         <HomepageLabel>
           {t("menu.statistics")}
@@ -34,13 +34,13 @@ export const Home = () => {
             <DataImage>
               <img src={people} width={35} height={35} alt={'drivers'} />
             </DataImage>           
-            <span>{driversCount} {t("menu.drivers")}</span>
+            <span>{t("menu.drivers") + ": " + driversCount}</span>
           </DataObject>
           <DataObject>
             <DataImage>
               <img src={car} width={35} height={35} alt={'cars'} />
             </DataImage>             
-            <span>{carsCount} {t("menu.cars")}</span>
+            <span>{t("menu.cars") + ": " + carsCount}</span>
           </DataObject>
         </DataBlock>
       </HomepageWrapper>

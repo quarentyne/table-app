@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import "./fonts/Gilroy-Medium.ttf";
+import { screenSizes } from "./shared/constants/screenSizes";
 
 export const GlobalStyle = createGlobalStyle`
   *,
@@ -12,9 +13,12 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: Gilroy;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 15px;
     background-color: #E5E5E5;
     color: #292D45;
+    @media screen and (min-width: ${screenSizes.tablet}px){    
+    font-size: 20px;    
+  };
   }
 
   ul[class],

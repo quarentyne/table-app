@@ -15,6 +15,10 @@ export const HomepageWrapper = styled.div`
   width: 280px;
 `;
 
+export const HomepageParagraph = styled.p`
+  text-align: center;
+`;
+
 export const HomepageLabel = styled.span`
   font-size: 14px;
   font-weight: bold;

@@ -1,20 +1,25 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { Colors } from "../../constants/colors";
+import { screenSizes } from "../../constants/screenSizes";
 
 export const NavbarNav = styled.nav`
   display: flex;
-  justify-content: space-between;
-  width: 350px;
+  justify-content: space-between;  
   align-items: center;
+  width: 120px;
+  @media screen and (min-width: ${screenSizes.modile}px){    
+    width: 170px;   
+  };
+  @media screen and (min-width: ${screenSizes.tablet}px){    
+    width: 350px;   
+  };
 `;
 
 export const NavbarItem = styled.span`
   display: flex;
+  font-weight: 700;
   align-items: center;
-  >img{
-    margin-right: 5px;
-  }
 `;
 
 export const NavbarLink = styled(NavLink)`

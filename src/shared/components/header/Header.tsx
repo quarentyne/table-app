@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { GlobalHeader } from "./styles";
 import { Navbar } from "../navbar/Navbar";
-import logo from "../../../assets/images/logo.png";
+import logoBig from "../../../assets/images/logo100w.png";
+import logoMin from "../../../assets/images/logo50w.png";
 import { LanguagesChanger } from "../languageChanger/LanguageChanger";
 import i18n from "../../../i18n";
 
@@ -15,7 +16,13 @@ export const Header = () => {
 
   return (
     <GlobalHeader>
-      <Link to="/"><img src={logo} alt="logo" width={100} height={50} /></Link>
+      <Link to="/">
+        <picture>
+          <source srcSet={logoBig} media="(min-width: 768px)" />
+          <source srcSet={logoMin} media="(max-width: 768px)" />
+          <img src="logoBig" alt="logo" />
+        </picture>
+      </Link>
       <Navbar />    
       <LanguagesChanger actualLang={actualLanguage} changeLang={changeLanguage} />
     </GlobalHeader>  
