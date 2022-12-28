@@ -9,7 +9,7 @@ import { CARS_CLASSES } from "../../../../shared/constants/carsClasses";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/constants/regexp";
 import { useTypedSelector } from "../../../../shared/hooks/useTypedSelector";
 import { deleteCar, patchCar } from "../../selectors";
-import { CarsTableInner, CarsTableInnerItem } from "./styles";
+import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
 
 interface ICar{
   id: string;
@@ -52,54 +52,54 @@ export const Car = (props: ICar) => {
 
   return (
     <CarsTableInner>
-      <CarsTableInnerItem>
+      <ID>
         {props.id}
-      </CarsTableInnerItem>
-      <CarsTableInnerItem>
+      </ID>
+      <Name>
         {owner?.first_name + " " + owner?.last_name}
-      </CarsTableInnerItem>
-      <CarsTableInnerItem>
+      </Name>
+      <Mark>
         <DataEditor
           value={mark}
           onChange={setMark}
           onSave={saveCar}
           pattern={namePattern} />
-      </CarsTableInnerItem>
-      <CarsTableInnerItem>
+      </Mark>
+      <Model>
         <DataEditor
           value={model}
           onChange={setModel}
           onSave={saveCar}
           pattern={modelPattern} />
-      </CarsTableInnerItem>
-      <CarsTableInnerItem>
+      </Model>
+      <PlateNumber>
         <DataEditor
           value={plateNumber}
           onChange={setPlateNumber}
           onSave={saveCar}
           pattern={numberPattern} />
-      </CarsTableInnerItem>
-      <CarsTableInnerItem>
+      </PlateNumber>
+      <Year>
         <DataEditor
           value={year}
           onChange={setYear}
           onSave={saveCar}
           pattern={yearPattern} />
-      </CarsTableInnerItem>      
-      <CarsTableInnerItem>
+      </Year>      
+      <Status>
         <StatusEditor
           status={status}
           onSave={saveCar}
           onChange={setStatus}
           options={<CarsStatuses />} />
-      </CarsTableInnerItem>
-      <CarsTableInnerItem>
+      </Status>
+      <Action>
         <Actions
           eyeText={t("actions.drivers")}
           deleteText={t("actions.delete")}
           onDelete={() => dispatch(deleteCar(Number(props.id), props.targetId))}
           linkTo={`/driver/${props.driver_id}`}/>
-      </CarsTableInnerItem>
+      </Action>
     </CarsTableInner>
   );
 };

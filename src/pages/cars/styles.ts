@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Colors } from "../../shared/constants/colors";
+import { screenSizes } from "../../shared/constants/screenSizes";
 
 type Props = {
   isVisible: boolean;
@@ -19,16 +20,25 @@ export const AddCarButton = styled.button`
   justify-content: space-between;
   align-items: center;
   color: ${Colors.hover};
-  padding: 8px 16px;
+  padding: 4px 8px;
   background: #F4F5FF;
   border-radius: 8px;
   border: 1px solid transparent;
   cursor: pointer;
+
+  @media screen and (min-width: ${screenSizes.tablet}px){
+    padding: 8px 16px;
+  };
+
   &:hover{
     border: 1px solid ${Colors.hover};
   };
   >img{
-    margin-right: 5px;
+    @media screen and (min-width: ${screenSizes.modile}px){
+      margin-right: 5px;
+      display: block;
+    };
+    display: none;    
   };
 `;
 

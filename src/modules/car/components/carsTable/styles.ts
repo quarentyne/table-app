@@ -9,10 +9,15 @@ export const CarsTable = styled.ul`
     justify-items: center;
     gap: 10px;
     text-align: center;
+    align-items: center;
   };
 `;
 
 export const CarsTableHeaderItem = styled.li`
   font-weight: 700;
   padding-bottom: 5px;
+  font-size: 15px;
+  @media screen and (min-width: ${screenSizes.laptopS}px){
+    font-size: 20px;
+  };
 `;

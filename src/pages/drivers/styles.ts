@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Colors } from "../../shared/constants/colors";
+import { screenSizes } from "../../shared/constants/screenSizes";
 
 type Props = {
   isVisible: boolean;
@@ -28,7 +29,11 @@ export const AddDriverButton = styled.button`
     border: 1px solid ${Colors.hover};
   };
   >img{
-    margin-right: 5px;
+    @media screen and (min-width: ${screenSizes.modile}px){
+      margin-right: 5px;
+      display: block;
+    };
+    display: none;
   };
 `;
 
