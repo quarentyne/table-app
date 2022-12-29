@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
     color: #292D45;
     @media screen and (min-width: ${screenSizes.tablet}px){    
     font-size: 20px;    
+    position: sticky;
   };
   }
 

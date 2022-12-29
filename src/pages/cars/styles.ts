@@ -46,7 +46,7 @@ export const FormWrapper = styled.div<Props>`
   width: 100vw;
   height: 100vh;
   background-color: rgba(128, 128, 128, 0.7);
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   display: ${props => props.isVisible ? "block" : "none"};
