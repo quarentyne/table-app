@@ -8,7 +8,7 @@ import { StatusEditor } from "../../../../shared/components/statuses/StatusEdito
 import { DRIVER_STATUSES } from "../../../../shared/constants/driverStatuses";
 import { datePattern, fullNamePattern } from "../../../../shared/constants/regexp";
 import { deleteDriver, patchDriver } from "../../selectors";
-import { DriversTable, DriversTableInnerItems } from "./styles";
+import { Action, Birthday, DriversTable, ID, Name, Registrated, Status } from "./styles";
 
 interface IDriver{
   id: number;
@@ -58,32 +58,34 @@ export const Driver = (props: IDriver) => {
 
   return (
     <DriversTable>
-      <DriversTableInnerItems>
+      <ID>
         {props.id}
-      </DriversTableInnerItems>
-      <DriversTableInnerItems>
+      </ID>
+      <Name>
         <DataEditor
           value={fullName}
           pattern={fullNamePattern}
           onChange={setFullName}
           onSave={saveDriver} />
-      </DriversTableInnerItems>
-      <DriversTableInnerItems>
+      </Name>
+      <Birthday>
         <DataEditor
           value={birth}
           pattern={datePattern}
           onChange={setBirth}
           onSave={saveDriver} />
-      </DriversTableInnerItems>
-      <DriversTableInnerItems>{renderDate(joinDate)}</DriversTableInnerItems>
-      <DriversTableInnerItems>
+      </Birthday>
+      <Registrated>
+        {renderDate(joinDate)}
+      </Registrated>
+      <Status>
         <StatusEditor
           status={status}
           onSave={saveDriver}
           onChange={setStatus}
           options={<DriversStatuses />} />
-      </DriversTableInnerItems>
-      <DriversTableInnerItems>
+      </Status>
+      <Action>
         <Actions
           eyeText={t("actions.autos")}
           deleteText={t("actions.delete")}
@@ -91,7 +93,7 @@ export const Driver = (props: IDriver) => {
           onDelete={() => dispatch(deleteDriver(props.id))}
           state={props.id}
         />
-      </DriversTableInnerItems>
+      </Action>
     </DriversTable>
   );
 };
