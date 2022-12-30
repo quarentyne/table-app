@@ -27,5 +27,8 @@ export const NavbarLink = styled(NavLink)`
   :hover{
     color: ${Colors.hover};
     opacity: 0.8;
+  };  
+  &.active{
+    color: ${Colors.hover};
   };
 `;
