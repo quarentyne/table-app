@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useTypedSelector } from "../../../../shared/hooks/useTypedSelector";
 import { deleteCar } from "../../selectors";
 import { Car } from "../car/Car";
 import { CarsTableHeader } from "../carsTableHeader/CarsTableHeader";
@@ -23,6 +24,12 @@ interface ICars {
 
 export const CarsTable = ({ cars, checkRedirect}: ICars) => {
   const dispatch = useDispatch();
+  const drivers = useTypedSelector(state => state.drivers.data);
+
+  const driversNameAdapt = (id: number) => {
+    const driver = drivers.find(driver => driver.id === id);
+    return `${driver?.first_name} ${driver?.last_name}`;
+  };
 
   const onDeleteCar = (carId: number, redirectTargetId?: number) => {
     dispatch(deleteCar(carId, redirectTargetId))
@@ -35,13 +42,14 @@ export const CarsTable = ({ cars, checkRedirect}: ICars) => {
         key={car.id}
         id={car.id}
         driver_id={car.driver_id}
-        mark={car.mark}
-        model={car.model}
-        number={car.number}
-        status={car.status}
-        year={car.year}
+        carMark={car.mark}
+        carModel={car.model}
+        carNumber={car.number}
+        carStatus={car.status}
+        carYear={car.year}
         targetId={checkRedirect(car.driver_id)}
         onDelete={onDeleteCar}
+        driverName={driversNameAdapt(car.driver_id)}
       />)}
     </>
   );

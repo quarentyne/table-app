@@ -1,4 +1,4 @@
-export enum Endpoints{
-  DRIVERS = 'driver/',
-  CARS = 'car/',
-};
+export enum Endpoints {
+  DRIVERS = "driver/",
+  CARS = "car/",
+}
