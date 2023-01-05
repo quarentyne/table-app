@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { mappedCarsStatusCodes } from "../../../../helpers/carsClasses";
+import { mappedCarsStatusCodes } from "../../../helpers/carsClasses";
 
 export const CarsStatuses = () => {
   const { t } = useTranslation();

@@ -6,9 +6,10 @@ interface IStatusEditor {
   options: JSX.Element;
   onChange: (data: string) => void;
   onSave: () => void;
+  entity: string;
 };
 
-export const StatusEditor = ({status, onSave, options, onChange}: IStatusEditor) => {
+export const StatusEditor = ({status, onSave, options, onChange, entity}: IStatusEditor) => {
   const [isEdit, setIsEdit] = useState(false);
   const rootEl = useRef<HTMLSelectElement>(null);
 
@@ -55,7 +56,7 @@ export const StatusEditor = ({status, onSave, options, onChange}: IStatusEditor)
           }}>
           {options}
           </select>
-        : <StatusEditorSpan onClick={() => setIsEdit(true)} status={status} />     
+        : <StatusEditorSpan onClick={() => setIsEdit(true)} status={status} entity={entity} />     
       }
     </>
   );

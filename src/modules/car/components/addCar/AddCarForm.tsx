@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../helpers/inputPatterns";
+import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
 import { FormButtons } from "../../../../shared/components/formButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 import { CarsStatuses } from "../../../../shared/components/statuses/cars/CarsStatuses";
 import { addCar } from "../../selectors";
 import { useTypedSelector } from "../../../../shared/hooks/useTypedSelector";
-import { carsClassesCodeSelector, carsClassesTitleSelector, carsStatusCodes } from "../../../../helpers/carsClasses";
+import { carsClassesCodeSelector, carsClassesTitleSelector, carsStatusCodes } from "../../../../shared/helpers/carsClasses";
 
 interface IAddCarForm{
   onFinish: () => void;

@@ -2,14 +2,15 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Endpoints } from "../../../../api/endpoints";
-import { carsClassesTitleSelector } from "../../../../helpers/carsClasses";
+import { carsClassesTitleSelector } from "../../../../shared/helpers/carsClasses";
 import { Actions } from "../../../../shared/components/actions/Actions";
 import { DataEditor } from "../../../../shared/components/dataEditor/DataEditor";
 import { CarsStatuses } from "../../../../shared/components/statuses/cars/CarsStatuses";
 import { StatusEditor } from "../../../../shared/components/statuses/StatusEditor";
-import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../helpers/inputPatterns";
+import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
 import { patchCar } from "../../selectors";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
+import { Entitys } from "../../../../shared/helpers/entitys";
 
 interface ICar{
   id: string;
@@ -92,6 +93,7 @@ export const Car = ({id, carModel, carMark, carYear, carNumber, driver_id, carSt
           status={status}
           onSave={saveCar}
           onChange={setStatus}
+          entity={Entitys.CAR}
           options={<CarsStatuses />} />
       </Status>
       <Action>

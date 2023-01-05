@@ -6,7 +6,8 @@ import { DataEditor } from "../../../../shared/components/dataEditor/DataEditor"
 import { DriversStatuses } from "../../../../shared/components/statuses/drivers/DriversStatuses";
 import { StatusEditor } from "../../../../shared/components/statuses/StatusEditor";
 import { DRIVER_STATUSES } from "../../../../shared/constants/driverStatuses";
-import { datePattern, fullNamePattern } from "../../../../helpers/inputPatterns";
+import { Entitys } from "../../../../shared/helpers/entitys";
+import { datePattern, fullNamePattern } from "../../../../shared/helpers/inputPatterns";
 import { deleteDriver, patchDriver } from "../../selectors";
 import { Action, Birthday, DriversTable, ID, Name, Registrated, Status } from "./styles";
 
@@ -83,6 +84,7 @@ export const Driver = (props: IDriver) => {
           status={status}
           onSave={saveDriver}
           onChange={setStatus}
+          entity={Entitys.DRIVER}
           options={<DriversStatuses />} />
       </Status>
       <Action>
