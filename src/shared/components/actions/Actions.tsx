@@ -11,17 +11,17 @@ interface IActions{
   state?: number;
 };
 
-export const Actions = (props: IActions) => {
+export const Actions = ({eyeText, deleteText, linkTo, state, onDelete} :IActions) => {
   return (
     <ActionsList>
       <ActionsItem>
-        <Link to={props.linkTo} state={props.state}>
+        <Link to={linkTo} state={state}>
           <img
             src={eye}
             alt="look"
             width={20}
             height={20}
-            title={props.eyeText}
+            title={eyeText}
           />
         </Link>
       </ActionsItem>
@@ -31,8 +31,8 @@ export const Actions = (props: IActions) => {
           alt="delete"
           width={20}
           height={20}
-          title={props.deleteText}
-          onClick={props.onDelete}
+          title={deleteText}
+          onClick={onDelete}
         />
       </ActionsItem>
     </ActionsList>

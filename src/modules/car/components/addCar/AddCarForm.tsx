@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/constants/inputPatterns";
+import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../helpers/inputPatterns";
 import { FormButtons } from "../../../../shared/components/formButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 import { CarsStatuses } from "../../../../shared/components/statuses/cars/CarsStatuses";
@@ -21,7 +21,7 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
   const [number, setNumber] = useState('');
   const [year, setYear] = useState('');
   const [carClass, setCarClass] = useState(carsStatusCodes.STANDART);
-  const [owner, setOwner] = useState(String(drivers[0]?.id));
+  const [driver, setDriver] = useState(String(drivers[0]?.id));
   const dispatch = useDispatch();
 
   const addHandler = (): void => {
@@ -32,7 +32,7 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
       mark,
       number,
       year: Number(year),
-      driver_id: owner,
+      driver_id: driver,
       status: {
         code: carClass,
         title,
@@ -60,13 +60,13 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
       e.preventDefault();
       addHandler();
     }}>
-      <FormLabel htmlFor="owner">{t("addCar.owner")}</FormLabel>
-      <FormSelect id="owner" value={owner} onChange={(e) => setOwner(e.target.value)}>
+      <FormLabel htmlFor="driver">{t("addCar.driver")}</FormLabel>
+      <FormSelect id="driver" value={driver} onChange={(e) => setDriver(e.target.value)}>
         {drivers.map(driver => {
           if (!driver) {
             return <option value="" disabled>Drivers not found</option>
           };
-          return <option key={driver.id} value={driver.id}>{driver.first_name + ' ' + driver.last_name}</option>
+          return <option key={driver.id} value={driver.id}>{`${driver.first_name} ${driver.last_name}`}</option>
         })}
       </FormSelect>
       <FormInput

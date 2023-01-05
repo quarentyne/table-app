@@ -7,7 +7,7 @@ import { Actions } from "../../../../shared/components/actions/Actions";
 import { DataEditor } from "../../../../shared/components/dataEditor/DataEditor";
 import { CarsStatuses } from "../../../../shared/components/statuses/cars/CarsStatuses";
 import { StatusEditor } from "../../../../shared/components/statuses/StatusEditor";
-import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/constants/inputPatterns";
+import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../helpers/inputPatterns";
 import { patchCar } from "../../selectors";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
 
