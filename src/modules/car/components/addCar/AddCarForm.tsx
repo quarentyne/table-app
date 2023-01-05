@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/constants/regexp";
+import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/constants/inputPatterns";
 import { FormButtons } from "../../../../shared/components/formButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 import { CarsStatuses } from "../../../../shared/components/statuses/cars/CarsStatuses";
 import { addCar } from "../../selectors";
 import { useTypedSelector } from "../../../../shared/hooks/useTypedSelector";
-import { CARS_CLASSES } from "../../../../shared/constants/carsClasses";
+import { carsClassesCodeSelector, carsClassesTitleSelector, carsStatusCodes } from "../../../../helpers/carsClasses";
 
 interface IAddCarForm{
   onFinish: () => void;
@@ -20,20 +20,22 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
   const [model, setModel] = useState('');
   const [number, setNumber] = useState('');
   const [year, setYear] = useState('');
-  const [carsClass, setCarsClass] = useState('standart');
+  const [carClass, setCarClass] = useState(carsStatusCodes.STANDART);
   const [owner, setOwner] = useState(String(drivers[0]?.id));
   const dispatch = useDispatch();
 
   const addHandler = (): void => {
+    const title = carsClassesTitleSelector(carClass);
+
     const newCar = JSON.stringify({
-      model: model,
-      mark: mark,
-      number: number,
+      model,
+      mark,
+      number,
       year: Number(year),
       driver_id: owner,
       status: {
-        code: carsClass,
-        title: CARS_CLASSES[carsClass],
+        code: carClass,
+        title,
       },
     });    
     dispatch(addCar(newCar));
@@ -95,7 +97,7 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
         value={year}
         onChange={(e) => setYear(e.target.value.toUpperCase())} />
       <FormLabel htmlFor="select">{t("addCar.status")}</FormLabel>
-      <FormSelect id="select" value={carsClass} onChange={(e) => setCarsClass(e.target.value)}>
+      <FormSelect id="select" value={carClass} onChange={(e) => setCarClass(carsClassesCodeSelector(e.target.value))}>
         <CarsStatuses />
       </FormSelect>
       <FormButtons onCancel={() => cancelHandler()} />

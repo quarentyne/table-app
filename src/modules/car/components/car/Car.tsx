@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { carsClassesTitleSelector } from "../../../../helpers/carsClasses";
 import { Actions } from "../../../../shared/components/actions/Actions";
 import { DataEditor } from "../../../../shared/components/dataEditor/DataEditor";
 import { CarsStatuses } from "../../../../shared/components/statuses/cars/CarsStatuses";
 import { StatusEditor } from "../../../../shared/components/statuses/StatusEditor";
-import { CARS_CLASSES } from "../../../../shared/constants/carsClasses";
-import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/constants/regexp";
+import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/constants/inputPatterns";
 import { useTypedSelector } from "../../../../shared/hooks/useTypedSelector";
 import { deleteCar, patchCar } from "../../selectors";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
@@ -38,13 +38,15 @@ export const Car = (props: ICar) => {
   const owner = drivers.find(driver => driver.id === props.driver_id);  
 
   const saveCar = () => { 
+    const title = carsClassesTitleSelector(status);
+
     const car = JSON.stringify({
-      model: model,
-      mark: mark,
+      model,
+      mark,
       year: Number(year),
       status: {
         code: status,
-        title: CARS_CLASSES[status],
+        title,
       }
     });
     dispatch(patchCar(Number(props.id), car, props.targetId))
