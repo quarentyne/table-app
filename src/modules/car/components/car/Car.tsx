@@ -8,7 +8,7 @@ import { CarsStatuses } from "../../../../shared/components/statuses/cars/CarsSt
 import { StatusEditor } from "../../../../shared/components/statuses/StatusEditor";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/constants/inputPatterns";
 import { useTypedSelector } from "../../../../shared/hooks/useTypedSelector";
-import { deleteCar, patchCar } from "../../selectors";
+import { patchCar } from "../../selectors";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
 
 interface ICar{
@@ -23,6 +23,7 @@ interface ICar{
     code: string,
   },
   targetId?: number;
+  onDelete: (carId: number, redirectTargetId?: number) => void;
 };
 
 export const Car = (props: ICar) => {
@@ -99,7 +100,7 @@ export const Car = (props: ICar) => {
         <Actions
           eyeText={t("actions.drivers")}
           deleteText={t("actions.delete")}
-          onDelete={() => dispatch(deleteCar(Number(props.id), props.targetId))}
+          onDelete={props.onDelete.bind(null, Number(props.id), props.targetId)}
           linkTo={`/driver/${props.driver_id}`}/>
       </Action>
     </CarsTableInner>
