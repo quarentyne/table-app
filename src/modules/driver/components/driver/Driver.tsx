@@ -27,7 +27,7 @@ interface IDriver{
 
 export const Driver = ({id, first_name, last_name, date_birth, date_created, driverStatus, targetId, onDelete}: IDriver) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
 
   const birthDate: Date = new Date(date_birth);
   const joinDate: Date = new Date(date_created);

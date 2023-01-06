@@ -35,7 +35,7 @@ export const Car = ({id, carModel, carMark, carYear, carNumber, driver_id, carSt
   const [mark, setMark] = useState(carMark);
   const [year, setYear] = useState(String(carYear));
   const [plateNumber, setPlateNumber] = useState(carNumber);
-  const [status, setStatus] = useState(carStatus.code);
+  const [status, setStatus] = useState(carStatus.code);  
 
   const saveCar = () => { 
     const title = carsClassesTitleSelector(status);
@@ -101,7 +101,9 @@ export const Car = ({id, carModel, carMark, carYear, carNumber, driver_id, carSt
           eyeText={t("actions.drivers")}
           deleteText={t("actions.delete")}
           onDelete={onDelete.bind(null, Number(id), targetId)}
-          linkTo={`/${Endpoints.DRIVERS}${driver_id}`}/>
+          linkTo={`/${Endpoints.DRIVERS}${driver_id}`}
+          state={driver_id}
+        />
       </Action>
     </CarsTableInner>
   );
