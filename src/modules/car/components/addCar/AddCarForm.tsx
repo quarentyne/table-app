@@ -100,7 +100,7 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
       <FormSelect id="select" value={carClass} onChange={(e) => setCarClass(carsClassesCodeSelector(e.target.value))}>
         <CarsStatuses />
       </FormSelect>
-      <FormButtons onCancel={() => cancelHandler()} />
+      <FormButtons onCancel={cancelHandler} />
     </AddForm>
   );
 };

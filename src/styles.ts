@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-import "./fonts/Gilroy-Medium.ttf";
+import "./assets/fonts/Gilroy-Medium.ttf";
 import { screenSizes } from "./shared/constants/screenSizes";
 
 export const GlobalStyle = createGlobalStyle`

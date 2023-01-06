@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-// import { mappedCarsStatusCodes } from "../../helpers/carsClasses";
 import { EditorSpan } from "./styles";
 
 interface IStatusEditorSpan { 

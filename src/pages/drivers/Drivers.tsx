@@ -18,6 +18,10 @@ export const Drivers = () => {
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
   const { id } = useParams();
 
+  const toggleFormVisability = () => {
+    setIsVisibleForm(!isVisibleForm);
+  };
+
   useEffect(() => {
     dispatch(requestDrivers(Number(id)))
   }, [dispatch, id]);
@@ -29,8 +33,8 @@ export const Drivers = () => {
   return (
     <>
       <DriversHeaderBlock>
-        <span>{t("menu.drivers") + ' (' + drivers.data.length + ')'}</span>
-        <AddDriverButton onClick={() => setIsVisibleForm(true)}>
+        <span>{`${t("menu.drivers")} (${drivers.data.length})`}</span>
+        <AddDriverButton onClick={toggleFormVisability}>
           <img src={add} width={15} height={15} alt="add"/>{t("menu.addDriver")}
         </AddDriverButton>
       </DriversHeaderBlock>
@@ -46,7 +50,7 @@ export const Drivers = () => {
           date_created={driver.date_created} />
       )}
       <FormWrapper isVisible={isVisibleForm}>
-        <AddDriverForm onFinish={() => setIsVisibleForm(false)}/>
+        <AddDriverForm onFinish={toggleFormVisability}/>
       </FormWrapper>
     </>
   );

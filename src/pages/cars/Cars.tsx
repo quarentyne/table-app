@@ -18,6 +18,10 @@ export const Cars = () => {
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
 
+  const toggleFormVisability = () => {
+    setIsVisibleForm(!isVisibleForm);
+  };
+
   useEffect(() => {
     dispatch(requestCars(state));
     dispatch(requestDrivers());
@@ -37,15 +41,15 @@ export const Cars = () => {
   return (
     <>
       <CarsHeaderBlock>
-        <span>{t("menu.cars") + " (" + cars.data.length + ")"}</span>
-        <AddCarButton onClick={() => setIsVisibleForm(true)}>
+        <span>{`${t("menu.cars")} (${cars.data.length})`}</span>
+        <AddCarButton onClick={toggleFormVisability}>
           <img src={add} width={15} height={15} alt="add" />
           {t("menu.addCar")}
         </AddCarButton>
       </CarsHeaderBlock>
       <CarsTable cars={cars.data} checkRedirect={checkState} />
       <FormWrapper isVisible={isVisibleForm}>
-        <AddCarForm onFinish={() => setIsVisibleForm(false)}/>
+        <AddCarForm onFinish={toggleFormVisability}/>
       </FormWrapper>
     </>
   );

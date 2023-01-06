@@ -13,9 +13,13 @@ export const DataEditor = ({ value, pattern, onChange, onSave }: IDataEditor) =>
   const rootEl = useRef<HTMLInputElement>(null);
   const regex = new RegExp(pattern);
 
+  const toggleElementEditState = () => {
+    setElementEdit(!isElementEdit);
+  };
+
   const saveData = () => {
     if (regex.test(value)) { 
-      setElementEdit(false);
+      toggleElementEditState();
       onSave();
     } else {
       rootEl.current?.focus();
@@ -66,9 +70,7 @@ export const DataEditor = ({ value, pattern, onChange, onSave }: IDataEditor) =>
               };
             }}
           />
-          : <EditorSpan onClick={() => {
-            setElementEdit(true);
-          }}>
+          : <EditorSpan onClick={toggleElementEditState}>
             {value}
           </EditorSpan>
       }

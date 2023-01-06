@@ -34,13 +34,13 @@ export const Home = () => {
             <DataImage>
               <img src={people} width={35} height={35} alt={'drivers'} />
             </DataImage>           
-            <span>{t("menu.drivers") + ": " + driversCount}</span>
+            <span>{`${t("menu.drivers")}: ${driversCount}`}</span>
           </DataObject>
           <DataObject>
             <DataImage>
               <img src={car} width={35} height={35} alt={'cars'} />
             </DataImage>             
-            <span>{t("menu.cars") + ": " + carsCount}</span>
+            <span>{`${t("menu.cars")}: ${carsCount}`}</span>
           </DataObject>
         </DataBlock>
       </HomepageWrapper>

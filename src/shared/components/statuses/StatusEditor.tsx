@@ -13,8 +13,12 @@ export const StatusEditor = ({status, onSave, options, onChange, entity}: IStatu
   const [isEdit, setIsEdit] = useState(false);
   const rootEl = useRef<HTMLSelectElement>(null);
 
+  const toggleEditorState = () => {
+    setIsEdit(!isEdit);
+  };
+
   const saveData = () => {
-    setIsEdit(false);
+    toggleEditorState();
     onSave();
   };
 
@@ -56,7 +60,7 @@ export const StatusEditor = ({status, onSave, options, onChange, entity}: IStatu
           }}>
           {options}
           </select>
-        : <StatusEditorSpan onClick={() => setIsEdit(true)} status={status} entity={entity} />     
+        : <StatusEditorSpan onClick={toggleEditorState} status={status} entity={entity} />     
       }
     </>
   );
