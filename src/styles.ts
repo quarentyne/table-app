@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import "./assets/fonts/Gilroy-Medium.ttf";
-import { screenSizes } from "./shared/constants/screenSizes";
+import { screenSizes } from "./shared/helpers/themes";
 
 export const GlobalStyle = createGlobalStyle`
   *,

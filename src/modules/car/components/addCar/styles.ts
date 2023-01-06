@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { screenSizes } from "../../../../shared/constants/screenSizes";
+import { screenSizes } from "../../../../shared/helpers/themes";
 
 export const AddForm = styled.form`
   background-color: rgb(234, 220, 247);
@@ -7,16 +7,16 @@ export const AddForm = styled.form`
   border-radius: 5%;
   position: absolute;
   max-height: 100vh;
-  left: calc(50% - calc(90vw/2));
-  top:calc(50% - calc(415px/2));
+  left: calc(50% - calc(90vw / 2));
+  top: calc(50% - calc(415px / 2));
   display: flex;
   flex-direction: column;
   width: 90vw;
   justify-content: space-between;
-  @media screen and (min-width: ${screenSizes.tablet}px){
-    left: calc(50% - calc(500px/2));
+  @media screen and (min-width: ${screenSizes.tablet}px) {
+    left: calc(50% - calc(500px / 2));
     width: 500px;
-  };
+  } ;
 `;
 
 export const FormInput = styled.input`

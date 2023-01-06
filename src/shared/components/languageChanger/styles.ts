@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Colors } from "../../constants/colors";
-import { screenSizes } from "../../constants/screenSizes";
+import { baseColors, screenSizes } from "../../helpers/themes";
 
 type Props = {
   active: boolean;
@@ -16,13 +15,13 @@ export const LanguageButton = styled.button<Props>`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: ${props => props.active ? Colors.hover : Colors.basic};
-  :hover{
-    color: ${Colors.hover};
-  };
+  color: ${(props) => (props.active ? baseColors.hover : baseColors.basic)};
+  :hover {
+    color: ${baseColors.hover};
+  }
 
-  @media screen and (min-width: ${screenSizes.tablet}px){    
+  @media screen and (min-width: ${screenSizes.tablet}px) {
     font-weight: 700;
-    font-size: 20px;    
-  };
+    font-size: 20px;
+  } ;
 `;
