@@ -5,10 +5,10 @@ import { Actions } from "../../../../shared/components/actions/Actions";
 import { DataEditor } from "../../../../shared/components/dataEditor/DataEditor";
 import { DriversStatuses } from "../../../../shared/components/statuses/drivers/DriversStatuses";
 import { StatusEditor } from "../../../../shared/components/statuses/StatusEditor";
-import { DRIVER_STATUSES } from "../../../../shared/constants/driverStatuses";
+import { driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";
 import { Entitys } from "../../../../shared/helpers/entitys";
 import { datePattern, fullNamePattern } from "../../../../shared/helpers/inputPatterns";
-import { deleteDriver, patchDriver } from "../../selectors";
+import { patchDriver } from "../../selectors";
 import { Action, Birthday, DriversTable, ID, Name, Registrated, Status } from "./styles";
 
 interface IDriver{
@@ -17,19 +17,20 @@ interface IDriver{
   last_name: string;
   date_created: number;
   date_birth: number;
-  status: {
+  driverStatus: {
     code: string;
     title: string;
   };
   targetId?: number;
+  onDelete: (id: number) => void;
 };
 
-export const Driver = (props: IDriver) => {
+export const Driver = ({id, first_name, last_name, date_birth, date_created, driverStatus, targetId, onDelete}: IDriver) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const birthDate: Date = new Date(props.date_birth);
-  const joinDate: Date = new Date(props.date_created);
+  const birthDate: Date = new Date(date_birth);
+  const joinDate: Date = new Date(date_created);
 
   const renderDate = (date: Date): string => {
     let day = date.getDate();
@@ -38,11 +39,12 @@ export const Driver = (props: IDriver) => {
     return ((day < 10 ? checker(day) : day) + '.' + (month < 10 ? checker(month) : month) + '.' + date.getFullYear());
   };
   
-  const [fullName, setFullName] = useState(props.first_name + ' ' + props.last_name);
+  const [fullName, setFullName] = useState(first_name + ' ' + last_name);
   const [birth, setBirth] = useState(renderDate(birthDate));
-  const [status, setStatus] = useState(props.status.code);
+  const [status, setStatus] = useState(driverStatus.code);
 
   const saveDriver = () => {
+    const title = driverStatusTitleSelector(status);
     const name = fullName.split(' ');    
     const driver = JSON.stringify({
       first_name: name[0],
@@ -50,17 +52,16 @@ export const Driver = (props: IDriver) => {
       date_birth: Date.parse(birth),
       status: {
         code: status,
-        title: DRIVER_STATUSES[status],
+        title,
       },
     });
-
-    dispatch(patchDriver(props.id, driver, props.targetId));
+    dispatch(patchDriver(id, driver, targetId));
   };
 
   return (
     <DriversTable>
       <ID>
-        {props.id}
+        {id}
       </ID>
       <Name>
         <DataEditor
@@ -92,8 +93,8 @@ export const Driver = (props: IDriver) => {
           eyeText={t("actions.autos")}
           deleteText={t("actions.delete")}
           linkTo="/car"
-          onDelete={() => dispatch(deleteDriver(props.id))}
-          state={props.id}
+          onDelete={onDelete.bind(null, id)}
+          state={id}
         />
       </Action>
     </DriversTable>

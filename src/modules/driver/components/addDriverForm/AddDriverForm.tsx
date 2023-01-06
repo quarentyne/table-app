@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { addDriver } from "../../selectors";
-import { DRIVER_STATUSES } from "../../../../shared/constants/driverStatuses";
 import { datePattern, namePattern } from "../../../../shared/helpers/inputPatterns";
 import { FormButtons } from "../../../../shared/components/formButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 import { DriversStatuses } from "../../../../shared/components/statuses/drivers/DriversStatuses";
+import { driverStatusCodes, driverStatusCodeSelector, driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";
 
 interface IAddDriverForm{
   onFinish: () => void;
@@ -17,19 +17,20 @@ export const AddDriverForm = ({ onFinish }: IAddDriverForm) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [birthDate, setBirthDate] = useState('');
-  const [status, setStatus] = useState('active');
+  const [status, setStatus] = useState(driverStatusCodes.ACTIVE);
   const dispatch = useDispatch();
 
   const addHandler = (): void => {
+    const title = driverStatusTitleSelector(status);
     const date = birthDate.split('.');
-    const refactoredDate = date[1] + '.' + date[0] + '.' + date[2];
+    const refactoredDate = `${date[1]}.${date[0]}.${date[2]}`;
     dispatch(addDriver(JSON.stringify({
       first_name: firstName,
       last_name: lastName,
       date_birth: Date.parse(refactoredDate),
       status: {
         code: status,
-        title: DRIVER_STATUSES[status],
+        title,
       },
     })));
     cancelHandler();
@@ -72,10 +73,10 @@ export const AddDriverForm = ({ onFinish }: IAddDriverForm) => {
         value={birthDate}
         onChange={(e) => setBirthDate(e.target.value)} />
       <FormLabel htmlFor="select">{t("addDriver.status")}</FormLabel>
-      <FormSelect id="select" value={status} onChange={(e) => setStatus(e.target.value)}>
+      <FormSelect id="select" value={status} onChange={(e) => setStatus(driverStatusCodeSelector(e.target.value))}>
         <DriversStatuses />
       </FormSelect>
-      <FormButtons onCancel={() => cancelHandler()} />
+      <FormButtons onCancel={cancelHandler} />
     </AddForm>
   );
 };
