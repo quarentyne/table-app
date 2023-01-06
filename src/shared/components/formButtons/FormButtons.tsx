@@ -6,15 +6,15 @@ interface IFormButtons {
   onCancel: () => void;
 };
 
-export const FormButtons = ({onCancel}: IFormButtons) => {
+export const FormButtons = ({ onCancel }: IFormButtons) => {
   return (
     <ButtonsBlock>
       <Button type="submit">
-        <img src={confirm} alt="Add" width={25} height={25}/>
+        <img src={confirm} alt="Add" width={25} height={25} />
       </Button>
-      <Button onClick={onCancel}>
+      <Button type="button" onClick={onCancel}>
         <img src={cancel} alt="Cancel" width={25} height={25} />
       </Button>
     </ButtonsBlock>
   );
-}
+};
