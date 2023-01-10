@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
@@ -7,7 +7,7 @@ import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 import { CarsStatuses } from "../../../../shared/components/statuses/cars/CarsStatuses";
 import { addCar } from "../../selectors";
 import { useTypedSelector } from "../../../../shared/hooks/useTypedSelector";
-import { carsClassesCodeSelector, carsClassesTitleSelector, carsStatusCodes } from "../../../../shared/helpers/carsClasses";
+import { carsClassesTitleSelector, carsStatusCodes } from "../../../../shared/helpers/carsClasses";
 
 interface IAddCarForm{
   onFinish: () => void;
@@ -16,25 +16,31 @@ interface IAddCarForm{
 export const AddCarForm = ({ onFinish }: IAddCarForm) => {
   const drivers = useTypedSelector(state => state.drivers.data)
   const { t } = useTranslation();
-  const [mark, setMark] = useState('');
-  const [model, setModel] = useState('');
-  const [number, setNumber] = useState('');
-  const [year, setYear] = useState('');
-  const [carClass, setCarClass] = useState(carsStatusCodes.STANDART);
-  const [driver, setDriver] = useState(String(drivers[0]?.id));
   const dispatch = useDispatch();
+  const [carOptions, setCarOptions] = useState({
+    mark: "",
+    model: "",
+    number: "",
+    year: "",
+    carClass: carsStatusCodes.STANDART,
+    driver: String(drivers[0]?.id),
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+    setCarOptions({ ...carOptions, [e.target.name]: e.target.value })
+  };
 
   const addHandler = (): void => {
-    const title = carsClassesTitleSelector(carClass);
+    const title = carsClassesTitleSelector(carOptions.carClass);
 
     const newCar = JSON.stringify({
-      model,
-      mark,
-      number,
-      year: Number(year),
-      driver_id: driver,
+      model: carOptions.model,
+      mark: carOptions.mark,
+      number: carOptions.number,
+      year: Number(carOptions.year),
+      driver_id: carOptions.driver,
       status: {
-        code: carClass,
+        code: carOptions.carClass,
         title,
       },
     });    
@@ -43,10 +49,14 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
   };
 
   const cancelHandler = (): void => {
-    setMark('');
-    setModel('');
-    setNumber('');
-    setYear('');
+    setCarOptions({
+      mark: "",
+      model: "",
+      number: "",
+      year: "",
+      carClass: carsStatusCodes.STANDART,
+      driver: String(drivers[0]?.id),
+    });
     onFinish();
   };
 
@@ -61,7 +71,11 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
       addHandler();
     }}>
       <FormLabel htmlFor="driver">{t("addCar.driver")}</FormLabel>
-      <FormSelect id="driver" value={driver} onChange={(e) => setDriver(e.target.value)}>
+      <FormSelect
+        id="driver"
+        name="driver"
+        value={carOptions.driver}
+        onChange={handleChange}>
         {drivers.map(driver => {
           if (!driver) {
             return <option value="" disabled>Drivers not found</option>
@@ -70,34 +84,42 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
         })}
       </FormSelect>
       <FormInput
+        name="mark"
         pattern={namePattern}
         required
         type='text'
         placeholder={markPlaceholder}
-        value={mark}
-        onChange={(e) => setMark(e.target.value)} />
+        value={carOptions.mark}
+        onChange={handleChange} />
       <FormInput
+        name="model"
         pattern={modelPattern}
         required type='text'
         placeholder={modelPlaceholder}
-        value={model}
-        onChange={(e) => setModel(e.target.value)} />
+        value={carOptions.model}
+        onChange={handleChange} />
       <FormInput
+        name="number"
         pattern={numberPattern}
         required
         type='text'
         placeholder={numberPlaceholder}
-        value={number}
-        onChange={(e) => setNumber(e.target.value)} />
+        value={carOptions.number}
+        onChange={handleChange} />
       <FormInput
+        name="year"
         pattern={yearPattern}
         required
         type='text'
         placeholder={yearPlaceholder}
-        value={year}
-        onChange={(e) => setYear(e.target.value.toUpperCase())} />
+        value={carOptions.year}
+        onChange={handleChange} />
       <FormLabel htmlFor="select">{t("addCar.status")}</FormLabel>
-      <FormSelect id="select" value={carClass} onChange={(e) => setCarClass(carsClassesCodeSelector(e.target.value))}>
+      <FormSelect
+        name="carClass"
+        id="select"
+        value={carOptions.carClass}
+        onChange={handleChange}>
         <CarsStatuses />
       </FormSelect>
       <FormButtons onCancel={cancelHandler} />
