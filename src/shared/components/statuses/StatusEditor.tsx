@@ -1,15 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { StatusEditorSpan } from "./EditorSpan";
 
 interface IStatusEditor { 
   status: string;
   options: JSX.Element;
-  onChange: (data: string) => void;
+  name: string;
+  onChange: (data: ChangeEvent<HTMLSelectElement>) => void;
   onSave: () => void;
   entity: string;
 };
 
-export const StatusEditor = ({status, onSave, options, onChange, entity}: IStatusEditor) => {
+export const StatusEditor = ({status, onSave, name, options, onChange, entity}: IStatusEditor) => {
   const [isEdit, setIsEdit] = useState(false);
   const rootEl = useRef<HTMLSelectElement>(null);
 
@@ -53,10 +54,11 @@ export const StatusEditor = ({status, onSave, options, onChange, entity}: IStatu
     <>
       {isEdit
         ? <select
+          name={name}
           defaultValue={status}
           ref={rootEl}
           onChange={(e) => {
-            onChange(e.target.value);
+            onChange(e);
           }}>
           {options}
           </select>

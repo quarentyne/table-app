@@ -1,14 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { EditorInput, EditorSpan } from "./styles";
 
 interface IDataEditor{
   pattern: string;
   value: string;
-  onChange: (data: string) => void;
+  name: string;
+  onChange: (data: ChangeEvent<HTMLInputElement>) => void;
   onSave: () => void;
 };
 
-export const DataEditor = ({ value, pattern, onChange, onSave }: IDataEditor) => {
+export const DataEditor = ({ value, pattern, name, onChange, onSave }: IDataEditor) => {
   const [isElementEdit, setElementEdit] = useState(false);
   const rootEl = useRef<HTMLInputElement>(null);
   const regex = new RegExp(pattern);
@@ -63,7 +64,8 @@ export const DataEditor = ({ value, pattern, onChange, onSave }: IDataEditor) =>
             ref={rootEl}
             value={value}
             pattern={pattern}
-            onChange={e => onChange(e.target.value)}
+            name={name}
+            onChange={e => onChange(e)}
             onKeyDown={e => {
               if (e.key === 'Enter') {
                 saveData();

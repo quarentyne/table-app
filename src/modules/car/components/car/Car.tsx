@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Endpoints } from "../../../../api/endpoints";
@@ -31,21 +31,27 @@ interface ICar{
 export const Car = ({id, carModel, carMark, carYear, carNumber, driver_id, carStatus, targetId, onDelete, driverName }: ICar) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const [model, setModel] = useState(carModel);
-  const [mark, setMark] = useState(carMark);
-  const [year, setYear] = useState(String(carYear));
-  const [plateNumber, setPlateNumber] = useState(carNumber);
-  const [status, setStatus] = useState(carStatus.code);  
+  const [carOptions, setCarOptions] = useState({
+    model: carModel,
+    mark: carMark,
+    year: String(carYear),
+    plateNumber: carNumber,
+    status: carStatus.code,
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+    setCarOptions({ ...carOptions, [e.target.name]: e.target.value })
+  };
 
   const saveCar = () => { 
-    const title = carsClassesTitleSelector(status);
+    const title = carsClassesTitleSelector(carOptions.status);
 
     const car = JSON.stringify({
-      model,
-      mark,
-      year: Number(year),
+      model: carOptions.model,
+      mark: carOptions.mark,
+      year: Number(carOptions.year),
       status: {
-        code: status,
+        code: carOptions.status,
         title,
       }
     });
@@ -62,37 +68,42 @@ export const Car = ({id, carModel, carMark, carYear, carNumber, driver_id, carSt
       </Name>
       <Mark>
         <DataEditor
-          value={mark}
-          onChange={setMark}
+          value={carOptions.mark}
+          name="mark"
+          onChange={handleChange}
           onSave={saveCar}
           pattern={namePattern} />
       </Mark>
       <Model>
         <DataEditor
-          value={model}
-          onChange={setModel}
+          value={carOptions.model}
+          name="model"
+          onChange={handleChange}
           onSave={saveCar}
           pattern={modelPattern} />
       </Model>
       <PlateNumber>
         <DataEditor
-          value={plateNumber}
-          onChange={setPlateNumber}
+          value={carOptions.plateNumber}
+          name="plateNumber"
+          onChange={handleChange}
           onSave={saveCar}
           pattern={numberPattern} />
       </PlateNumber>
       <Year>
         <DataEditor
-          value={year}
-          onChange={setYear}
+          value={carOptions.year}
+          name="year"
+          onChange={handleChange}
           onSave={saveCar}
           pattern={yearPattern} />
       </Year>      
       <Status>
         <StatusEditor
-          status={status}
+          status={carOptions.status}
+          name="status"
           onSave={saveCar}
-          onChange={setStatus}
+          onChange={handleChange}
           entity={Entitys.CAR}
           options={<CarsStatuses />} />
       </Status>
