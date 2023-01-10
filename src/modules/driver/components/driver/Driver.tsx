@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Actions } from "../../../../shared/components/actions/Actions";
@@ -38,20 +38,29 @@ export const Driver = ({id, first_name, last_name, date_birth, date_created, dri
     const checker = (value: number): string => '0' + value;
     return ((day < 10 ? checker(day) : day) + '.' + (month < 10 ? checker(month) : month) + '.' + date.getFullYear());
   };
+
+  const [driverOptions, setDriverOptions] = useState({
+    fullName: `${first_name} ${last_name}`,
+    birth: renderDate(birthDate),
+    status: driverStatus.code,
+  });
   
-  const [fullName, setFullName] = useState(first_name + ' ' + last_name);
-  const [birth, setBirth] = useState(renderDate(birthDate));
-  const [status, setStatus] = useState(driverStatus.code);
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+    setDriverOptions({ ...driverOptions, [e.target.name]: e.target.value })
+  };
 
   const saveDriver = () => {
-    const title = driverStatusTitleSelector(status);
-    const name = fullName.split(' ');    
+    const title = driverStatusTitleSelector(driverOptions.status);
+    const name = driverOptions.fullName.split(' ');    
+    const date = driverOptions.birth.split('.');
+    const refactoredDate = `${date[1]}.${date[0]}.${date[2]}`;
+
     const driver = JSON.stringify({
       first_name: name[0],
       last_name: name[1],
-      date_birth: Date.parse(birth),
+      date_birth: Date.parse(refactoredDate),
       status: {
-        code: status,
+        code: driverOptions.status,
         title,
       },
     });
@@ -65,16 +74,18 @@ export const Driver = ({id, first_name, last_name, date_birth, date_created, dri
       </ID>
       <Name>
         <DataEditor
-          value={fullName}
+          value={driverOptions.fullName}
+          name="fullName"
           pattern={fullNamePattern}
-          onChange={setFullName}
+          onChange={handleChange}
           onSave={saveDriver} />
       </Name>
       <Birthday>
         <DataEditor
-          value={birth}
+          value={driverOptions.birth}
+          name="birth"
           pattern={datePattern}
-          onChange={setBirth}
+          onChange={handleChange}
           onSave={saveDriver} />
       </Birthday>
       <Registrated>
@@ -82,9 +93,10 @@ export const Driver = ({id, first_name, last_name, date_birth, date_created, dri
       </Registrated>
       <Status>
         <StatusEditor
-          status={status}
+          status={driverOptions.status}
+          name="status"
           onSave={saveDriver}
-          onChange={setStatus}
+          onChange={handleChange}
           entity={Entitys.DRIVER}
           options={<DriversStatuses />} />
       </Status>
