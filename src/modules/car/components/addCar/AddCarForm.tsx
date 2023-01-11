@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
@@ -60,16 +60,18 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
     onFinish();
   };
 
+  const submitForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    createCar();
+  };
+
   const markPlaceholder = t("addCar.mark");
   const modelPlaceholder = t("addCar.model");
   const numberPlaceholder = t("addCar.number");
   const yearPlaceholder = t("addCar.year");
 
   return (
-    <AddForm onSubmit={e => {
-      e.preventDefault();
-      createCar();
-    }}>
+    <AddForm onSubmit={submitForm}>
       <FormLabel htmlFor="driver">{t("addCar.driver")}</FormLabel>
       <FormSelect
         id="driver"

@@ -9,6 +9,7 @@ import { AddDriverButton, DriversHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
 import { AddDriverForm } from "../../modules/driver/components/addDriverForm/AddDriverForm";
 import { DriversTable } from "../../modules/driver/components/driversTable/DriversTable";
+import { NotFound } from "../notfound/NotFound";
 
 export const Drivers = () => {
   const dispatch = useDispatch();
@@ -24,10 +25,15 @@ export const Drivers = () => {
 
   useEffect(() => {
     dispatch(requestDrivers(Number(id)))
-  }, [dispatch, id]);
-
+  }, [dispatch, id]);  
+  console.log(drivers);
+  
   if (drivers.loading || drivers.status === 'idle') {
-    return <Loading />
+    return <Loading />;
+  };
+
+  if (drivers.is_error) {
+    return <NotFound />
   };
 
   const checkState = (id: number) => { 

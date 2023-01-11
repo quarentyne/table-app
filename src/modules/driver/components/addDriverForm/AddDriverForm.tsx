@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { addDriver } from "../../selectors";
@@ -53,15 +53,17 @@ export const AddDriverForm = ({ onFinish }: IAddDriverForm) => {
     onFinish();
   };
 
+  const submitForm = (e: FormEvent<HTMLFormElement>) => { 
+    e.preventDefault();
+    createDriver();
+  };
+
   const firstNamePlaceholder = t("addDriver.firstName");
   const secondNameNamePlaceholder = t("addDriver.lastName");
   const birthPlaceholder = t("addDriver.birth");
 
   return (
-    <AddForm onSubmit={e => {
-      e.preventDefault();
-      createDriver();
-    }}>
+    <AddForm onSubmit={submitForm}>
       <FormInput
         pattern={namePattern}
         name="firstName"
@@ -92,7 +94,7 @@ export const AddDriverForm = ({ onFinish }: IAddDriverForm) => {
         value={driverOptions.status}
         onChange={handleChange}
       >
-        <DriversStatuses />
+      <DriversStatuses />
       </FormSelect>
       <FormButtons onCancel={cancelHandler} />
     </AddForm>
