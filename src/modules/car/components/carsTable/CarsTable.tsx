@@ -26,12 +26,12 @@ export const CarsTable = ({ cars, checkRedirect}: ICars) => {
   const dispatch = useDispatch();
   const drivers = useTypedSelector(state => state.drivers.data);
 
-  const driversNameAdapt = (id: number) => {
+  const getDriverFullName = (id: number) => {
     const driver = drivers.find(driver => driver.id === id);
     return `${driver?.first_name} ${driver?.last_name}`;
   };
 
-  const onDeleteCar = (carId: number, redirectTargetId?: number) => {
+  const onDelete = (carId: number, redirectTargetId?: number) => {
     dispatch(deleteCar(carId, redirectTargetId))
   };
 
@@ -41,15 +41,15 @@ export const CarsTable = ({ cars, checkRedirect}: ICars) => {
       {cars.map(car => <Car
         key={car.id}
         id={car.id}
-        driver_id={car.driver_id}
-        carMark={car.mark}
-        carModel={car.model}
-        carNumber={car.number}
-        carStatus={car.status}
-        carYear={car.year}
+        driverId={car.driver_id}
+        mark={car.mark}
+        model={car.model}
+        number={car.number}
+        status={car.status}
+        year={car.year}
         targetId={checkRedirect(car.driver_id)}
-        onDelete={onDeleteCar}
-        driverName={driversNameAdapt(car.driver_id)}
+        onDelete={onDelete}
+        driverName={getDriverFullName(car.driver_id)}
       />)}
     </>
   );

@@ -4,14 +4,14 @@ import eye from "../../../assets/svg/eye.svg"
 import del from "../../../assets/svg/delete.svg"
 
 interface IActions{
-  eyeText: string;
-  deleteText: string;
+  eyeHint: string;
+  deleteHint: string;
   onDelete: () => void;
   linkTo: string;
   state?: number;
 };
 
-export const Actions = ({eyeText, deleteText, linkTo, state, onDelete} :IActions) => {
+export const Actions = ({eyeHint, deleteHint, linkTo, state, onDelete} :IActions) => {
   return (
     <ActionsList>
       <ActionsItem>
@@ -21,7 +21,7 @@ export const Actions = ({eyeText, deleteText, linkTo, state, onDelete} :IActions
             alt="look"
             width={20}
             height={20}
-            title={eyeText}
+            title={eyeHint}
           />
         </Link>
       </ActionsItem>
@@ -31,7 +31,7 @@ export const Actions = ({eyeText, deleteText, linkTo, state, onDelete} :IActions
           alt="delete"
           width={20}
           height={20}
-          title={deleteText}
+          title={deleteHint}
           onClick={onDelete}
         />
       </ActionsItem>

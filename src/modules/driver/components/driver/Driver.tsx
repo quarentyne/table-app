@@ -13,11 +13,11 @@ import { Action, Birthday, DriversTable, ID, Name, Registrated, Status } from ".
 
 interface IDriver{
   id: number;
-  first_name: string;
-  last_name: string;
-  date_created: number;
-  date_birth: number;
-  driverStatus: {
+  firstName: string;
+  lastName: string;
+  dateCreated: number;
+  dateBirth: number;
+  status: {
     code: string;
     title: string;
   };
@@ -25,34 +25,34 @@ interface IDriver{
   onDelete: (id: number) => void;
 };
 
-export const Driver = ({id, first_name, last_name, date_birth, date_created, driverStatus, targetId, onDelete}: IDriver) => {
+export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status, targetId, onDelete}: IDriver) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();  
 
-  const birthDate: Date = new Date(date_birth);
-  const joinDate: Date = new Date(date_created);
+  const birthDate: Date = new Date(dateBirth);
+  const joinDate: Date = new Date(dateCreated);
 
   const renderDate = (date: Date): string => {
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    const checker = (value: number): string => '0' + value;
-    return ((day < 10 ? checker(day) : day) + '.' + (month < 10 ? checker(month) : month) + '.' + date.getFullYear());
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const validateDate = (value: number): string => `0${value}`;
+    return ((day < 10 ? validateDate(day) : day) + '.' + (month < 10 ? validateDate(month) : month) + '.' + date.getFullYear());
   };
 
   const [driverOptions, setDriverOptions] = useState({
-    fullName: `${first_name} ${last_name}`,
-    birth: renderDate(birthDate),
-    status: driverStatus.code,
+    fullName: `${firstName} ${lastName}`,
+    birthDate: renderDate(birthDate),
+    status: status.code,
   });
   
   const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
     setDriverOptions({ ...driverOptions, [e.target.name]: e.target.value })
   };
 
-  const saveDriver = () => {
+  const updateDriver = () => {
     const title = driverStatusTitleSelector(driverOptions.status);
     const name = driverOptions.fullName.split(' ');    
-    const date = driverOptions.birth.split('.');
+    const date = driverOptions.birthDate.split('.');
     const refactoredDate = `${date[1]}.${date[0]}.${date[2]}`;
 
     const driver = JSON.stringify({
@@ -78,15 +78,15 @@ export const Driver = ({id, first_name, last_name, date_birth, date_created, dri
           name="fullName"
           pattern={fullNamePattern}
           onChange={handleChange}
-          onSave={saveDriver} />
+          onUpdate={updateDriver} />
       </Name>
       <Birthday>
         <DataEditor
-          value={driverOptions.birth}
-          name="birth"
+          value={driverOptions.birthDate}
+          name="birthDate"
           pattern={datePattern}
           onChange={handleChange}
-          onSave={saveDriver} />
+          onUpdate={updateDriver} />
       </Birthday>
       <Registrated>
         {renderDate(joinDate)}
@@ -95,15 +95,15 @@ export const Driver = ({id, first_name, last_name, date_birth, date_created, dri
         <StatusEditor
           status={driverOptions.status}
           name="status"
-          onSave={saveDriver}
+          onUpdate={updateDriver}
           onChange={handleChange}
           entity={Entitys.DRIVER}
           options={<DriversStatuses />} />
       </Status>
       <Action>
         <Actions
-          eyeText={t("actions.autos")}
-          deleteText={t("actions.delete")}
+          eyeHint={t("actions.autos")}
+          deleteHint={t("actions.delete")}
           linkTo="/car"
           onDelete={onDelete.bind(null, id)}
           state={id}

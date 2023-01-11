@@ -1,4 +1,5 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
+import { useClickSaver } from "../../hooks/useClickSaver";
 import { StatusEditorSpan } from "./EditorSpan";
 
 interface IStatusEditor { 
@@ -6,13 +7,13 @@ interface IStatusEditor {
   options: JSX.Element;
   name: string;
   onChange: (data: ChangeEvent<HTMLSelectElement>) => void;
-  onSave: () => void;
+  onUpdate: () => void;
   entity: string;
 };
 
-export const StatusEditor = ({status, onSave, name, options, onChange, entity}: IStatusEditor) => {
+export const StatusEditor = ({status, onUpdate, name, options, onChange, entity}: IStatusEditor) => {
   const [isEdit, setIsEdit] = useState(false);
-  const rootEl = useRef<HTMLSelectElement>(null);
+  const rootElement = useRef<HTMLSelectElement>(null);
 
   const toggleEditorState = () => {
     setIsEdit(!isEdit);
@@ -20,35 +21,14 @@ export const StatusEditor = ({status, onSave, name, options, onChange, entity}: 
 
   const saveData = () => {
     toggleEditorState();
-    onSave();
+    onUpdate();
   };
 
-  useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      if (!rootEl.current) {
-        return;
-      };   
+  const handleChangeEvent = (e: ChangeEvent<HTMLSelectElement>) => {
+    onChange(e);
+  };
 
-      const onClickPosition = {
-        top: e.y,
-        left: e.x,
-      };
-      const elementOnEditParams = rootEl.current.getBoundingClientRect();
-      const elementOnScreen = {
-        top: elementOnEditParams.y,
-        left: elementOnEditParams.x,
-        width: elementOnEditParams.width,
-        height: elementOnEditParams.height,
-      };
-      
-      if (((onClickPosition.left < elementOnScreen.left) || (onClickPosition.left > (elementOnScreen.left + elementOnScreen.width)) ||
-        (onClickPosition.top < elementOnScreen.top) || (onClickPosition.top > (elementOnScreen.top + elementOnScreen.height)))) { 
-        saveData();
-      };
-    }
-    document.addEventListener('click', onClick);
-    return () => document.removeEventListener('click', onClick);
-  });
+  useClickSaver({ save: saveData, rootElement });
 
   return(
     <>
@@ -56,10 +36,8 @@ export const StatusEditor = ({status, onSave, name, options, onChange, entity}: 
         ? <select
           name={name}
           defaultValue={status}
-          ref={rootEl}
-          onChange={(e) => {
-            onChange(e);
-          }}>
+          ref={rootElement}
+          onChange={handleChangeEvent}>
           {options}
           </select>
         : <StatusEditorSpan onClick={toggleEditorState} status={status} entity={entity} />     

@@ -26,7 +26,7 @@ export const AddDriverForm = ({ onFinish }: IAddDriverForm) => {
     setDriverOptions({ ...driverOptions, [e.target.name]: e.target.value });    
   };
 
-  const addHandler = (): void => {
+  const createDriver = (): void => {
     const title = driverStatusTitleSelector(driverOptions.status);
     const date = driverOptions.birthDate.split('.');
     const refactoredDate = `${date[1]}.${date[0]}.${date[2]}`;
@@ -60,7 +60,7 @@ export const AddDriverForm = ({ onFinish }: IAddDriverForm) => {
   return (
     <AddForm onSubmit={e => {
       e.preventDefault();
-      addHandler();
+      createDriver();
     }}>
       <FormInput
         pattern={namePattern}

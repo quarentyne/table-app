@@ -33,11 +33,11 @@ export const DriversTable = ({drivers, checkRedirect}: IDrivers) => {
       {drivers.map(driver => <Driver 
         key={driver.id}
         id={driver.id}
-        first_name={driver.first_name}
-        last_name={driver.last_name}
-        date_birth={driver.date_birth}
-        date_created={driver.date_created}
-        driverStatus={driver.status}
+        firstName={driver.first_name}
+        lastName={driver.last_name}
+        dateBirth={driver.date_birth}
+        dateCreated={driver.date_created}
+        status={driver.status}
         onDelete={onDelete}
         targetId={checkRedirect(driver.id)}
       />)}

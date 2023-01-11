@@ -9,9 +9,9 @@ import i18n from "../../../i18n";
 
 export const Header = () => { 
   const [actualLanguage, setActualLanguage] = useState(localStorage.getItem('i18nextLng') || 'ua');
-  const changeLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
-    setActualLanguage(lang);
+  const changeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+    setActualLanguage(language);
   };
 
   return (
@@ -24,7 +24,7 @@ export const Header = () => {
         </picture>
       </Link>
       <Navbar />    
-      <LanguagesChanger actualLang={actualLanguage} changeLang={changeLanguage} />
+      <LanguagesChanger actualLanguage={actualLanguage} changeLanguage={changeLanguage} />
     </GlobalHeader>  
   );
 };

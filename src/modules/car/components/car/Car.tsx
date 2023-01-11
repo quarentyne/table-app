@@ -14,12 +14,12 @@ import { Entitys } from "../../../../shared/helpers/entitys";
 
 interface ICar{
   id: string;
-  carModel: string,
-  carMark: string,
-  carYear: number,
-  carNumber: string,
-  driver_id: number,
-  carStatus: {
+  model: string,
+  mark: string,
+  year: number,
+  number: string,
+  driverId: number,
+  status: {
     title: string,
     code: string,
   },
@@ -28,28 +28,29 @@ interface ICar{
   onDelete: (carId: number, redirectTargetId?: number) => void;
 };
 
-export const Car = ({id, carModel, carMark, carYear, carNumber, driver_id, carStatus, targetId, onDelete, driverName }: ICar) => {
+export const Car = ({id, model, mark, year, number, driverId, status, targetId, onDelete, driverName }: ICar) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [carOptions, setCarOptions] = useState({
-    model: carModel,
-    mark: carMark,
-    year: String(carYear),
-    plateNumber: carNumber,
-    status: carStatus.code,
+    model: model,
+    mark: mark,
+    year: String(year),
+    plateNumber: number,
+    status: status.code,
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
     setCarOptions({ ...carOptions, [e.target.name]: e.target.value })
   };
 
-  const saveCar = () => { 
+  const updateCar = () => { 
     const title = carsClassesTitleSelector(carOptions.status);
 
     const car = JSON.stringify({
       model: carOptions.model,
       mark: carOptions.mark,
       year: Number(carOptions.year),
+      number: carOptions.plateNumber,
       status: {
         code: carOptions.status,
         title,
@@ -71,7 +72,7 @@ export const Car = ({id, carModel, carMark, carYear, carNumber, driver_id, carSt
           value={carOptions.mark}
           name="mark"
           onChange={handleChange}
-          onSave={saveCar}
+          onUpdate={updateCar}
           pattern={namePattern} />
       </Mark>
       <Model>
@@ -79,7 +80,7 @@ export const Car = ({id, carModel, carMark, carYear, carNumber, driver_id, carSt
           value={carOptions.model}
           name="model"
           onChange={handleChange}
-          onSave={saveCar}
+          onUpdate={updateCar}
           pattern={modelPattern} />
       </Model>
       <PlateNumber>
@@ -87,7 +88,7 @@ export const Car = ({id, carModel, carMark, carYear, carNumber, driver_id, carSt
           value={carOptions.plateNumber}
           name="plateNumber"
           onChange={handleChange}
-          onSave={saveCar}
+          onUpdate={updateCar}
           pattern={numberPattern} />
       </PlateNumber>
       <Year>
@@ -95,25 +96,25 @@ export const Car = ({id, carModel, carMark, carYear, carNumber, driver_id, carSt
           value={carOptions.year}
           name="year"
           onChange={handleChange}
-          onSave={saveCar}
+          onUpdate={updateCar}
           pattern={yearPattern} />
       </Year>      
       <Status>
         <StatusEditor
           status={carOptions.status}
           name="status"
-          onSave={saveCar}
+          onUpdate={updateCar}
           onChange={handleChange}
           entity={Entitys.CAR}
           options={<CarsStatuses />} />
       </Status>
       <Action>
         <Actions
-          eyeText={t("actions.drivers")}
-          deleteText={t("actions.delete")}
+          eyeHint={t("actions.drivers")}
+          deleteHint={t("actions.delete")}
           onDelete={onDelete.bind(null, Number(id), targetId)}
-          linkTo={`/${Endpoints.DRIVERS}${driver_id}`}
-          state={driver_id}
+          linkTo={`/${Endpoints.DRIVERS}${driverId}`}
+          state={driverId}
         />
       </Action>
     </CarsTableInner>

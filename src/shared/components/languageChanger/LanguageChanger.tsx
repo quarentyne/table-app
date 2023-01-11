@@ -1,15 +1,15 @@
 import { LanguageBlock, LanguageButton } from "./styles";
 
 interface ILanguagesChanger {
-  actualLang: string;
-  changeLang: (lang: string) => void;
+  actualLanguage: string;
+  changeLanguage: (language: string) => void;
 };
 
-export const LanguagesChanger = ({actualLang, changeLang}: ILanguagesChanger) => { 
+export const LanguagesChanger = ({actualLanguage, changeLanguage}: ILanguagesChanger) => { 
   return (
     <LanguageBlock>
-      <LanguageButton active={actualLang === 'ua'} onClick={() => changeLang('ua')}>UA</LanguageButton>
-      <LanguageButton active={actualLang === 'en'} onClick={() => changeLang('en')}>EN</LanguageButton>
+      <LanguageButton active={actualLanguage === 'ua'} onClick={() => changeLanguage('ua')}>UA</LanguageButton>
+      <LanguageButton active={actualLanguage === 'en'} onClick={() => changeLanguage('en')}>EN</LanguageButton>
     </LanguageBlock>
   );
 };

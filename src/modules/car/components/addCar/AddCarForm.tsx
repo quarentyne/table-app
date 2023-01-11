@@ -22,7 +22,7 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
     model: "",
     number: "",
     year: "",
-    carClass: carsStatusCodes.STANDART,
+    class: carsStatusCodes.STANDART,
     driver: String(drivers[0]?.id),
   });
 
@@ -30,8 +30,8 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
     setCarOptions({ ...carOptions, [e.target.name]: e.target.value })
   };
 
-  const addHandler = (): void => {
-    const title = carsClassesTitleSelector(carOptions.carClass);
+  const createCar = (): void => {
+    const title = carsClassesTitleSelector(carOptions.class);
 
     const newCar = JSON.stringify({
       model: carOptions.model,
@@ -40,7 +40,7 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
       year: Number(carOptions.year),
       driver_id: carOptions.driver,
       status: {
-        code: carOptions.carClass,
+        code: carOptions.class,
         title,
       },
     });    
@@ -54,7 +54,7 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
       model: "",
       number: "",
       year: "",
-      carClass: carsStatusCodes.STANDART,
+      class: carsStatusCodes.STANDART,
       driver: String(drivers[0]?.id),
     });
     onFinish();
@@ -68,7 +68,7 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
   return (
     <AddForm onSubmit={e => {
       e.preventDefault();
-      addHandler();
+      createCar();
     }}>
       <FormLabel htmlFor="driver">{t("addCar.driver")}</FormLabel>
       <FormSelect
@@ -116,9 +116,9 @@ export const AddCarForm = ({ onFinish }: IAddCarForm) => {
         onChange={handleChange} />
       <FormLabel htmlFor="select">{t("addCar.status")}</FormLabel>
       <FormSelect
-        name="carClass"
+        name="class"
         id="select"
-        value={carOptions.carClass}
+        value={carOptions.class}
         onChange={handleChange}>
         <CarsStatuses />
       </FormSelect>

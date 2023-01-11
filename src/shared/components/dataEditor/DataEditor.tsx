@@ -1,4 +1,5 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
+import { useClickSaver } from "../../hooks/useClickSaver";
 import { EditorInput, EditorSpan } from "./styles";
 
 interface IDataEditor{
@@ -6,12 +7,12 @@ interface IDataEditor{
   value: string;
   name: string;
   onChange: (data: ChangeEvent<HTMLInputElement>) => void;
-  onSave: () => void;
+  onUpdate: () => void;
 };
 
-export const DataEditor = ({ value, pattern, name, onChange, onSave }: IDataEditor) => {
+export const DataEditor = ({ value, pattern, name, onChange, onUpdate }: IDataEditor) => {
   const [isElementEdit, setElementEdit] = useState(false);
-  const rootEl = useRef<HTMLInputElement>(null);
+  const rootElement = useRef<HTMLInputElement>(null);
   const regex = new RegExp(pattern);
 
   const toggleElementEditState = () => {
@@ -21,39 +22,24 @@ export const DataEditor = ({ value, pattern, name, onChange, onSave }: IDataEdit
   const saveData = () => {
     if (regex.test(value)) { 
       toggleElementEditState();
-      onSave();
+      onUpdate();
     } else {
-      rootEl.current?.focus();
+      rootElement.current?.focus();
     };
   };
 
-  useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      if (!rootEl.current) {
-        return;
-      };   
+  useClickSaver({ save: saveData, rootElement });
 
-      const onClickPosition = {
-        top: e.y,
-        left: e.x,
-      };
-      const elementOnEditParams = rootEl.current.getBoundingClientRect();
-      const elementOnScreen = {
-        top: elementOnEditParams.y,
-        left: elementOnEditParams.x,
-        width: elementOnEditParams.width,
-        height: elementOnEditParams.height,
-      };
-      
-      if (((onClickPosition.left < elementOnScreen.left) || (onClickPosition.left > (elementOnScreen.left + elementOnScreen.width)) ||
-        (onClickPosition.top < elementOnScreen.top) || (onClickPosition.top > (elementOnScreen.top + elementOnScreen.height)))) { 
-        saveData();
-      };
-    }
-    document.addEventListener('click', onClick);
-    return () => document.removeEventListener('click', onClick);
-  });
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+      saveData();
+    };
+  };
 
+  const handleChangeEvent = (e: ChangeEvent<HTMLInputElement>) => { 
+    onChange(e);
+  };
+  
   return (
     <>
       {
@@ -61,16 +47,12 @@ export const DataEditor = ({ value, pattern, name, onChange, onSave }: IDataEdit
           ? <EditorInput
             autoFocus
             required
-            ref={rootEl}
+            ref={rootElement}
             value={value}
             pattern={pattern}
             name={name}
-            onChange={e => onChange(e)}
-            onKeyDown={e => {
-              if (e.key === 'Enter') {
-                saveData();
-              };
-            }}
+            onChange={handleChangeEvent}
+            onKeyDown={handleKeyDown}
           />
           : <EditorSpan onClick={toggleElementEditState}>
             {value}
