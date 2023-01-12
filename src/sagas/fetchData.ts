@@ -1,7 +1,7 @@
 import { API_KEY } from "../api/authAPI";
 import { BASE_API_URL } from "../api/constants";
 
-interface IFetchPath {
+interface IFetchData {
   path: string;
   method: string;
   id?: number;
@@ -14,7 +14,7 @@ type THeaders = {
   "E-Driver-Id"?: string;
 };
 
-export const fetchPath = async (request: IFetchPath) => {
+export const fetchData = async (request: IFetchData) => {
   const path =
     BASE_API_URL + request.path + (request.id ? request.id + "/" : "");
   const headers: THeaders = {

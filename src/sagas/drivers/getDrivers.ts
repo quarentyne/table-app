@@ -1,8 +1,12 @@
-import { put, takeEvery, call } from 'redux-saga/effects';
-import { Endpoints } from '../../api/endpoints';
-import { GET_DRIVERS_REQUESTED, IDriverDeafaultState, IDriversDeafaultState } from '../../modules/driver/models';
-import { responseDrivers } from '../../modules/driver/selectors';
-import { fetchPath } from '../fetchPath';
+import { put, takeEvery, call } from "redux-saga/effects";
+import { Endpoints } from "../../api/endpoints";
+import {
+  GET_DRIVERS_REQUESTED,
+  IDriverDeafaultState,
+  IDriversDeafaultState,
+} from "../../modules/driver/models";
+import { responseDrivers } from "../../modules/driver/selectors";
+import { fetchData } from "../fetchData";
 
 type TGetDrivers = {
   type?: string;
@@ -18,23 +22,25 @@ type TGetDriversRequest = {
 export function* getDrivers(request?: TGetDrivers) {
   let response: IDriversDeafaultState;
   const getDriversRequest: TGetDriversRequest = {
-    method: 'GET',
+    method: "GET",
     path: Endpoints.DRIVERS,
   };
 
   if (request?.id) {
     getDriversRequest.id = request.id;
-    const demand: IDriverDeafaultState = yield call(fetchPath.bind(null, getDriversRequest)); 
+    const demand: IDriverDeafaultState = yield call(
+      fetchData.bind(null, getDriversRequest)
+    );
     const driver = [];
     driver.push(demand.data);
     response = { ...demand, data: driver };
   } else {
-    response = yield call(fetchPath.bind(null, getDriversRequest)); 
+    response = yield call(fetchData.bind(null, getDriversRequest));
   }
-  
+
   yield put(responseDrivers(response));
-};
+}
 
 export function* watchGetDrivers() {
   yield takeEvery(GET_DRIVERS_REQUESTED, getDrivers);
-};
+}

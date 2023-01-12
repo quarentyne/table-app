@@ -1,8 +1,11 @@
-import { put, takeEvery, call } from 'redux-saga/effects';
-import { Endpoints } from '../../api/endpoints';
-import { GET_CARS_REQUESTED, ICarsDeafaultState } from '../../modules/car/models';
-import { responseCars } from '../../modules/car/selectors';
-import { fetchPath } from '../fetchPath';
+import { put, takeEvery, call } from "redux-saga/effects";
+import { Endpoints } from "../../api/endpoints";
+import {
+  GET_CARS_REQUESTED,
+  ICarsDeafaultState,
+} from "../../modules/car/models";
+import { responseCars } from "../../modules/car/selectors";
+import { fetchData } from "../fetchData";
 
 type TGetCars = {
   type?: string;
@@ -17,18 +20,20 @@ export type TGetCarsRequest = {
 
 export function* getCars(request?: TGetCars) {
   const getCarsRequest: TGetCarsRequest = {
-    method: 'GET',
+    method: "GET",
     path: Endpoints.CARS,
   };
 
   if (request?.id) {
     getCarsRequest.headers = String(request.id);
-  };
+  }
 
-  const response: ICarsDeafaultState = yield call(fetchPath.bind(null, getCarsRequest)); 
+  const response: ICarsDeafaultState = yield call(
+    fetchData.bind(null, getCarsRequest)
+  );
   yield put(responseCars(response));
-};
+}
 
 export function* watchGetCars() {
   yield takeEvery(GET_CARS_REQUESTED, getCars);
-};
+}
