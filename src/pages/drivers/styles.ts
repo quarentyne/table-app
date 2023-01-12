@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { baseColors, screenSizes } from "../../shared/helpers/themes";
+import { BaseColors, ScreenSizes } from "../../shared/helpers/themes";
 
 type Props = {
   isVisible: boolean;
@@ -18,22 +18,22 @@ export const AddDriverButton = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: ${baseColors.hover};
+  color: ${BaseColors.HOVER};
   padding: 4px 8px;
   background: #f4f5ff;
   border-radius: 8px;
   border: 1px solid transparent;
   cursor: pointer;
 
-  @media screen and (min-width: ${screenSizes.tablet}px) {
+  @media screen and (min-width: ${ScreenSizes.TABLET}px) {
     padding: 8px 16px;
   }
 
   &:hover {
-    border: 1px solid ${baseColors.hover};
+    border: 1px solid ${BaseColors.HOVER};
   }
   > img {
-    @media screen and (min-width: ${screenSizes.modile}px) {
+    @media screen and (min-width: ${ScreenSizes.MOBILE}px) {
       margin-right: 5px;
       display: block;
     }

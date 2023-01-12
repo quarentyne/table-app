@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { screenSizes } from "../../../../shared/helpers/themes";
+import { ScreenSizes } from "../../../../shared/helpers/themes";
 
 export const AddForm = styled.form`
   background-color: rgb(234, 220, 247);
@@ -13,7 +13,7 @@ export const AddForm = styled.form`
   flex-direction: column;
   width: 90vw;
   justify-content: space-between;
-  @media screen and (min-width: ${screenSizes.tablet}px) {
+  @media screen and (min-width: ${ScreenSizes.TABLET}px) {
     left: calc(50% - calc(500px / 2));
     width: 500px;
   } ;

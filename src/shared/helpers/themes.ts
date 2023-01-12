@@ -1,20 +1,20 @@
-export const screenSizes = {
-  modile: 375,
-  tablet: 768,
-  laptopS: 1024,
-};
+export enum ScreenSizes {
+  MOBILE = 375,
+  TABLET = 768,
+  LAPTOP_S = 1024,
+}
 
 export enum Languages {
   UA = "ua",
   EN = "en",
 }
 
-export enum baseColors {
-  basic = "#292D45",
-  hover = "#737DF9",
+export enum BaseColors {
+  BASIC = "#292D45",
+  HOVER = "#737DF9",
 }
 
-enum statusColors {
+enum StatusColors {
   FIRED = "fired",
   NOT_ACTIVE = "not_active",
   BLOCKED = "blocked",
@@ -27,21 +27,21 @@ enum statusColors {
 
 export const getStatusColorsSet = (status: string) => {
   switch (status) {
-    case statusColors.FIRED:
+    case StatusColors.FIRED:
       return { color: "#D09700", background: "#FEF8E8" };
-    case statusColors.ACTIVE:
+    case StatusColors.ACTIVE:
       return { color: "#26C124", background: "#EBF9EB" };
-    case statusColors.BLOCKED:
+    case StatusColors.BLOCKED:
       return { color: "#F11212", background: "#FDEBEB" };
-    case statusColors.NOT_ACTIVE:
+    case StatusColors.NOT_ACTIVE:
       return { color: "#292D45", background: "#DFE0E4" };
-    case statusColors.ECO:
+    case StatusColors.ECO:
       return { color: "#26C124", background: "#EBF9EB" };
-    case statusColors.ECOMOM:
+    case StatusColors.ECOMOM:
       return { color: "#c1b124", background: "#f8f9eb" };
-    case statusColors.BUSSINESS:
+    case StatusColors.BUSSINESS:
       return { color: "#852292", background: "#e1d5e9" };
-    case statusColors.STANDART:
+    case StatusColors.STANDART:
       return { color: "#1500d0", background: "#ebe8fe" };
     default:
       return;

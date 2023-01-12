@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { screenSizes } from "../../../../shared/helpers/themes";
+import { ScreenSizes } from "../../../../shared/helpers/themes";
 
 export const CarsTableInner = styled.ul`
   display: grid;
@@ -15,7 +15,7 @@ export const CarsTableInner = styled.ul`
   text-align: center;
   margin-bottom: 15px;
 
-  @media screen and (min-width: ${screenSizes.tablet}px) {
+  @media screen and (min-width: ${ScreenSizes.TABLET}px) {
     grid-template-areas: "id name mark model plate year status action";
     grid-template-columns: 0.4fr 1.5fr 1fr 1fr 1.3fr 0.7fr 1.2fr 0.6fr;
     gap: 10px;
@@ -29,7 +29,7 @@ export const CarsTableInnerItem = styled.li`
   font-weight: 500;
   padding: 15px 0;
   font-size: 15px;
-  @media screen and (min-width: ${screenSizes.laptopS}px) {
+  @media screen and (min-width: ${ScreenSizes.LAPTOP_S}px) {
     font-size: 20px;
   } ;
 `;

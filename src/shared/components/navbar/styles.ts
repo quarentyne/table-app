@@ -1,16 +1,16 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { baseColors, screenSizes } from "../../helpers/themes";
+import { BaseColors, ScreenSizes } from "../../helpers/themes";
 
 export const NavbarNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 120px;
-  @media screen and (min-width: ${screenSizes.modile}px) {
+  @media screen and (min-width: ${ScreenSizes.MOBILE}px) {
     width: 170px;
   }
-  @media screen and (min-width: ${screenSizes.tablet}px) {
+  @media screen and (min-width: ${ScreenSizes.TABLET}px) {
     width: 350px;
   } ;
 `;
@@ -22,12 +22,12 @@ export const NavbarItem = styled.span`
 `;
 
 export const NavbarLink = styled(NavLink)`
-  color: ${baseColors.basic};
+  color: ${BaseColors.BASIC};
   :hover {
-    color: ${baseColors.hover};
+    color: ${BaseColors.HOVER};
     opacity: 0.8;
   }
   &.active {
-    color: ${baseColors.hover};
+    color: ${BaseColors.HOVER};
   }
 `;

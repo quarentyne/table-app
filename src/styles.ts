@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import "./assets/fonts/Gilroy-Medium.ttf";
-import { screenSizes } from "./shared/helpers/themes";
+import { ScreenSizes } from "./shared/helpers/themes";
 
 export const GlobalStyle = createGlobalStyle`
   *,
@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 15px;
     background-color: #E5E5E5;
     color: #292D45;
-    @media screen and (min-width: ${screenSizes.tablet}px){    
+    @media screen and (min-width: ${ScreenSizes.TABLET}px){    
     font-size: 20px;    
     position: sticky;
   };
