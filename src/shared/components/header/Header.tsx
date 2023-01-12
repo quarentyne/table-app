@@ -6,9 +6,10 @@ import logoBig from "../../../assets/images/logo100w.png";
 import logoMin from "../../../assets/images/logo50w.png";
 import { LanguagesChanger } from "../languageChanger/LanguageChanger";
 import i18n from "../../../i18n";
+import { Languages } from "../../helpers/themes";
 
 export const Header = () => { 
-  const [actualLanguage, setActualLanguage] = useState(localStorage.getItem('i18nextLng') || 'ua');
+  const [actualLanguage, setActualLanguage] = useState(localStorage.getItem('i18nextLng') || Languages.UA);
   const changeLanguage = (language: string) => {
     i18n.changeLanguage(language);
     setActualLanguage(language);

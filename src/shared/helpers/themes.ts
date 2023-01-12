@@ -4,6 +4,11 @@ export const screenSizes = {
   laptopS: 1024,
 };
 
+export enum Languages {
+  UA = "ua",
+  EN = "en",
+}
+
 export enum baseColors {
   basic = "#292D45",
   hover = "#737DF9",

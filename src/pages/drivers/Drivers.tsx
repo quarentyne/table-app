@@ -26,7 +26,6 @@ export const Drivers = () => {
   useEffect(() => {
     dispatch(requestDrivers(Number(id)))
   }, [dispatch, id]);  
-  console.log(drivers);
   
   if (drivers.loading || drivers.status === 'idle') {
     return <Loading />;
