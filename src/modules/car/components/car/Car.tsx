@@ -105,8 +105,9 @@ export const Car = ({id, model, mark, year, number, driverId, status, targetId, 
           name="status"
           onUpdate={updateCar}
           onChange={handleChange}
-          entity={Entitys.CAR}
-          options={<CarsStatuses />} />
+          entity={Entitys.CAR}>
+            <CarsStatuses />
+          </StatusEditor>
       </Status>
       <Action>
         <Actions

@@ -97,8 +97,9 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
           name="status"
           onUpdate={updateDriver}
           onChange={handleChange}
-          entity={Entitys.DRIVER}
-          options={<DriversStatuses />} />
+          entity={Entitys.DRIVER}>
+          <DriversStatuses />
+        </StatusEditor>
       </Status>
       <Action>
         <Actions

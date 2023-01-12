@@ -4,14 +4,14 @@ import { StatusEditorSpan } from "./EditorSpan";
 
 interface IStatusEditor { 
   status: string;
-  options: JSX.Element;
+  children: JSX.Element;
   name: string;
   onChange: (data: ChangeEvent<HTMLSelectElement>) => void;
   onUpdate: () => void;
   entity: string;
 };
 
-export const StatusEditor = ({status, onUpdate, name, options, onChange, entity}: IStatusEditor) => {
+export const StatusEditor = ({status, onUpdate, name, children, onChange, entity}: IStatusEditor) => {
   const [isEdit, setIsEdit] = useState(false);
   const rootElement = useRef<HTMLSelectElement>(null);
 
@@ -38,7 +38,7 @@ export const StatusEditor = ({status, onUpdate, name, options, onChange, entity}
           defaultValue={status}
           ref={rootElement}
           onChange={handleChangeEvent}>
-          {options}
+          {children}
           </select>
         : <StatusEditorSpan onClick={toggleEditorState} status={status} entity={entity} />     
       }
