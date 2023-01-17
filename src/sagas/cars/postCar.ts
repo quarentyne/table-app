@@ -7,11 +7,12 @@ import { getCars } from "./getCars";
 type TCar = {
   payload: string;
   type: string;
+  currentId?: number;
 };
 
 export function* postCar(car: TCar) {
   yield fetchData({ method: "POST", path: Endpoints.CARS, body: car.payload });
-  yield getCars();
+  yield getCars({ id: car.currentId });
 }
 
 export function* watchPostCar() {

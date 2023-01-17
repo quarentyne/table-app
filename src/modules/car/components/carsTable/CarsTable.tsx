@@ -19,10 +19,10 @@ interface ICar{
 
 interface ICars { 
   cars: ICar[];
-  checkRedirect: (id: number) => number | null;
+  isRedirectable: boolean;
 };
 
-export const CarsTable = ({ cars, checkRedirect}: ICars) => {
+export const CarsTable = ({ cars, isRedirectable}: ICars) => {
   const dispatch = useDispatch();
   const drivers = useTypedSelector(state => state.drivers.data);
 
@@ -47,7 +47,7 @@ export const CarsTable = ({ cars, checkRedirect}: ICars) => {
         number={car.number}
         status={car.status}
         year={car.year}
-        targetId={checkRedirect(car.driver_id)}
+        targetId={isRedirectable ? car.driver_id : null}
         onDelete={onDelete}
         driverName={getDriverFullName(car.driver_id)}
       />)}

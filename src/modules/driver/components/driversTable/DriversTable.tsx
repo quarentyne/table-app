@@ -17,10 +17,10 @@ interface IDriver {
 
 interface IDrivers {
   drivers: IDriver[];
-  checkRedirect: (id: number) => number | null;
+  isRedirectable: boolean;
 }
 
-export const DriversTable = ({drivers, checkRedirect}: IDrivers) => { 
+export const DriversTable = ({drivers, isRedirectable}: IDrivers) => { 
   const dispatch = useDispatch();
 
   const onDelete = (id: number) => {
@@ -30,7 +30,7 @@ export const DriversTable = ({drivers, checkRedirect}: IDrivers) => {
   return (
     <>
       <DriversTableHeader />
-      {drivers.map(driver => <Driver 
+      {drivers.map(driver => <Driver
         key={driver.id}
         id={driver.id}
         firstName={driver.first_name}
@@ -39,8 +39,9 @@ export const DriversTable = ({drivers, checkRedirect}: IDrivers) => {
         dateCreated={driver.date_created}
         status={driver.status}
         onDelete={onDelete}
-        targetId={checkRedirect(driver.id)}
-      />)}
+        targetId={isRedirectable ? driver.id : null}
+      />
+      )}
     </>
   );
 };

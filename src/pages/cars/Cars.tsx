@@ -29,14 +29,7 @@ export const Cars = () => {
 
   if (cars.loading || cars.status === 'idle') {
     return <Loading />
-  };
-
-  const checkState = (id: number) => { 
-    if (state) {
-      return id;
-    };
-    return null;
-  };
+  };  
 
   return (
     <>
@@ -47,9 +40,9 @@ export const Cars = () => {
           {t("menu.addCar")}
         </AddCarButton>
       </CarsHeaderBlock>
-      <CarsTable cars={cars.data} checkRedirect={checkState} />
+      <CarsTable cars={cars.data} isRedirectable={state} />
       <FormWrapper isVisible={isVisibleForm}>
-        <AddCarForm onFinish={toggleFormVisability}/>
+        <AddCarForm onFinish={toggleFormVisability} targetId={state} />
       </FormWrapper>
     </>
   );

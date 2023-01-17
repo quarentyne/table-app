@@ -35,13 +35,6 @@ export const Drivers = () => {
     return <NotFound />
   };
 
-  const checkState = (id: number) => { 
-    if (state) {
-      return id;
-    };
-    return null;
-  };
-
   return (
     <>
       <DriversHeaderBlock>
@@ -50,7 +43,7 @@ export const Drivers = () => {
           <img src={add} width={15} height={15} alt="add"/>{t("menu.addDriver")}
         </AddDriverButton>
       </DriversHeaderBlock>
-      <DriversTable drivers={drivers.data} checkRedirect={checkState} />
+      <DriversTable drivers={drivers.data} isRedirectable={state} />
       <FormWrapper isVisible={isVisibleForm}>
         <AddDriverForm onFinish={toggleFormVisability}/>
       </FormWrapper>
