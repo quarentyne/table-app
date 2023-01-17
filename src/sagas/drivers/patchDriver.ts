@@ -6,7 +6,7 @@ import { getDrivers } from "./getDrivers";
 
 type TDriver = {
   type: string;
-  data: {
+  payload: {
     id: number;
     driver: string;
     currentId?: number;
@@ -17,10 +17,10 @@ function* patchDriver(data: TDriver) {
   yield fetchData({
     method: "PATCH",
     path: Endpoints.DRIVERS,
-    body: data.data.driver,
-    id: data.data.id,
+    body: data.payload.driver,
+    id: data.payload.id,
   });
-  yield getDrivers({ id: data.data.currentId });
+  yield getDrivers({ id: data.payload.currentId });
 }
 
 export function* watchPatchDriver() {

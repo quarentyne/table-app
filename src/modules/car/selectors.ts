@@ -16,8 +16,7 @@ export const responseCars = (data: ICarsDeafaultState) => ({
 
 export const addCar = (car: string, currentId: number | null) => ({
   type: POST_CAR,
-  payload: car,
-  currentId,
+  payload: { car, currentId },
 });
 
 export const patchCar = (
@@ -26,11 +25,10 @@ export const patchCar = (
   currentId: number | null
 ) => ({
   type: PATCH_CAR,
-  data: { id, car, currentId },
+  payload: { id, car, currentId },
 });
 
 export const deleteCar = (id: number, currentId: number | null) => ({
+  payload: { id, currentId },
   type: DELETE_CAR,
-  id,
-  currentId,
 });

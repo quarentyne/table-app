@@ -5,14 +5,19 @@ import { fetchData } from "../fetchData";
 import { getDrivers } from "./getDrivers";
 
 type TDriver = {
-  id: number;
+  payload: {
+    id: number;
+  };
   type: string;
-  currentId?: number;
 };
 
-function* deleteDriver({ id, currentId }: TDriver) {
-  yield fetchData({ method: "DELETE", path: Endpoints.DRIVERS, id: id });
-  yield getDrivers({ id: currentId });
+function* deleteDriver({ payload }: TDriver) {
+  yield fetchData({
+    method: "DELETE",
+    path: Endpoints.DRIVERS,
+    id: payload.id,
+  });
+  yield getDrivers();
 }
 
 export function* watchDeleteDriver() {

@@ -5,14 +5,16 @@ import { fetchData } from "../fetchData";
 import { getCars } from "./getCars";
 
 type TCar = {
-  id: number;
+  payload: {
+    id: number;
+    currentId?: number;
+  };
   type: string;
-  currentId?: number;
 };
 
-function* deleteCar({ id, currentId }: TCar) {
-  yield fetchData({ method: "DELETE", path: Endpoints.CARS, id: id });
-  yield getCars({ id: currentId });
+function* deleteCar({ payload }: TCar) {
+  yield fetchData({ method: "DELETE", path: Endpoints.CARS, id: payload.id });
+  yield getCars({ id: payload.currentId });
 }
 
 export function* watchDeleteCar() {

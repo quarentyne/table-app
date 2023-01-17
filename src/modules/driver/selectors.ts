@@ -22,10 +22,16 @@ export const addDriver = (driver: string) => ({
   payload: driver,
 });
 
-export const deleteDriver = (id: number) => ({ type: DELETE_DRIVER, id });
+export const deleteDriver = (id: number) => ({
+  type: DELETE_DRIVER,
+  payload: { id },
+});
 
 export const patchDriver = (
   id: number,
   driver: string,
   currentId: number | null
-) => ({ type: PATCH_DRIVER, data: { id, driver, currentId } });
+) => ({
+  type: PATCH_DRIVER,
+  payload: { id, driver, currentId },
+});

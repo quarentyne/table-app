@@ -6,7 +6,7 @@ import { getCars } from "./getCars";
 
 type TCar = {
   type: string;
-  data: {
+  payload: {
     id: number;
     car: string;
     currentId?: number;
@@ -23,13 +23,13 @@ type TPatchCarRequest = {
 function* patchCar(data: TCar) {
   const request: TPatchCarRequest = {
     method: "PATCH",
-    body: data.data.car,
+    body: data.payload.car,
     path: Endpoints.CARS,
-    id: data.data.id,
+    id: data.payload.id,
   };
 
   yield fetchData(request);
-  yield getCars({ id: data.data.currentId });
+  yield getCars({ id: data.payload.currentId });
 }
 
 export function* watchPatchCar() {

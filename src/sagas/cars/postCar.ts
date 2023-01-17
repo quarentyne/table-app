@@ -5,14 +5,20 @@ import { fetchData } from "../fetchData";
 import { getCars } from "./getCars";
 
 type TCar = {
-  payload: string;
+  payload: {
+    car: string;
+    currentId?: number;
+  };
   type: string;
-  currentId?: number;
 };
 
-export function* postCar(car: TCar) {
-  yield fetchData({ method: "POST", path: Endpoints.CARS, body: car.payload });
-  yield getCars({ id: car.currentId });
+export function* postCar(data: TCar) {
+  yield fetchData({
+    method: "POST",
+    path: Endpoints.CARS,
+    body: data.payload.car,
+  });
+  yield getCars({ id: data.payload.currentId });
 }
 
 export function* watchPostCar() {
