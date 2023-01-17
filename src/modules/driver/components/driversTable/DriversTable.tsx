@@ -17,7 +17,7 @@ interface IDriver {
 
 interface IDrivers {
   drivers: IDriver[];
-  checkRedirect: (id: number) => number | undefined;
+  checkRedirect: (id: number) => number | null;
 }
 
 export const DriversTable = ({drivers, checkRedirect}: IDrivers) => { 

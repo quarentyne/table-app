@@ -35,7 +35,7 @@ export const Cars = () => {
     if (state) {
       return id;
     };
-    return;
+    return null;
   };
 
   return (

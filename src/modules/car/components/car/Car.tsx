@@ -23,9 +23,9 @@ interface ICar{
     title: string,
     code: string,
   },
-  targetId?: number;
+  targetId: number | null;
   driverName: string;
-  onDelete: (carId: number, redirectTargetId?: number) => void;
+  onDelete: (carId: number, redirectTargetId: number | null) => void;
 };
 
 export const Car = ({id, model, mark, year, number, driverId, status, targetId, onDelete, driverName }: ICar) => {

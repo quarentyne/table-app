@@ -21,7 +21,7 @@ interface IDriver{
     code: string;
     title: string;
   };
-  targetId?: number;
+  targetId: number | null;
   onDelete: (id: number) => void;
 };
 

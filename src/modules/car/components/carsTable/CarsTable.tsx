@@ -19,7 +19,7 @@ interface ICar{
 
 interface ICars { 
   cars: ICar[];
-  checkRedirect: (id: number) => number | undefined;
+  checkRedirect: (id: number) => number | null;
 };
 
 export const CarsTable = ({ cars, checkRedirect}: ICars) => {
@@ -31,7 +31,7 @@ export const CarsTable = ({ cars, checkRedirect}: ICars) => {
     return `${driver?.first_name} ${driver?.last_name}`;
   };
 
-  const onDelete = (carId: number, redirectTargetId?: number) => {
+  const onDelete = (carId: number, redirectTargetId: number | null) => {
     dispatch(deleteCar(carId, redirectTargetId))
   };
 
