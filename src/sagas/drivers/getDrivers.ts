@@ -3,8 +3,8 @@ import { Endpoints } from "../../api/endpoints";
 import {
   GET_DRIVERS_REQUESTED,
   IDriversDeafaultState,
-} from "../../modules/driver/models";
-import { responseDrivers } from "../../modules/driver/actions";
+} from "../../modules/Driver/models";
+import { responseDrivers } from "../../modules/Driver/actions";
 import { fetchData } from "../fetchData";
 import { httpMethods } from "../../shared/helpers/httpMethods";
 

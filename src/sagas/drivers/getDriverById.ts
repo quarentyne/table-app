@@ -4,8 +4,8 @@ import {
   GET_DRIVER_BY_ID_REQUESTED,
   IDriverResponse,
   IDriversDeafaultState,
-} from "../../modules/driver/models";
-import { responseDrivers } from "../../modules/driver/actions";
+} from "../../modules/Driver/models";
+import { responseDrivers } from "../../modules/Driver/actions";
 import { fetchData } from "../fetchData";
 import { httpMethods } from "../../shared/helpers/httpMethods";
 

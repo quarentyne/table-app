@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { requestCars } from "../../modules/car/actions";
-import { requestDrivers } from "../../modules/driver/actions";
+import { requestCars } from "../../modules/Car/actions";
+import { requestDrivers } from "../../modules/Driver/actions";
 import { DataBlock, DataImage, DataObject, HomepageBlock, HomepageLabel, HomepageParagraph, HomepageWrapper } from "./styles";
 import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import people from "../../assets/svg/main-people.svg";

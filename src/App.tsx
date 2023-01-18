@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { RouterConfig } from './router/config';
+import { RouterConfig } from './router/Config';
 import { Loading } from './shared/components/Loading/Loading';
 import { GlobalStyle } from './styles';
 

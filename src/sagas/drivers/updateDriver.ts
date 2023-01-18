@@ -3,7 +3,7 @@ import { Endpoints } from "../../api/endpoints";
 import {
   GET_DRIVER_BY_ID_REQUESTED,
   UPDATE_DRIVER,
-} from "../../modules/driver/models";
+} from "../../modules/Driver/models";
 import { httpMethods } from "../../shared/helpers/httpMethods";
 import { fetchData } from "../fetchData";
 import { getDriverById } from "./getDriverById";

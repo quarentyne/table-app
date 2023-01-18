@@ -3,8 +3,8 @@ import { Endpoints } from "../../api/endpoints";
 import {
   GET_CARS_BY_ID_REQUESTED,
   ICarsDefaultState,
-} from "../../modules/car/models";
-import { responseCars } from "../../modules/car/actions";
+} from "../../modules/Car/models";
+import { responseCars } from "../../modules/Car/actions";
 import { fetchData } from "../fetchData";
 import { httpMethods } from "../../shared/helpers/httpMethods";
 

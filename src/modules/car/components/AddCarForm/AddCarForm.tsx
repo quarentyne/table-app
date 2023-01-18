@@ -7,7 +7,7 @@ import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 import { CarsStatuses } from "../../../../shared/components/Statuses/Cars/CarsStatuses";
 import { addCar } from "../../actions";
 import { carsClassesTitleSelector, carsStatusCodes } from "../../../../shared/helpers/carsClasses";
-import { IDriver } from "../../../driver/models";
+import { IDriver } from "../../../Driver/models";
 
 interface IAddCarForm{
   onFinish: () => void;

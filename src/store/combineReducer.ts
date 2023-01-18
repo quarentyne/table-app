@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { carsReducer } from "../modules/car/reducer";
-import { driversReducer } from "../modules/driver/reducer";
+import { carsReducer } from "../modules/Car/reducer";
+import { driversReducer } from "../modules/Driver/reducer";
 
 export const rootReducer = combineReducers({
   drivers: driversReducer,
