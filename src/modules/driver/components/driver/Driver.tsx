@@ -1,14 +1,14 @@
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { Actions } from "../../../../shared/components/actions/Actions";
-import { DataEditor } from "../../../../shared/components/dataEditor/DataEditor";
-import { DriversStatuses } from "../../../../shared/components/statuses/drivers/DriversStatuses";
-import { StatusEditor } from "../../../../shared/components/statuses/StatusEditor";
+import { Actions } from "../../../../shared/components/Actions/Actions";
+import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor";
+import { DriversStatuses } from "../../../../shared/components/Statuses/Drivers/DriversStatuses";
+import { StatusEditor } from "../../../../shared/components/Statuses/StatusEditor";
 import { driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";
 import { Entitys } from "../../../../shared/helpers/entitys";
 import { datePattern, fullNamePattern } from "../../../../shared/helpers/inputPatterns";
-import { patchDriver } from "../../selectors";
+import { updateDriver } from "../../actions";
 import { Action, Birthday, DriversTable, ID, Name, Registrated, Status } from "./styles";
 
 interface IDriver{
@@ -49,7 +49,7 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
     setDriverOptions({ ...driverOptions, [e.target.name]: e.target.value })
   };
 
-  const updateDriver = () => {
+  const updateDriverOptions = () => {
     const title = driverStatusTitleSelector(driverOptions.status);
     const name = driverOptions.fullName.split(' ');    
     const date = driverOptions.birthDate.split('.');
@@ -64,7 +64,7 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
         title,
       },
     });
-    dispatch(patchDriver(id, driver, redirectID));
+    dispatch(updateDriver(id, driver, redirectID));
   };
 
   return (
@@ -78,7 +78,7 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
           name="fullName"
           pattern={fullNamePattern}
           onChange={handleChange}
-          onUpdate={updateDriver} />
+          onUpdate={updateDriverOptions} />
       </Name>
       <Birthday>
         <DataEditor
@@ -86,7 +86,7 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
           name="birthDate"
           pattern={datePattern}
           onChange={handleChange}
-          onUpdate={updateDriver} />
+          onUpdate={updateDriverOptions} />
       </Birthday>
       <Registrated>
         {renderDate(joinDate)}
@@ -95,7 +95,7 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
         <StatusEditor
           status={driverOptions.status}
           name="status"
-          onUpdate={updateDriver}
+          onUpdate={updateDriverOptions}
           onChange={handleChange}
           entity={Entitys.DRIVER}>
           <DriversStatuses />

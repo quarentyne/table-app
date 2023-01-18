@@ -1,21 +1,21 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
-import { FormButtons } from "../../../../shared/components/formButtons/FormButtons";
+import { FormButtons } from "../../../../shared/components/FormButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
-import { CarsStatuses } from "../../../../shared/components/statuses/cars/CarsStatuses";
-import { addCar } from "../../selectors";
-import { useTypedSelector } from "../../../../shared/hooks/useTypedSelector";
+import { CarsStatuses } from "../../../../shared/components/Statuses/Cars/CarsStatuses";
+import { addCar } from "../../actions";
 import { carsClassesTitleSelector, carsStatusCodes } from "../../../../shared/helpers/carsClasses";
+import { IDriver } from "../../../driver/models";
 
 interface IAddCarForm{
   onFinish: () => void;
   redirectID: number | null;
+  drivers: IDriver[];
 };
 
-export const AddCarForm = ({ onFinish, redirectID }: IAddCarForm) => {
-  const drivers = useTypedSelector(state => state.drivers.data)
+export const AddCarForm = ({ onFinish, redirectID, drivers }: IAddCarForm) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [carOptions, setCarOptions] = useState({
@@ -66,6 +66,13 @@ export const AddCarForm = ({ onFinish, redirectID }: IAddCarForm) => {
     createCar();
   };
 
+  const driversSelector = useMemo(() => drivers.map(driver => {
+    if (!driver) {
+      return <option value="" disabled>Drivers not found</option>
+    };
+    return <option key={driver.id} value={driver.id}>{`${driver.first_name} ${driver.last_name}`}</option>
+  }), [drivers]);
+
   const markPlaceholder = t("addCar.mark");
   const modelPlaceholder = t("addCar.model");
   const numberPlaceholder = t("addCar.number");
@@ -79,12 +86,7 @@ export const AddCarForm = ({ onFinish, redirectID }: IAddCarForm) => {
         name="driver"
         value={carOptions.driver}
         onChange={handleChange}>
-        {drivers.map(driver => {
-          if (!driver) {
-            return <option value="" disabled>Drivers not found</option>
-          };
-          return <option key={driver.id} value={driver.id}>{`${driver.first_name} ${driver.last_name}`}</option>
-        })}
+        {driversSelector}
       </FormSelect>
       <FormInput
         name="mark"

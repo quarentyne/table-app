@@ -2,47 +2,57 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { requestCars } from "../../modules/car/selectors";
+import { requestCars, requestCarsById } from "../../modules/car/actions";
 import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import { AddCarButton, CarsHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
-import { requestDrivers } from "../../modules/driver/selectors";
-import { AddCarForm } from "../../modules/car/components/addCar/AddCarForm";
-import { Loading } from "../../shared/components/loading/Loading";
-import { CarsTable } from "../../modules/car/components/carsTable/CarsTable";
+import { requestDrivers } from "../../modules/driver/actions";
+import { AddCarForm } from "../../modules/car/components/AddCarForm/AddCarForm";
+import { CarsTable } from "../../modules/car/components/CarsTable/CarsTable";
+import { NotFound } from "../notfound/NotFound";
+import { Loading } from "../../shared/components/Loading/Loading";
 
 export const Cars = () => {
   const dispatch = useDispatch();
-  const cars = useTypedSelector(state => state.cars)
+  const cars = useTypedSelector(state => state.cars);
+  const drivers = useTypedSelector(state => state.drivers.data);
   const { state } = useLocation();  
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
 
-  const toggleFormVisability = () => {
+  const toggleFormVisibility = () => {
     setIsVisibleForm(!isVisibleForm);
   };
 
   useEffect(() => {
-    dispatch(requestCars(state));
+    if (state) {
+      dispatch(requestCarsById(state));      
+    } else {
+      dispatch(requestCars());      
+    }
     dispatch(requestDrivers());
   }, [dispatch, state]);
 
-  if (cars.loading || cars.status === 'idle') {
+  if (!cars.data || !drivers) {
     return <Loading />
   };  
+
+  if (cars.is_error) {
+    return <NotFound />
+  };
 
   return (
     <>
       <CarsHeaderBlock>
         <span>{`${t("menu.cars")} (${cars.data.length})`}</span>
-        <AddCarButton onClick={toggleFormVisability}>
+        <AddCarButton onClick={toggleFormVisibility}>
           <img src={add} width={15} height={15} alt="add" />
           {t("menu.addCar")}
         </AddCarButton>
       </CarsHeaderBlock>
       <CarsTable cars={cars.data} isRedirectable={state} />
       <FormWrapper isVisible={isVisibleForm}>
-        <AddCarForm onFinish={toggleFormVisability} redirectID={state} />
+        <AddCarForm onFinish={toggleFormVisibility} redirectID={state} drivers={drivers} />
       </FormWrapper>
     </>
   );

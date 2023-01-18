@@ -1,7 +1,8 @@
 export const GET_CARS_SUCCESS = "GET_CARS_SUCCESS";
 export const GET_CARS_REQUESTED = "GET_CARS_REQUESTED";
+export const GET_CARS_BY_ID_REQUESTED = "GET_CARS_BY_ID_REQUESTED";
 export const POST_CAR = "POST_CAR";
-export const PATCH_CAR = "PATCH_CAR";
+export const UPDATE_CAR = "UPDATE_CAR";
 export const DELETE_CAR = "DELETE_CAR";
 
 interface ICar {
@@ -17,14 +18,13 @@ interface ICar {
   };
 }
 
-export interface ICarsDeafaultState {
-  is_error: boolean;
-  status: string;
-  data: ICar[];
-  loading: boolean;
+export interface ICarsDefaultState {
+  is_error: boolean | null;
+  status: string | null;
+  data: ICar[] | null;
 }
 
 export interface ICarsActions {
   type: string;
-  payload: ICarsDeafaultState;
+  payload: ICarsDefaultState;
 }

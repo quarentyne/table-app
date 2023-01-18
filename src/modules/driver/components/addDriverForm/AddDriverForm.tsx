@@ -1,11 +1,11 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { addDriver } from "../../selectors";
+import { addDriver } from "../../actions";
 import { datePattern, namePattern } from "../../../../shared/helpers/inputPatterns";
-import { FormButtons } from "../../../../shared/components/formButtons/FormButtons";
+import { FormButtons } from "../../../../shared/components/FormButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
-import { DriversStatuses } from "../../../../shared/components/statuses/drivers/DriversStatuses";
+import { DriversStatuses } from "../../../../shared/components/Statuses/Drivers/DriversStatuses";
 import { driverStatusCodes,  driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";
 
 interface IAddDriverForm{

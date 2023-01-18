@@ -1,8 +1,8 @@
 import { useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation} from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { requestDrivers } from "../../modules/driver/actions";
+import { requestDriverById } from "../../modules/driver/actions";
 import { Loading } from "../../shared/components/Loading/Loading";
 import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import { AddDriverButton, DriversHeaderBlock, FormWrapper } from "./styles";
@@ -11,20 +11,21 @@ import { AddDriverForm } from "../../modules/driver/components/AddDriverForm/Add
 import { DriversTable } from "../../modules/driver/components/DriversTable/DriversTable";
 import { NotFound } from "../notfound/NotFound";
 
-export const Drivers = () => {
+export const Driver = () => {
   const dispatch = useDispatch();
   const drivers = useTypedSelector(state => state.drivers)
   const { state } = useLocation();
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
+  const { id } = useParams();
 
   const toggleFormVisibility = () => {
     setIsVisibleForm(!isVisibleForm);
   };
 
   useEffect(() => {
-    dispatch(requestDrivers());
-  }, [dispatch]);
+    dispatch(requestDriverById(Number(id)))
+  }, [dispatch, id]);  
   
   if (!drivers.data) {
     return <Loading />;
@@ -32,7 +33,7 @@ export const Drivers = () => {
 
   if (drivers.is_error) {
     return <NotFound />
-  };  
+  };
 
   return (
     <>

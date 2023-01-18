@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { GlobalHeader } from "./styles";
-import { Navbar } from "../navbar/Navbar";
+import { Navbar } from "../Navbar/Navbar";
 import logoBig from "../../../assets/images/logo100w.png";
 import logoMin from "../../../assets/images/logo50w.png";
-import { LanguagesChanger } from "../languageChanger/LanguageChanger";
+import { LanguagesChanger } from "../LanguageChanger/LanguageChanger";
 import i18n from "../../../i18n";
 import { Languages } from "../../helpers/themes";
 

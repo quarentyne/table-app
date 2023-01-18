@@ -2,13 +2,18 @@ import {
   DELETE_DRIVER,
   GET_DRIVERS_REQUESTED,
   GET_DRIVERS_SUCCESS,
+  GET_DRIVER_BY_ID_REQUESTED,
   IDriversDeafaultState,
-  PATCH_DRIVER,
+  UPDATE_DRIVER,
   POST_DRIVER,
 } from "./models";
 
-export const requestDrivers = (id?: number) => ({
+export const requestDrivers = () => ({
   type: GET_DRIVERS_REQUESTED,
+});
+
+export const requestDriverById = (id: number) => ({
+  type: GET_DRIVER_BY_ID_REQUESTED,
   id,
 });
 
@@ -27,11 +32,11 @@ export const deleteDriver = (id: number) => ({
   payload: { id },
 });
 
-export const patchDriver = (
+export const updateDriver = (
   id: number,
   driver: string,
   redirectID: number | null
 ) => ({
-  type: PATCH_DRIVER,
+  type: UPDATE_DRIVER,
   payload: { id, driver, redirectID },
 });

@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
+import { Loading } from "../../../../shared/components/Loading/Loading";
 import { useTypedSelector } from "../../../../shared/hooks/useTypedSelector";
-import { deleteCar } from "../../selectors";
-import { Car } from "../car/Car";
-import { CarsTableHeader } from "../carsTableHeader/CarsTableHeader";
+import { deleteCar } from "../../actions";
+import { Car } from "../Car/Car";
+import { CarsTableHeader } from "../CarsTableHeader/CarsTableHeader";
 
 interface ICar{
   id: string;
@@ -25,6 +26,10 @@ interface ICars {
 export const CarsTable = ({ cars, isRedirectable}: ICars) => {
   const dispatch = useDispatch();
   const drivers = useTypedSelector(state => state.drivers.data);
+  
+  if (!drivers) {
+    return <Loading />
+  };
 
   const getDriverFullName = (id: number) => {
     const driver = drivers.find(driver => driver.id === id);

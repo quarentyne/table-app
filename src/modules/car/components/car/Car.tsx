@@ -3,12 +3,12 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Endpoints } from "../../../../api/endpoints";
 import { carsClassesTitleSelector } from "../../../../shared/helpers/carsClasses";
-import { Actions } from "../../../../shared/components/actions/Actions";
-import { DataEditor } from "../../../../shared/components/dataEditor/DataEditor";
-import { CarsStatuses } from "../../../../shared/components/statuses/cars/CarsStatuses";
-import { StatusEditor } from "../../../../shared/components/statuses/StatusEditor";
+import { Actions } from "../../../../shared/components/Actions/Actions";
+import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor";
+import { CarsStatuses } from "../../../../shared/components/Statuses/Cars/CarsStatuses";
+import { StatusEditor } from "../../../../shared/components/Statuses/StatusEditor";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
-import { patchCar } from "../../selectors";
+import { updateCar } from "../../actions";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
 import { Entitys } from "../../../../shared/helpers/entitys";
 
@@ -43,7 +43,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
     setCarOptions({ ...carOptions, [e.target.name]: e.target.value })
   };
 
-  const updateCar = () => { 
+  const updateCarOptions = () => { 
     const title = carsClassesTitleSelector(carOptions.status);
 
     const car = JSON.stringify({
@@ -56,7 +56,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
         title,
       }
     });
-    dispatch(patchCar(Number(id), car, redirectID))
+    dispatch(updateCar(Number(id), car, redirectID))
   };
 
   return (
@@ -72,7 +72,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
           value={carOptions.mark}
           name="mark"
           onChange={handleChange}
-          onUpdate={updateCar}
+          onUpdate={updateCarOptions}
           pattern={namePattern} />
       </Mark>
       <Model>
@@ -80,7 +80,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
           value={carOptions.model}
           name="model"
           onChange={handleChange}
-          onUpdate={updateCar}
+          onUpdate={updateCarOptions}
           pattern={modelPattern} />
       </Model>
       <PlateNumber>
@@ -88,7 +88,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
           value={carOptions.plateNumber}
           name="plateNumber"
           onChange={handleChange}
-          onUpdate={updateCar}
+          onUpdate={updateCarOptions}
           pattern={numberPattern} />
       </PlateNumber>
       <Year>
@@ -96,14 +96,14 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
           value={carOptions.year}
           name="year"
           onChange={handleChange}
-          onUpdate={updateCar}
+          onUpdate={updateCarOptions}
           pattern={yearPattern} />
       </Year>      
       <Status>
         <StatusEditor
           status={carOptions.status}
           name="status"
-          onUpdate={updateCar}
+          onUpdate={updateCarOptions}
           onChange={handleChange}
           entity={Entitys.CAR}>
             <CarsStatuses />

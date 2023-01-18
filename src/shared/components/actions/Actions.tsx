@@ -8,7 +8,7 @@ interface IActions{
   deleteHint: string;
   onDelete: () => void;
   linkTo: string;
-  state?: number;
+  state: number;
 };
 
 export const Actions = ({eyeHint, deleteHint, linkTo, state, onDelete} :IActions) => {

@@ -1,6 +1,7 @@
 import { takeEvery } from "redux-saga/effects";
 import { Endpoints } from "../../api/endpoints";
 import { POST_CAR } from "../../modules/car/models";
+import { httpMethods } from "../../shared/helpers/httpMethods";
 import { fetchData } from "../fetchData";
 import { getCars } from "./getCars";
 
@@ -14,7 +15,7 @@ type TCar = {
 
 export function* postCar(data: TCar) {
   yield fetchData({
-    method: "POST",
+    method: httpMethods.POST,
     path: Endpoints.CARS,
     body: data.payload.car,
   });

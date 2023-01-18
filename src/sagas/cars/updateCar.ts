@@ -1,6 +1,7 @@
 import { takeEvery } from "redux-saga/effects";
 import { Endpoints } from "../../api/endpoints";
-import { PATCH_CAR } from "../../modules/car/models";
+import { UPDATE_CAR } from "../../modules/car/models";
+import { httpMethods } from "../../shared/helpers/httpMethods";
 import { fetchData } from "../fetchData";
 import { getCars } from "./getCars";
 
@@ -13,16 +14,16 @@ type TCar = {
   };
 };
 
-type TPatchCarRequest = {
+type TUpdateCarRequest = {
   method: string;
   path: string;
   id: number;
   body: string;
 };
 
-function* patchCar(data: TCar) {
-  const request: TPatchCarRequest = {
-    method: "PATCH",
+function* updateCar(data: TCar) {
+  const request: TUpdateCarRequest = {
+    method: httpMethods.PATCH,
     body: data.payload.car,
     path: Endpoints.CARS,
     id: data.payload.id,
@@ -33,5 +34,5 @@ function* patchCar(data: TCar) {
 }
 
 export function* watchPatchCar() {
-  yield takeEvery(PATCH_CAR, patchCar);
+  yield takeEvery(UPDATE_CAR, updateCar);
 }

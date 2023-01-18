@@ -1,7 +1,7 @@
 import { put, takeEvery, call } from "redux-saga/effects";
 import { Endpoints } from "../../api/endpoints";
 import {
-  GET_CARS_REQUESTED,
+  GET_CARS_BY_ID_REQUESTED,
   ICarsDefaultState,
 } from "../../modules/car/models";
 import { responseCars } from "../../modules/car/actions";
@@ -9,25 +9,22 @@ import { fetchData } from "../fetchData";
 import { httpMethods } from "../../shared/helpers/httpMethods";
 
 type TGetCars = {
-  type?: string;
-  id?: number;
+  type: string;
+  id: number;
 };
 
 export type TGetCarsRequest = {
   method: string;
   path: string;
-  headers?: string;
+  headers: string;
 };
 
-export function* getCars(request?: TGetCars) {
+export function* getCarsByDriverId({ id }: TGetCars) {
   const getCarsRequest: TGetCarsRequest = {
     method: httpMethods.GET,
     path: Endpoints.CARS,
+    headers: String(id),
   };
-
-  if (request?.id) {
-    getCarsRequest.headers = String(request.id);
-  }
 
   const response: ICarsDefaultState = yield call(
     fetchData.bind(null, getCarsRequest)
@@ -35,6 +32,6 @@ export function* getCars(request?: TGetCars) {
   yield put(responseCars(response));
 }
 
-export function* watchGetCars() {
-  yield takeEvery(GET_CARS_REQUESTED, getCars);
+export function* watchGetCarsByDriverId() {
+  yield takeEvery(GET_CARS_BY_ID_REQUESTED, getCarsByDriverId);
 }
