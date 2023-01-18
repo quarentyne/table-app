@@ -23,12 +23,12 @@ interface ICar{
     title: string,
     code: string,
   },
-  targetId: number | null;
+  redirectID: number | null;
   driverName: string;
-  onDelete: (carId: number, redirectTargetId: number | null) => void;
+  onDelete: (carId: number, redirectID: number | null) => void;
 };
 
-export const Car = ({id, model, mark, year, number, driverId, status, targetId, onDelete, driverName }: ICar) => {
+export const Car = ({id, model, mark, year, number, driverId, status, redirectID, onDelete, driverName }: ICar) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [carOptions, setCarOptions] = useState({
@@ -56,7 +56,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, targetId, 
         title,
       }
     });
-    dispatch(patchCar(Number(id), car, targetId))
+    dispatch(patchCar(Number(id), car, redirectID))
   };
 
   return (
@@ -113,7 +113,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, targetId, 
         <Actions
           eyeHint={t("actions.drivers")}
           deleteHint={t("actions.delete")}
-          onDelete={onDelete.bind(null, Number(id), targetId)}
+          onDelete={onDelete.bind(null, Number(id), redirectID)}
           linkTo={`/${Endpoints.DRIVERS}${driverId}`}
           state={driverId}
         />

@@ -39,7 +39,7 @@ export const DriversTable = ({drivers, isRedirectable}: IDrivers) => {
         dateCreated={driver.date_created}
         status={driver.status}
         onDelete={onDelete}
-        targetId={isRedirectable ? driver.id : null}
+        redirectID={isRedirectable ? driver.id : null}
       />
       )}
     </>

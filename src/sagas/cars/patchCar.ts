@@ -9,7 +9,7 @@ type TCar = {
   payload: {
     id: number;
     car: string;
-    currentId?: number;
+    redirectID?: number;
   };
 };
 
@@ -29,7 +29,7 @@ function* patchCar(data: TCar) {
   };
 
   yield fetchData(request);
-  yield getCars({ id: data.payload.currentId });
+  yield getCars({ id: data.payload.redirectID });
 }
 
 export function* watchPatchCar() {

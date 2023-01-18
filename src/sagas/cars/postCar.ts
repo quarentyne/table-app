@@ -7,7 +7,7 @@ import { getCars } from "./getCars";
 type TCar = {
   payload: {
     car: string;
-    currentId?: number;
+    redirectID?: number;
   };
   type: string;
 };
@@ -18,7 +18,7 @@ export function* postCar(data: TCar) {
     path: Endpoints.CARS,
     body: data.payload.car,
   });
-  yield getCars({ id: data.payload.currentId });
+  yield getCars({ id: data.payload.redirectID });
 }
 
 export function* watchPostCar() {

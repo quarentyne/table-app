@@ -7,14 +7,14 @@ import { getCars } from "./getCars";
 type TCar = {
   payload: {
     id: number;
-    currentId?: number;
+    redirectID?: number;
   };
   type: string;
 };
 
 function* deleteCar({ payload }: TCar) {
   yield fetchData({ method: "DELETE", path: Endpoints.CARS, id: payload.id });
-  yield getCars({ id: payload.currentId });
+  yield getCars({ id: payload.redirectID });
 }
 
 export function* watchDeleteCar() {

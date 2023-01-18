@@ -14,21 +14,21 @@ export const responseCars = (data: ICarsDeafaultState) => ({
   payload: data,
 });
 
-export const addCar = (car: string, currentId: number | null) => ({
+export const addCar = (car: string, redirectID: number | null) => ({
   type: POST_CAR,
-  payload: { car, currentId },
+  payload: { car, redirectID },
 });
 
 export const patchCar = (
   id: number,
   car: string,
-  currentId: number | null
+  redirectID: number | null
 ) => ({
   type: PATCH_CAR,
-  payload: { id, car, currentId },
+  payload: { id, car, redirectID },
 });
 
-export const deleteCar = (id: number, currentId: number | null) => ({
-  payload: { id, currentId },
+export const deleteCar = (id: number, redirectID: number | null) => ({
+  payload: { id, redirectID },
   type: DELETE_CAR,
 });

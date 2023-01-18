@@ -30,8 +30,8 @@ export const deleteDriver = (id: number) => ({
 export const patchDriver = (
   id: number,
   driver: string,
-  currentId: number | null
+  redirectID: number | null
 ) => ({
   type: PATCH_DRIVER,
-  payload: { id, driver, currentId },
+  payload: { id, driver, redirectID },
 });

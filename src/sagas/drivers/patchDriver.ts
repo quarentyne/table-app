@@ -9,7 +9,7 @@ type TDriver = {
   payload: {
     id: number;
     driver: string;
-    currentId?: number;
+    redirectID?: number;
   };
 };
 
@@ -20,7 +20,7 @@ function* patchDriver(data: TDriver) {
     body: data.payload.driver,
     id: data.payload.id,
   });
-  yield getDrivers({ id: data.payload.currentId });
+  yield getDrivers({ id: data.payload.redirectID });
 }
 
 export function* watchPatchDriver() {

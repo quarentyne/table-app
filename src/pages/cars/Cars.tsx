@@ -42,7 +42,7 @@ export const Cars = () => {
       </CarsHeaderBlock>
       <CarsTable cars={cars.data} isRedirectable={state} />
       <FormWrapper isVisible={isVisibleForm}>
-        <AddCarForm onFinish={toggleFormVisability} targetId={state} />
+        <AddCarForm onFinish={toggleFormVisability} redirectID={state} />
       </FormWrapper>
     </>
   );

@@ -11,10 +11,10 @@ import { carsClassesTitleSelector, carsStatusCodes } from "../../../../shared/he
 
 interface IAddCarForm{
   onFinish: () => void;
-  targetId: number | null;
+  redirectID: number | null;
 };
 
-export const AddCarForm = ({ onFinish, targetId }: IAddCarForm) => {
+export const AddCarForm = ({ onFinish, redirectID }: IAddCarForm) => {
   const drivers = useTypedSelector(state => state.drivers.data)
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ export const AddCarForm = ({ onFinish, targetId }: IAddCarForm) => {
         title,
       },
     });    
-    dispatch(addCar(newCar, targetId));
+    dispatch(addCar(newCar, redirectID));
     cancelHandler();
   };
 

@@ -21,11 +21,11 @@ interface IDriver{
     code: string;
     title: string;
   };
-  targetId: number | null;
+  redirectID: number | null;
   onDelete: (id: number) => void;
 };
 
-export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status, targetId, onDelete}: IDriver) => {
+export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status, redirectID, onDelete}: IDriver) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();  
 
@@ -64,7 +64,7 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
         title,
       },
     });
-    dispatch(patchDriver(id, driver, targetId));
+    dispatch(patchDriver(id, driver, redirectID));
   };
 
   return (
