@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { deleteDriver } from "../../actions";
-import { Driver } from "../Driver/Driver";
-import { DriversTableHeader } from "../DriversTableHeader/DriversTableHeader";
+import { deleteDriver } from "../../../Driver/features/actionCreators";
+import { Driver } from "../../../DriversCommon/components/Driver/Driver";
+import { DriversTableHeader } from "../../../DriversCommon/components/DriversTableHeader/DriversTableHeader";
 
 interface IDriver {
   id: number;

@@ -6,7 +6,7 @@ import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor"
 import { DriverStatusEditor } from "../../../../shared/components/DriverStatusEditor/DriverStatusEditor";
 import { driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";
 import { datePattern, fullNamePattern } from "../../../../shared/helpers/inputPatterns";
-import { updateDriver } from "../../actions";
+import { updateDriver } from "../../../Driver/features/actionCreators";
 import { Action, Birthday, DriversTable, ID, Name, Registrated, Status } from "./styles";
 
 interface IDriver{

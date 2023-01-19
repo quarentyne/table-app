@@ -6,7 +6,7 @@ import { FormButtons } from "../../../../shared/components/FormButtons/FormButto
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 import { addCar } from "../../actions";
 import { carsClassesTitleSelector, carsStatusCodes, mappedCarsStatusCodes } from "../../../../shared/helpers/carsClasses";
-import { IDriver } from "../../../Driver/models";
+import { IDriver } from "../../../Drivers/features/models";
 
 interface IAddCarForm{
   onFinish: () => void;

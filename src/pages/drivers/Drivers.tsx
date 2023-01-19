@@ -2,14 +2,14 @@ import { useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation} from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { requestDrivers } from "../../modules/Driver/actions";
 import { Loading } from "../../shared/components/Loading/Loading";
 import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import { AddDriverButton, DriversHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
-import { AddDriverForm } from "../../modules/Driver/components/AddDriverForm/AddDriverForm";
-import { DriversTable } from "../../modules/Driver/components/DriversTable/DriversTable";
 import { NotFound } from "../Notfound/NotFound";
+import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
+import { AddDriverForm } from "../../modules/DriversCommon/components/AddDriverForm/AddDriverForm";
+import { DriversTable } from "../../modules/Drivers/components/DriversTable/DriversTable";
 
 export const Drivers = () => {
   const dispatch = useDispatch();
