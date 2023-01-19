@@ -4,9 +4,8 @@ import { useDispatch } from "react-redux";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
 import { FormButtons } from "../../../../shared/components/FormButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
-import { CarsStatuses } from "../../../../shared/components/Statuses/Cars/CarsStatuses";
 import { addCar } from "../../actions";
-import { carsClassesTitleSelector, carsStatusCodes } from "../../../../shared/helpers/carsClasses";
+import { carsClassesTitleSelector, carsStatusCodes, mappedCarsStatusCodes } from "../../../../shared/helpers/carsClasses";
 import { IDriver } from "../../../Driver/models";
 
 interface IAddCarForm{
@@ -125,7 +124,7 @@ export const AddCarForm = ({ onFinish, redirectID, drivers }: IAddCarForm) => {
         id="select"
         value={carOptions.class}
         onChange={handleChange}>
-        <CarsStatuses />
+        {mappedCarsStatusCodes.map((status, i) => <option key={i} value={status}>{t(`car.statuses.${status}`)}</option>)}
       </FormSelect>
       <FormButtons onCancel={cancelHandler} />
     </AddForm>

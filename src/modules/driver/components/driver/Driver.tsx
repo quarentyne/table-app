@@ -3,10 +3,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Actions } from "../../../../shared/components/Actions/Actions";
 import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor";
-import { DriversStatuses } from "../../../../shared/components/Statuses/Drivers/DriversStatuses";
-import { StatusEditor } from "../../../../shared/components/Statuses/StatusEditor";
+import { DriverStatusEditor } from "../../../../shared/components/DriverStatusEditor/DriverStatusEditor";
 import { driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";
-import { Entitys } from "../../../../shared/helpers/entitys";
 import { datePattern, fullNamePattern } from "../../../../shared/helpers/inputPatterns";
 import { updateDriver } from "../../actions";
 import { Action, Birthday, DriversTable, ID, Name, Registrated, Status } from "./styles";
@@ -92,14 +90,11 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
         {renderDate(joinDate)}
       </Registrated>
       <Status>
-        <StatusEditor
+        <DriverStatusEditor
           status={driverOptions.status}
           name="status"
           onUpdate={updateDriverOptions}
-          onChange={handleChange}
-          entity={Entitys.DRIVER}>
-          <DriversStatuses />
-        </StatusEditor>
+          onChange={handleChange} />
       </Status>
       <Action>
         <Actions

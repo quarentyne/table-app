@@ -1,19 +1,20 @@
 import { ChangeEvent, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { mappedDriverStatusCodes } from "../../helpers/driversStatuses";
 import { useClickSaver } from "../../hooks/useClickSaver";
-import { StatusEditorSpan } from "./EditorSpan";
+import { EditorSpan } from "./styles";
 
-interface IStatusEditor { 
+interface IDriverStatusEditor { 
   status: string;
-  children: JSX.Element;
   name: string;
   onChange: (data: ChangeEvent<HTMLSelectElement>) => void;
   onUpdate: () => void;
-  entity: string;
 };
 
-export const StatusEditor = ({status, onUpdate, name, children, onChange, entity}: IStatusEditor) => {
+export const DriverStatusEditor = ({status, onUpdate, name, onChange}: IDriverStatusEditor) => {
   const [isEdit, setIsEdit] = useState(false);
   const rootElement = useRef<HTMLSelectElement>(null);
+  const { t } = useTranslation();
 
   const toggleEditorState = () => {
     setIsEdit(!isEdit);
@@ -38,9 +39,13 @@ export const StatusEditor = ({status, onUpdate, name, children, onChange, entity
           defaultValue={status}
           ref={rootElement}
           onChange={handleChangeEvent}>
-          {children}
-          </select>
-        : <StatusEditorSpan onClick={toggleEditorState} status={status} entity={entity} />     
+          {mappedDriverStatusCodes.map((status, i) => <option key={i} value={status}>{t(`driver.statuses.${status}`)}</option>)}
+        </select>
+        : <EditorSpan
+          code={status}
+          onClick={toggleEditorState}>
+          {t(`driver.statuses.${status}`)}
+        </EditorSpan>            
       }
     </>
   );

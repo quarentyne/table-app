@@ -5,12 +5,10 @@ import { Endpoints } from "../../../../api/endpoints";
 import { carsClassesTitleSelector } from "../../../../shared/helpers/carsClasses";
 import { Actions } from "../../../../shared/components/Actions/Actions";
 import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor";
-import { CarsStatuses } from "../../../../shared/components/Statuses/Cars/CarsStatuses";
-import { StatusEditor } from "../../../../shared/components/Statuses/StatusEditor";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
 import { updateCar } from "../../actions";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
-import { Entitys } from "../../../../shared/helpers/entitys";
+import { CarStatusEditor } from "../../../../shared/components/CarStatusEditor/CarStatusEditor";
 
 interface ICar{
   id: string;
@@ -100,14 +98,11 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
           pattern={yearPattern} />
       </Year>      
       <Status>
-        <StatusEditor
+        <CarStatusEditor
           status={carOptions.status}
           name="status"
           onUpdate={updateCarOptions}
-          onChange={handleChange}
-          entity={Entitys.CAR}>
-            <CarsStatuses />
-          </StatusEditor>
+          onChange={handleChange} />
       </Status>
       <Action>
         <Actions

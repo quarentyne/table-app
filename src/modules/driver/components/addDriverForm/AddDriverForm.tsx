@@ -5,8 +5,7 @@ import { addDriver } from "../../actions";
 import { datePattern, namePattern } from "../../../../shared/helpers/inputPatterns";
 import { FormButtons } from "../../../../shared/components/FormButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
-import { DriversStatuses } from "../../../../shared/components/Statuses/Drivers/DriversStatuses";
-import { driverStatusCodes,  driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";
+import { driverStatusCodes,  driverStatusTitleSelector, mappedDriverStatusCodes } from "../../../../shared/helpers/driversStatuses";
 
 interface IAddDriverForm{
   onFinish: () => void;
@@ -94,7 +93,7 @@ export const AddDriverForm = ({ onFinish }: IAddDriverForm) => {
         value={driverOptions.status}
         onChange={handleChange}
       >
-      <DriversStatuses />
+        {mappedDriverStatusCodes.map((status, i) => <option key={i} value={status}>{t(`driver.statuses.${status}`)}</option>)}
       </FormSelect>
       <FormButtons onCancel={cancelHandler} />
     </AddForm>
