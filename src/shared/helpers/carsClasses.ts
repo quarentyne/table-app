@@ -1,3 +1,5 @@
+import { TFunction } from "i18next";
+
 export enum carsStatusTitles {
   ECO = "Эко",
   BUSINESS = "Бизнесс",
@@ -18,6 +20,12 @@ export const mappedCarsStatusCodes = [
   carsStatusCodes.STANDART,
   carsStatusCodes.ECONOM,
 ];
+
+export const getCarsStatusesOptionsParams = (t: TFunction) =>
+  mappedCarsStatusCodes.map((item) => ({
+    translation: t(`car.statuses.${item}`),
+    value: item,
+  }));
 
 export const carsClassesTitleSelector = (code: string) => {
   switch (code) {

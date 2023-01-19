@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { mappedDriverStatusCodes } from "../../helpers/driversStatuses";
+import { getDriversStatusesOptionsParams } from "../../helpers/driversStatuses";
 import { useClickSaver } from "../../hooks/useClickSaver";
 import { EditorSpan } from "./styles";
 
@@ -28,7 +28,8 @@ export const DriverStatusEditor = ({status, onUpdate, name, onChange}: IDriverSt
   const handleChangeEvent = (e: ChangeEvent<HTMLSelectElement>) => {
     onChange(e);
   };
-
+  
+  const getOptions = getDriversStatusesOptionsParams(t);  
   useClickSaver({ save: saveData, rootElement });
 
   return(
@@ -39,7 +40,7 @@ export const DriverStatusEditor = ({status, onUpdate, name, onChange}: IDriverSt
           defaultValue={status}
           ref={rootElement}
           onChange={handleChangeEvent}>
-          {mappedDriverStatusCodes.map((status, i) => <option key={i} value={status}>{t(`driver.statuses.${status}`)}</option>)}
+          {getOptions.map((item, i) => <option key={i} value={item.value}>{item.translation}</option>)}
         </select>
         : <EditorSpan
           code={status}

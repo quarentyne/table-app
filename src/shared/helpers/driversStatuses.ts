@@ -1,3 +1,5 @@
+import { TFunction } from "i18next";
+
 export enum driverStatusTitles {
   ACTIVE = "Активный",
   FIRED = "Уволенный",
@@ -18,6 +20,12 @@ export const mappedDriverStatusCodes = [
   driverStatusCodes.NOT_ACTIVE,
   driverStatusCodes.BLOCKED,
 ];
+
+export const getDriversStatusesOptionsParams = (t: TFunction) =>
+  mappedDriverStatusCodes.map((item) => ({
+    translation: t(`driver.statuses.${item}`),
+    value: item,
+  }));
 
 export const driverStatusTitleSelector = (status: string) => {
   switch (status) {

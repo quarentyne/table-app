@@ -16,20 +16,19 @@ type THeaders = {
 
 export const fetchData = async (request: IFetchData) => {
   const path =
-    BASE_API_URL + request.path + (request.id ? request.id + "/" : "");
+    BASE_API_URL + request.path + (request.id ? `${request.id}/` : "");
   const headers: THeaders = {
     "X-Authorization": API_KEY,
   };
   if (request.headers) {
     headers["E-Driver-Id"] = request.headers;
   }
-  const body = request.body ? request.body : null;
 
   try {
     const respone = await fetch(path, {
       method: request.method,
-      headers: headers,
-      body: body,
+      headers,
+      body: request.body ? request.body : null,
     });
     return await respone.json();
   } catch (error) {

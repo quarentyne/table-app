@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { mappedCarsStatusCodes } from "../../helpers/carsClasses";
+import { getCarsStatusesOptionsParams } from "../../helpers/carsClasses";
 import { useClickSaver } from "../../hooks/useClickSaver";
 import { EditorSpan } from "./styles";
 
@@ -29,6 +29,7 @@ export const CarStatusEditor = ({status, onUpdate, name, onChange}: ICarStatusEd
     onChange(e);
   };
 
+  const getOptions = getCarsStatusesOptionsParams(t);    
   useClickSaver({ save: saveData, rootElement });
 
   return(
@@ -39,7 +40,7 @@ export const CarStatusEditor = ({status, onUpdate, name, onChange}: ICarStatusEd
           defaultValue={status}
           ref={rootElement}
           onChange={handleChangeEvent}>
-          {mappedCarsStatusCodes.map((status, i) => <option key={i} value={status}>{t(`car.statuses.${status}`)}</option>)}
+          {getOptions.map((item, i) => <option key={i} value={item.value}>{item.translation}</option>)}
         </select>
         : <EditorSpan
           code={status}
