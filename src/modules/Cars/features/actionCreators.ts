@@ -4,7 +4,7 @@ import {
   GET_CARS_SUCCESS,
   ICarsDefaultState,
   UPDATE_CAR,
-  POST_CAR,
+  ADD_CAR,
   GET_CARS_BY_ID_REQUESTED,
 } from "./models";
 
@@ -20,21 +20,25 @@ export const responseCars = (data: ICarsDefaultState) => ({
   payload: data,
 });
 
-export const addCar = (car: string, redirectID: number | null) => ({
-  type: POST_CAR,
-  payload: { car, redirectID },
+export const addCar = (car: string, redirectId: number | null) => ({
+  type: ADD_CAR,
+  car,
+  redirectId,
 });
 
 export const updateCar = (
   id: number,
   car: string,
-  redirectID: number | null
+  redirectId: number | null
 ) => ({
   type: UPDATE_CAR,
-  payload: { id, car, redirectID },
+  id,
+  car,
+  redirectId,
 });
 
-export const deleteCar = (id: number, redirectID: number | null) => ({
-  payload: { id, redirectID },
+export const deleteCar = (id: number, redirectId: number | null) => ({
   type: DELETE_CAR,
+  id,
+  redirectId,
 });

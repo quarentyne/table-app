@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { requestCars, requestCarsById } from "../../modules/Car/actions";
 import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import { AddCarButton, CarsHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
-import { AddCarForm } from "../../modules/Car/components/AddCarForm/AddCarForm";
-import { CarsTable } from "../../modules/Car/components/CarsTable/CarsTable";
 import { NotFound } from "../Notfound/NotFound";
 import { Loading } from "../../shared/components/Loading/Loading";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
+import { requestCars, requestCarsById } from "../../modules/Cars/features/actionCreators";
+import { CarsTable } from "../../modules/Cars/components/CarsTable/CarsTable";
+import { AddCarForm } from "../../modules/Cars/components/AddCarForm/AddCarForm";
 
 export const Cars = () => {
   const dispatch = useDispatch();

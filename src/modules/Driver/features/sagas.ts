@@ -6,7 +6,7 @@ import {
   httpGet,
   httpPatch,
   httpPost,
-} from "../../../sagas/httpClient";
+} from "../../../shared/helpers/httpClient";
 import { getDrivers } from "../../Drivers/features/sagas";
 import { responseDriver } from "./actionCreators";
 import {

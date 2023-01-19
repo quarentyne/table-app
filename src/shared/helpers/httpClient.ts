@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { API_KEY } from "../api/authAPI";
+import { API_KEY } from "../../api/authAPI";
 
 const instance = axios.create();
 

@@ -34,7 +34,6 @@ export const Driver = () => {
   if (driver.is_error) {
     return <NotFound />
   };
-  console.log(driver)
 
   return (
     <>

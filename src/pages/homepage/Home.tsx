@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { requestCars } from "../../modules/Car/actions";
 import { DataBlock, DataImage, DataObject, HomepageBlock, HomepageLabel, HomepageParagraph, HomepageWrapper } from "./styles";
 import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import people from "../../assets/svg/main-people.svg";
 import car from "../../assets/svg/main-car.svg";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
+import { requestCars } from "../../modules/Cars/features/actionCreators";
 
 export const Home = () => { 
   const dispatch = useDispatch();

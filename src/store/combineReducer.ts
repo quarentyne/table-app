@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { carsReducer } from "../modules/Car/reducer";
+import { carsReducer } from "../modules/Cars/features/reducer";
 import { driverReducer } from "../modules/Driver/features/reducer";
 import { driversReducer } from "../modules/Drivers/features/reducer";
 

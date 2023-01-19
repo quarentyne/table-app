@@ -6,9 +6,9 @@ import { carsClassesTitleSelector } from "../../../../shared/helpers/carsClasses
 import { Actions } from "../../../../shared/components/Actions/Actions";
 import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
-import { updateCar } from "../../actions";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
 import { CarStatusEditor } from "../../../../shared/components/CarStatusEditor/CarStatusEditor";
+import { updateCar } from "../../features/actionCreators";
 
 interface ICar{
   id: string;

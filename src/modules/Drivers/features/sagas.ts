@@ -1,7 +1,7 @@
 import { put, takeEvery } from "redux-saga/effects";
 import { BASE_API_URL } from "../../../api/constants";
 import { Endpoints } from "../../../api/endpoints";
-import { httpGet } from "../../../sagas/httpClient";
+import { httpGet } from "../../../shared/helpers/httpClient";
 import { responseDrivers } from "./actionCreators";
 import { GET_DRIVERS_REQUESTED, IDriversDeafaultState } from "./models";
 
