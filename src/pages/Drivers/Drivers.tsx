@@ -6,7 +6,7 @@ import { Loading } from "../../shared/components/Loading/Loading";
 import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import { AddDriverButton, DriversHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
-import { NotFound } from "../aNotfound/NotFound";
+import { NotFound } from "../Notfound/NotFound";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
 import { AddDriverForm } from "../../modules/DriversCommon/components/AddDriverForm/AddDriverForm";
 import { DriversTable } from "../../modules/Drivers/components/DriversTable/DriversTable";

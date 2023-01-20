@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import { AddCarButton, CarsHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
-import { NotFound } from "../aNotfound/NotFound";
+import { NotFound } from "../Notfound/NotFound";
 import { Loading } from "../../shared/components/Loading/Loading";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
 import { requestCars, requestCarsById } from "../../modules/Cars/features/actionCreators";
