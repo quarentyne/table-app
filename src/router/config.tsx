@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import { Cars } from '../pages/Cars/Cars';
-import { Driver } from '../pages/Drivers/Driver';
-import { Drivers } from '../pages/Drivers/Drivers';
-import { Home } from '../pages/Homepage/Home';
-import { NotFound } from '../pages/Notfound/NotFound';
+import { Cars } from '../pages/aCars/Cars';
+import { Driver } from '../pages/aDrivers/Driver';
+import { Drivers } from '../pages/aDrivers/Drivers';
+import { Home } from '../pages/aHomepage/Home';
+import { NotFound } from '../pages/aNotfound/NotFound';
 import { Layout } from '../shared/layout/Layout';
 
 export const RouterConfig = () => {
