@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { Actions } from "../../../../shared/components/actions/Actions";
+import { ActionButtons } from "../../../../shared/components/ActionButtons/ActionButtons";
 import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor";
 import { DriverStatusEditor } from "../../../../shared/components/DriverStatusEditor/DriverStatusEditor";
 import { driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";
@@ -97,9 +97,9 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
           onChange={handleChange} />
       </Status>
       <Action>
-        <Actions
-          eyeHint={t("actions.autos")}
-          deleteHint={t("actions.delete")}
+        <ActionButtons
+          eyeHint={t("ActionButtons.autos")}
+          deleteHint={t("ActionButtons.delete")}
           linkTo="/car"
           onDelete={onDelete.bind(null, id)}
           state={id}

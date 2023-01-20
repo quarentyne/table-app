@@ -11,7 +11,7 @@ interface IActions{
   state: number;
 };
 
-export const Actions = ({eyeHint, deleteHint, linkTo, state, onDelete} :IActions) => {
+export const ActionButtons = ({eyeHint, deleteHint, linkTo, state, onDelete} :IActions) => {
   return (
     <ActionsList>
       <ActionsItem>
