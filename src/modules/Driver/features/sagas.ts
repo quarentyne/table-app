@@ -43,7 +43,6 @@ function* addDriver({ driver }: TDriver) {
 
 function* updateDriver({ id, redirectId, driver }: TDriver) {
   yield httpPatch(`${BASE_API_URL}${Endpoints.DRIVERS}${id}/`, driver);
-  console.log(redirectId);
   if (redirectId) {
     yield getDriverById({ id: redirectId });
   } else {
