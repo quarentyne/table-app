@@ -6,6 +6,7 @@ import {
   httpGet,
   httpPatch,
   httpPost,
+  TFormatResponse,
 } from "../../../shared/helpers/httpClient";
 import { responseCars } from "./actionCreators";
 import {
@@ -13,28 +14,25 @@ import {
   DELETE_CAR,
   GET_CARS_BY_ID_REQUESTED,
   GET_CARS_REQUESTED,
-  ICarsDefaultState,
   UPDATE_CAR,
 } from "./models";
 
 type TCars = {
-  type: string;
+  type?: string;
   id?: number;
   car?: string;
   redirectId?: number;
 };
 
-interface IResponse {
-  data: ICarsDefaultState;
-}
-
-export function* getCars() {
-  const response: IResponse = yield httpGet(BASE_API_URL + Endpoints.CARS);
+function* getCars() {
+  const response: TFormatResponse = yield httpGet(
+    BASE_API_URL + Endpoints.CARS
+  );
   yield put(responseCars(response.data));
 }
 
 function* getCarsByDriverId({ id }: TCars) {
-  const response: IResponse = yield httpGet(
+  const response: TFormatResponse = yield httpGet(
     `${BASE_API_URL}${Endpoints.CARS}/`,
     id
   );
@@ -44,7 +42,7 @@ function* getCarsByDriverId({ id }: TCars) {
 function* deleteCar({ id, redirectId }: TCars) {
   yield httpDelete(`${BASE_API_URL}${Endpoints.CARS}${id}/`);
   if (redirectId) {
-    yield getCarsByDriverId({ type: GET_CARS_BY_ID_REQUESTED, id: redirectId });
+    yield getCarsByDriverId({ id: redirectId });
   } else {
     yield getCars();
   }
@@ -53,7 +51,7 @@ function* deleteCar({ id, redirectId }: TCars) {
 function* addCar({ car, redirectId }: TCars) {
   yield httpPost(`${BASE_API_URL}${Endpoints.CARS}`, car);
   if (redirectId) {
-    yield getCarsByDriverId({ type: GET_CARS_BY_ID_REQUESTED, id: redirectId });
+    yield getCarsByDriverId({ id: redirectId });
   } else {
     yield getCars();
   }
@@ -62,13 +60,13 @@ function* addCar({ car, redirectId }: TCars) {
 function* updateCar({ id, redirectId, car }: TCars) {
   yield httpPatch(`${BASE_API_URL}${Endpoints.CARS}${id}/`, car);
   if (redirectId) {
-    yield getCarsByDriverId({ type: GET_CARS_BY_ID_REQUESTED, id: redirectId });
+    yield getCarsByDriverId({ id: redirectId });
   } else {
     yield getCars();
   }
 }
 
-export function* watchCarActions() {
+export function* watchCarSagas() {
   yield takeEvery(GET_CARS_REQUESTED, getCars);
   yield takeEvery(GET_CARS_BY_ID_REQUESTED, getCarsByDriverId);
   yield takeEvery(DELETE_CAR, deleteCar);

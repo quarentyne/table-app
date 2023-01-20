@@ -10,10 +10,11 @@ import { NotFound } from "../Notfound/NotFound";
 import { AddDriverForm } from "../../modules/DriversCommon/components/AddDriverForm/AddDriverForm";
 import { DriverTable } from "../../modules/Driver/components/DriverTable/DriverTable";
 import { requestDriverById } from "../../modules/Driver/features/actionCreators";
+import { driverSelector } from "../../modules/Driver/features/selector";
 
 export const Driver = () => {
   const dispatch = useDispatch();
-  const driver = useTypedSelector(state => state.driver)
+  const driverState = useTypedSelector(driverSelector)
   const { state } = useLocation();
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
@@ -27,23 +28,23 @@ export const Driver = () => {
     dispatch(requestDriverById(Number(id)))
   }, [dispatch, id]);  
   
-  if (!driver.data) {
+  if (!driverState.data) {
     return <Loading />;
   };
 
-  if (driver.is_error) {
+  if (driverState.is_error) {
     return <NotFound />
   };
 
   return (
     <>
       <DriversHeaderBlock>
-        <span>{`${t("menu.drivers")} (${driver.data ? 1 : 0})`}</span>
+        <span>{`${t("menu.drivers")} (${driverState.data ? 1 : 0})`}</span>
         <AddDriverButton onClick={toggleFormVisibility}>
           <img src={add} width={15} height={15} alt="add"/>{t("menu.addDriver")}
         </AddDriverButton>
       </DriversHeaderBlock>
-      <DriverTable driver={driver.data} isRedirectable={state} />
+      <DriverTable driver={driverState.data} isRedirectable={state} />
       <FormWrapper isVisible={isVisibleForm}>
         <AddDriverForm onFinish={toggleFormVisibility}/>
       </FormWrapper>

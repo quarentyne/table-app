@@ -30,10 +30,10 @@ export const addDriver = (driver: string) => ({
 export const updateDriver = (
   id: number,
   driver: string,
-  redirectID: number | null
+  redirectId: number | null
 ) => ({
   type: UPDATE_DRIVER,
   id,
   driver,
-  redirectID,
+  redirectId,
 });

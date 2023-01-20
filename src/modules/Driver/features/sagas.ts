@@ -6,6 +6,7 @@ import {
   httpGet,
   httpPatch,
   httpPost,
+  TFormatResponse,
 } from "../../../shared/helpers/httpClient";
 import { getDrivers } from "../../Drivers/features/sagas";
 import { responseDriver } from "./actionCreators";
@@ -13,23 +14,18 @@ import {
   ADD_DRIVER,
   DELETE_DRIVER,
   GET_DRIVER_REQUESTED,
-  IDriverDeafaultState,
   UPDATE_DRIVER,
 } from "./models";
 
 type TDriver = {
-  type: string;
+  type?: string;
   id?: number;
   driver?: string;
   redirectId?: number;
 };
 
-interface IResponse {
-  data: IDriverDeafaultState;
-}
-
 function* getDriverById({ id }: TDriver) {
-  const response: IResponse = yield httpGet(
+  const response: TFormatResponse = yield httpGet(
     `${BASE_API_URL}${Endpoints.DRIVERS}${id}/`
   );
   yield put(responseDriver(response.data));
@@ -47,17 +43,15 @@ function* addDriver({ driver }: TDriver) {
 
 function* updateDriver({ id, redirectId, driver }: TDriver) {
   yield httpPatch(`${BASE_API_URL}${Endpoints.DRIVERS}${id}/`, driver);
+  console.log(redirectId);
   if (redirectId) {
-    yield getDriverById({
-      type: GET_DRIVER_REQUESTED,
-      id: redirectId,
-    });
+    yield getDriverById({ id: redirectId });
   } else {
     yield getDrivers();
   }
 }
 
-export function* watchDriverActions() {
+export function* watchDriverSagas() {
   yield takeEvery(GET_DRIVER_REQUESTED, getDriverById);
   yield takeEvery(DELETE_DRIVER, deleteDriver);
   yield takeEvery(ADD_DRIVER, addDriver);

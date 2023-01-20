@@ -10,6 +10,7 @@ export type TGenerateOptions = {
   url: string;
   data?: any;
   params?: string;
+  headerParams?: string;
   config?: AxiosRequestConfig;
   instance?: AxiosInstance;
 };
@@ -34,9 +35,9 @@ export function httpPost<TData, TResponse>(
 
 export function httpGet<TResponse>(
   url: string,
-  params?: any
+  headerParams?: any
 ): ApiResponse<TResponse> {
-  return sendRequest({ method: "GET", url, params });
+  return sendRequest({ method: "GET", url, headerParams });
 }
 export const httpPatch = (url: string, data: any): Promise<TFormatResponse> =>
   sendRequest({ method: "PATCH", url, data });
@@ -56,13 +57,13 @@ async function sendRequest<TResponse>({
   method,
   url,
   data = undefined,
-  params = undefined,
+  headerParams = undefined,
 }: TGenerateOptions): Promise<AxiosResponse<TResponse>> {
   const OPTIONS = generateOptions({
     method,
     url,
     data,
-    params,
+    headerParams,
   });
 
   try {
@@ -72,7 +73,12 @@ async function sendRequest<TResponse>({
   }
 }
 
-const generateOptions = ({ method, url, data, params }: TGenerateOptions) => {
+const generateOptions = ({
+  method,
+  url,
+  data,
+  headerParams,
+}: TGenerateOptions) => {
   const defaultHeaders = {
     "Content-Type": "application/json; charset=utf-8",
     "X-Authorization": API_KEY,
@@ -84,7 +90,7 @@ const generateOptions = ({ method, url, data, params }: TGenerateOptions) => {
     data,
     headers: {
       ...defaultHeaders,
-      ...(params ? { "E-Driver-Id": params } : {}),
+      ...(headerParams ? { "E-Driver-Id": headerParams } : {}),
     },
   };
 };

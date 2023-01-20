@@ -1,16 +1,14 @@
 import { put, takeEvery } from "redux-saga/effects";
 import { BASE_API_URL } from "../../../api/constants";
 import { Endpoints } from "../../../api/endpoints";
-import { httpGet } from "../../../shared/helpers/httpClient";
+import { httpGet, TFormatResponse } from "../../../shared/helpers/httpClient";
 import { responseDrivers } from "./actionCreators";
-import { GET_DRIVERS_REQUESTED, IDriversDeafaultState } from "./models";
-
-interface IResponse {
-  data: IDriversDeafaultState;
-}
+import { GET_DRIVERS_REQUESTED } from "./models";
 
 export function* getDrivers() {
-  const response: IResponse = yield httpGet(BASE_API_URL + Endpoints.DRIVERS);
+  const response: TFormatResponse = yield httpGet(
+    BASE_API_URL + Endpoints.DRIVERS
+  );
   yield put(responseDrivers(response.data));
 }
 
