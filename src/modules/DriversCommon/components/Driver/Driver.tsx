@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { Actions } from "../../../../shared/components/Actions/Actions";
+import { Actions } from "../../../../shared/components/actions/Actions";
 import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor";
 import { DriverStatusEditor } from "../../../../shared/components/DriverStatusEditor/DriverStatusEditor";
 import { driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";

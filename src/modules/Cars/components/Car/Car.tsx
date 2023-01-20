@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Endpoints } from "../../../../api/endpoints";
 import { carsClassesTitleSelector } from "../../../../shared/helpers/carsClasses";
-import { Actions } from "../../../../shared/components/Actions/Actions";
+import { Actions } from "../../../../shared/components/actions/Actions";
 import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
