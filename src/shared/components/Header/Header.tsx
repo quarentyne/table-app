@@ -4,7 +4,7 @@ import { GlobalHeader } from "./styles";
 import { Navbar } from "../Navbar/Navbar";
 import logoBig from "../../../assets/images/logo100w.png";
 import logoMin from "../../../assets/images/logo50w.png";
-import { LanguagesChanger } from "../dLanguageChanger/LanguageChanger";
+import { LanguagesChanger } from "../LanguageChanger/LanguageChanger";
 import i18n from "../../../i18n";
 import { Languages } from "../../helpers/themes";
 

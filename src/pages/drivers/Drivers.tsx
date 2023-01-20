@@ -2,7 +2,7 @@ import { useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation} from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Loading } from "../../shared/components/dLoading/Loading";
+import { Loading } from "../../shared/components/Loading/Loading";
 import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import { AddDriverButton, DriversHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";

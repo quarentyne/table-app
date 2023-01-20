@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Endpoints } from "../../../../api/endpoints";
 import { carsClassesTitleSelector } from "../../../../shared/helpers/carsClasses";
 import { ActionButtons } from "../../../../shared/components/ActionButtons/ActionButtons";
-import { DataEditor } from "../../../../shared/components/dDataEditor/DataEditor";
+import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
 import { CarStatusEditor } from "../../../../shared/components/CarStatusEditor/CarStatusEditor";
