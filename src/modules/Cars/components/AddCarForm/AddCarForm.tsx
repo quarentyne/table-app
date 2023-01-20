@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
-import { FormButtons } from "../../../../shared/components/FormButtons/FormButtons";
+import { FormButtons } from "../../../../shared/components/dFormButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 import { carsClassesTitleSelector, carsStatusCodes, mappedCarsStatusCodes } from "../../../../shared/helpers/carsClasses";
 import { IDriver } from "../../../Drivers/features/models";

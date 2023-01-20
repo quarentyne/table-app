@@ -6,7 +6,7 @@ import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
 import { AddCarButton, CarsHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
 import { NotFound } from "../Notfound/NotFound";
-import { Loading } from "../../shared/components/Loading/Loading";
+import { Loading } from "../../shared/components/dLoading/Loading";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
 import { requestCars, requestCarsById } from "../../modules/Cars/features/actionCreators";
 import { CarsTable } from "../../modules/Cars/components/CarsTable/CarsTable";

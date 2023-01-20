@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { datePattern, namePattern } from "../../../../shared/helpers/inputPatterns";
-import { FormButtons } from "../../../../shared/components/FormButtons/FormButtons";
+import { FormButtons } from "../../../../shared/components/dFormButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 import { driverStatusCodes,  driverStatusTitleSelector, mappedDriverStatusCodes } from "../../../../shared/helpers/driversStatuses";
 import { addDriver } from "../../../Driver/features/actionCreators";
