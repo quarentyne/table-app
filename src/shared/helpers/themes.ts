@@ -19,10 +19,10 @@ enum StatusColors {
   NOT_ACTIVE = "not_active",
   BLOCKED = "blocked",
   ACTIVE = "active",
-  ECOMOM = "econom",
+  ECONOMY = "econom",
   ECO = "eco",
-  STANDART = "standart",
-  BUSSINESS = "bussiness",
+  STANDARD = "standart",
+  BUSINESS = "bussiness",
 }
 
 export const getStatusColorsSet = (status: string) => {
@@ -37,11 +37,11 @@ export const getStatusColorsSet = (status: string) => {
       return { color: "#292D45", background: "#DFE0E4" };
     case StatusColors.ECO:
       return { color: "#26C124", background: "#EBF9EB" };
-    case StatusColors.ECOMOM:
+    case StatusColors.ECONOMY:
       return { color: "#c1b124", background: "#f8f9eb" };
-    case StatusColors.BUSSINESS:
+    case StatusColors.BUSINESS:
       return { color: "#852292", background: "#e1d5e9" };
-    case StatusColors.STANDART:
+    case StatusColors.STANDARD:
       return { color: "#1500d0", background: "#ebe8fe" };
     default:
       return;

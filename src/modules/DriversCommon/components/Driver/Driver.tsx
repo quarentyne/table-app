@@ -7,7 +7,7 @@ import { DriverStatusEditor } from "../../../../shared/components/DriverStatusEd
 import { driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";
 import { datePattern, fullNamePattern } from "../../../../shared/helpers/inputPatterns";
 import { updateDriver } from "../../../Driver/features/actionCreators";
-import { Action, Birthday, DriversTable, ID, Name, Registrated, Status } from "./styles";
+import { Action, Birthday, DriversTable, ID, Name, Registration, Status } from "./styles";
 
 interface IDriver{
   id: number;
@@ -86,9 +86,9 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
           onChange={handleChange}
           onUpdate={updateDriverOptions} />
       </Birthday>
-      <Registrated>
+      <Registration>
         {renderDate(joinDate)}
-      </Registrated>
+      </Registration>
       <Status>
         <DriverStatusEditor
           status={driverOptions.status}

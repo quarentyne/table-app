@@ -2,10 +2,10 @@ import {
   GET_DRIVER_REQUESTED,
   GET_DRIVER_SUCCESS,
   IDriverActions,
-  IDriverDeafaultState,
+  IDriverDefaultState,
 } from "./models";
 
-const defaultState: IDriverDeafaultState = {
+const defaultState: IDriverDefaultState = {
   is_error: null,
   status: null,
   data: null,

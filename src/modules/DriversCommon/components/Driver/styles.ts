@@ -7,7 +7,7 @@ export const DriversTable = styled.ul`
   grid-template-areas:
     "id status status"
     "name name birthday"
-    "registrated registrated action";
+    "registration registration action";
 
   gap: 2px;
   box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
@@ -18,7 +18,7 @@ export const DriversTable = styled.ul`
 
   @media screen and (min-width: ${ScreenSizes.TABLET}px) {
     grid-template-columns: 0.3fr 2fr 1fr 1fr 1.5fr 0.8fr;
-    grid-template-areas: "id name birthday registrated status action";
+    grid-template-areas: "id name birthday registration status action";
     gap: 10px;
     border: none;
     border-top: 1px solid #eeeeee;
@@ -48,8 +48,8 @@ export const Birthday = styled(DriversTableInnerItems)`
   grid-area: birthday;
 `;
 
-export const Registrated = styled(DriversTableInnerItems)`
-  grid-area: registrated;
+export const Registration = styled(DriversTableInnerItems)`
+  grid-area: registration;
 `;
 
 export const Status = styled(DriversTableInnerItems)`

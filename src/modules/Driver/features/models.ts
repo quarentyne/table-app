@@ -16,7 +16,7 @@ export interface IDriver {
   };
 }
 
-export interface IDriverDeafaultState {
+export interface IDriverDefaultState {
   is_error: boolean | null;
   status: string | null;
   data: IDriver | null;
@@ -24,5 +24,5 @@ export interface IDriverDeafaultState {
 
 export interface IDriverActions {
   type: string;
-  payload: IDriverDeafaultState;
+  payload: IDriverDefaultState;
 }

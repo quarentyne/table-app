@@ -3,22 +3,22 @@ import { TFunction } from "i18next";
 export enum carsStatusTitles {
   ECO = "Эко",
   BUSINESS = "Бизнесс",
-  STANDART = "Стандарт",
-  ECONOM = "Эконом",
+  STANDARD = "Стандарт",
+  ECONOMY = "Эконом",
 }
 
 export enum carsStatusCodes {
   ECO = "eco",
   BUSINESS = "bussiness",
-  STANDART = "standart",
-  ECONOM = "econom",
+  STANDARD = "standart",
+  ECONOMY = "econom",
 }
 
 export const mappedCarsStatusCodes = [
   carsStatusCodes.ECO,
   carsStatusCodes.BUSINESS,
-  carsStatusCodes.STANDART,
-  carsStatusCodes.ECONOM,
+  carsStatusCodes.STANDARD,
+  carsStatusCodes.ECONOMY,
 ];
 
 export const getCarsStatusesOptionsParams = (t: TFunction) =>
@@ -33,10 +33,10 @@ export const carsClassesTitleSelector = (code: string) => {
       return carsStatusTitles.ECO;
     case carsStatusCodes.BUSINESS:
       return carsStatusTitles.BUSINESS;
-    case carsStatusCodes.ECONOM:
-      return carsStatusTitles.ECONOM;
-    case carsStatusCodes.STANDART:
-      return carsStatusTitles.STANDART;
+    case carsStatusCodes.ECONOMY:
+      return carsStatusTitles.ECONOMY;
+    case carsStatusCodes.STANDARD:
+      return carsStatusTitles.STANDARD;
     default:
       return;
   }
@@ -48,11 +48,11 @@ export const carsClassesCodeSelector = (code: string) => {
       return carsStatusCodes.ECO;
     case carsStatusCodes.BUSINESS:
       return carsStatusCodes.BUSINESS;
-    case carsStatusCodes.ECONOM:
-      return carsStatusCodes.ECONOM;
-    case carsStatusCodes.STANDART:
-      return carsStatusCodes.STANDART;
+    case carsStatusCodes.ECONOMY:
+      return carsStatusCodes.ECONOMY;
+    case carsStatusCodes.STANDARD:
+      return carsStatusCodes.STANDARD;
     default:
-      return carsStatusCodes.STANDART;
+      return carsStatusCodes.STANDARD;
   }
 };

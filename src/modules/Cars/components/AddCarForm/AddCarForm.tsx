@@ -22,7 +22,7 @@ export const AddCarForm = ({ onFinish, redirectID, drivers }: IAddCarForm) => {
     model: "",
     number: "",
     year: "",
-    class: carsStatusCodes.STANDART,
+    class: carsStatusCodes.STANDARD,
     driver: String(drivers[0]?.id),
   });
 
@@ -54,7 +54,7 @@ export const AddCarForm = ({ onFinish, redirectID, drivers }: IAddCarForm) => {
       model: "",
       number: "",
       year: "",
-      class: carsStatusCodes.STANDART,
+      class: carsStatusCodes.STANDARD,
       driver: String(drivers[0]?.id),
     });
     onFinish();
