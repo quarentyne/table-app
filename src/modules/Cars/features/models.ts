@@ -19,12 +19,17 @@ interface ICar {
 }
 
 export interface ICarsDefaultState {
-  is_error: boolean | null;
-  status: string | null;
-  data: ICar[] | null;
+  isError: boolean | null;
+  isLoading: boolean;
+  cars: ICar[] | null;
+}
+
+export interface ICarsServerResponse {
+  data: ICar[];
+  is_error: boolean;
 }
 
 export interface ICarsActions {
   type: string;
-  payload: ICarsDefaultState;
+  payload: ICarsServerResponse;
 }

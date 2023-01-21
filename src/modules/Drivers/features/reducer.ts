@@ -2,13 +2,13 @@ import {
   GET_DRIVERS_REQUESTED,
   GET_DRIVERS_SUCCESS,
   IDriversActions,
-  IDriversDeafaultState,
+  IDriversDefaultState,
 } from "./models";
 
-const defaultState: IDriversDeafaultState = {
-  is_error: null,
-  status: null,
-  data: null,
+const defaultState: IDriversDefaultState = {
+  isError: null,
+  drivers: null,
+  isLoading: false,
 };
 
 export const driversReducer = (
@@ -17,8 +17,12 @@ export const driversReducer = (
 ) => {
   switch (action.type) {
     case GET_DRIVERS_SUCCESS:
-      return { ...state, ...action.payload };
+      state.drivers = action.payload.data;
+      state.isError = action.payload.is_error;
+      state.isLoading = false;
+      return { ...state };
     case GET_DRIVERS_REQUESTED:
+      state.isLoading = true;
       return { ...state };
     default:
       return state;

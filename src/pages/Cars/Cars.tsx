@@ -16,8 +16,8 @@ import { carsSelector } from "../../modules/Cars/features/selector";
 
 export const Cars = () => {
   const dispatch = useDispatch();
-  const carsState = useTypedSelector(carsSelector);
-  const driversState = useTypedSelector(driversSelector);
+  const { cars, isError, isLoading } = useTypedSelector(carsSelector);
+  const { drivers } = useTypedSelector(driversSelector);
   const { state } = useLocation();  
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
@@ -35,26 +35,26 @@ export const Cars = () => {
     dispatch(requestDrivers());
   }, [dispatch, state]);
 
-  if (!carsState.data || !driversState.data) {
+  if (!cars || !drivers || isLoading) {
     return <Loading />
   };  
 
-  if (carsState.is_error) {
+  if (isError) {
     return <NotFound />
   };
 
   return (
     <>
       <CarsHeaderBlock>
-        <span>{`${t("menu.cars")} (${carsState.data.length})`}</span>
+        <span>{`${t("menu.cars")} (${cars.length})`}</span>
         <AddCarButton onClick={toggleFormVisibility}>
           <img src={add} width={15} height={15} alt="add" />
           {t("menu.addCar")}
         </AddCarButton>
       </CarsHeaderBlock>
-      <CarsTable cars={carsState.data} isRedirectable={state} />
+      <CarsTable cars={cars} isRedirectable={state} />
       <FormWrapper isVisible={isVisibleForm}>
-        <AddCarForm onFinish={toggleFormVisibility} redirectID={state} drivers={driversState.data} />
+        <AddCarForm onFinish={toggleFormVisibility} redirectID={state} drivers={drivers} />
       </FormWrapper>
     </>
   );

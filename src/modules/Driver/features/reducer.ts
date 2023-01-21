@@ -6,16 +6,20 @@ import {
 } from "./models";
 
 const defaultState: IDriverDefaultState = {
-  is_error: null,
-  status: null,
-  data: null,
+  isError: null,
+  driver: null,
+  isLoading: false,
 };
 
 export const driverReducer = (state = defaultState, action: IDriverActions) => {
   switch (action.type) {
     case GET_DRIVER_SUCCESS:
-      return { ...state, ...action.payload };
+      state.driver = action.payload.data;
+      state.isError = action.payload.is_error;
+      state.isLoading = false;
+      return { ...state };
     case GET_DRIVER_REQUESTED:
+      state.isLoading = true;
       return { ...state };
     default:
       return state;

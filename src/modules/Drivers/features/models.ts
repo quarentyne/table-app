@@ -13,13 +13,18 @@ export interface IDriver {
   };
 }
 
-export interface IDriversDeafaultState {
-  is_error: boolean | null;
-  status: string | null;
-  data: IDriver[] | null;
+export interface IDriversDefaultState {
+  isError: boolean | null;
+  isLoading: boolean;
+  drivers: IDriver[] | null;
+}
+
+export interface IDriversServerResponse {
+  is_error: boolean;
+  data: IDriver[];
 }
 
 export interface IDriversActions {
   type: string;
-  payload: IDriversDeafaultState;
+  payload: IDriversServerResponse;
 }

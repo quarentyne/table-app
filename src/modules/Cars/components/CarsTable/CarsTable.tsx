@@ -26,7 +26,7 @@ interface ICars {
 
 export const CarsTable = ({ cars, isRedirectable}: ICars) => {
   const dispatch = useDispatch();
-  const drivers = useTypedSelector(driversSelector).data;
+  const { drivers } = useTypedSelector(driversSelector);
   
   if (!drivers) {
     return <Loading />

@@ -14,8 +14,8 @@ export const Home = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const driversCount: number = useTypedSelector(driversSelector).data?.length || 0;
-  const carsCount: number = useTypedSelector(carsSelector).data?.length || 0;
+  const { drivers } = useTypedSelector(driversSelector);
+  const { cars } = useTypedSelector(carsSelector);
 
   useEffect(() => {
     dispatch(requestCars());
@@ -36,13 +36,13 @@ export const Home = () => {
             <DataImage>
               <img src={people} width={35} height={35} alt={'drivers'} />
             </DataImage>           
-            <span>{`${t("menu.drivers")}: ${driversCount}`}</span>
+            <span>{`${t("menu.drivers")}: ${drivers?.length || 0}`}</span>
           </DataObject>
           <DataObject>
             <DataImage>
               <img src={car} width={35} height={35} alt={'cars'} />
             </DataImage>             
-            <span>{`${t("menu.cars")}: ${carsCount}`}</span>
+            <span>{`${t("menu.cars")}: ${cars?.length || 0}`}</span>
           </DataObject>
         </DataBlock>
       </HomepageWrapper>

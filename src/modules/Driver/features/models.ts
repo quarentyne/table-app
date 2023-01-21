@@ -17,12 +17,17 @@ export interface IDriver {
 }
 
 export interface IDriverDefaultState {
-  is_error: boolean | null;
-  status: string | null;
-  data: IDriver | null;
+  isError: boolean | null;
+  driver: IDriver | null;
+  isLoading: boolean;
+}
+
+export interface IDriverServerResponse {
+  is_error: boolean;
+  data: IDriver;
 }
 
 export interface IDriverActions {
   type: string;
-  payload: IDriverDefaultState;
+  payload: IDriverServerResponse;
 }

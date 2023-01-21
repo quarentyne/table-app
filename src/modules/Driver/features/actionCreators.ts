@@ -2,9 +2,9 @@ import {
   DELETE_DRIVER,
   GET_DRIVER_REQUESTED,
   GET_DRIVER_SUCCESS,
-  IDriverDefaultState,
   ADD_DRIVER,
   UPDATE_DRIVER,
+  IDriverServerResponse,
 } from "./models";
 
 export const requestDriverById = (id: number) => ({
@@ -12,7 +12,7 @@ export const requestDriverById = (id: number) => ({
   id,
 });
 
-export const responseDriver = (data: IDriverDefaultState) => ({
+export const responseDriver = (data: IDriverServerResponse) => ({
   type: GET_DRIVER_SUCCESS,
   payload: data,
 });

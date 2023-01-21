@@ -14,7 +14,7 @@ import { driversSelector } from "../../modules/Drivers/features/selector";
 
 export const Drivers = () => {
   const dispatch = useDispatch();
-  const driversState = useTypedSelector(driversSelector)
+  const {drivers, isError, isLoading} = useTypedSelector(driversSelector)
   const { state } = useLocation();
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
@@ -27,23 +27,23 @@ export const Drivers = () => {
     dispatch(requestDrivers());
   }, [dispatch]);
   
-  if (!driversState.data) {
+  if (isLoading || !drivers) {
     return <Loading />;
   };
 
-  if (driversState.is_error) {
+  if (isError) {
     return <NotFound />
   };  
 
   return (
     <>
       <DriversHeaderBlock>
-        <span>{`${t("menu.drivers")} (${driversState.data.length})`}</span>
+        <span>{`${t("menu.drivers")} (${drivers.length})`}</span>
         <AddDriverButton onClick={toggleFormVisibility}>
           <img src={add} width={15} height={15} alt="add"/>{t("menu.addDriver")}
         </AddDriverButton>
       </DriversHeaderBlock>
-      <DriversTable drivers={driversState.data} isRedirectable={state} />
+      <DriversTable drivers={drivers} isRedirectable={state} />
       <FormWrapper isVisible={isVisibleForm}>
         <AddDriverForm onFinish={toggleFormVisibility}/>
       </FormWrapper>

@@ -2,10 +2,10 @@ import {
   DELETE_CAR,
   GET_CARS_REQUESTED,
   GET_CARS_SUCCESS,
-  ICarsDefaultState,
   UPDATE_CAR,
   ADD_CAR,
   GET_CARS_BY_ID_REQUESTED,
+  ICarsServerResponse,
 } from "./models";
 
 export const requestCars = () => ({ type: GET_CARS_REQUESTED });
@@ -15,7 +15,7 @@ export const requestCarsById = (id: number) => ({
   id,
 });
 
-export const responseCars = (data: ICarsDefaultState) => ({
+export const responseCars = (data: ICarsServerResponse) => ({
   type: GET_CARS_SUCCESS,
   payload: data,
 });

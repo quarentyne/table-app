@@ -14,7 +14,7 @@ import { driverSelector } from "../../modules/Driver/features/selector";
 
 export const Driver = () => {
   const dispatch = useDispatch();
-  const driverState = useTypedSelector(driverSelector)
+  const {driver, isError, isLoading} = useTypedSelector(driverSelector)
   const { state } = useLocation();
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
@@ -27,24 +27,24 @@ export const Driver = () => {
   useEffect(() => {
     dispatch(requestDriverById(Number(id)))
   }, [dispatch, id]);  
-  
-  if (!driverState.data) {
+
+  if (isLoading || !driver) {
     return <Loading />;
   };
 
-  if (driverState.is_error) {
+  if (isError) {
     return <NotFound />
   };
 
   return (
     <>
       <DriversHeaderBlock>
-        <span>{`${t("menu.drivers")} (${driverState.data ? 1 : 0})`}</span>
+        <span>{`${t("menu.drivers")} (${driver ? 1 : 0})`}</span>
         <AddDriverButton onClick={toggleFormVisibility}>
           <img src={add} width={15} height={15} alt="add"/>{t("menu.addDriver")}
         </AddDriverButton>
       </DriversHeaderBlock>
-      <DriverTable driver={driverState.data} isRedirectable={state} />
+      <DriverTable driver={driver} isRedirectable={state} />
       <FormWrapper isVisible={isVisibleForm}>
         <AddDriverForm onFinish={toggleFormVisibility}/>
       </FormWrapper>
