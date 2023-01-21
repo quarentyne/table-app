@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: "ua",
-    supportedLangs: ["ua", "en"],
+    supportedLngs: ["ua", "en"],
     debug: false,
     detection: {
       caches: ["localStorage", "cookie"],
