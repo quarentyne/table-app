@@ -10,11 +10,11 @@ import { addCar } from "../../features/actionCreators";
 
 interface IAddCarForm{
   onFinish: () => void;
-  redirectID: number | null;
+  driverId: number | null;
   drivers: IDriver[];
 };
 
-export const AddCarForm = ({ onFinish, redirectID, drivers }: IAddCarForm) => {
+export const AddCarForm = ({ onFinish, driverId, drivers }: IAddCarForm) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [carOptions, setCarOptions] = useState({
@@ -44,7 +44,7 @@ export const AddCarForm = ({ onFinish, redirectID, drivers }: IAddCarForm) => {
         title,
       },
     });    
-    dispatch(addCar(newCar, redirectID));
+    dispatch(addCar(newCar, driverId));
     cancelHandler();
   };
 

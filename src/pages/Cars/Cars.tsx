@@ -50,7 +50,7 @@ export const Cars = () => {
       </CarsHeaderBlock>
       <CarsTable cars={cars} isRedirectable={state} />
       <FormWrapper isVisible={isVisibleForm}>
-        <AddCarForm onFinish={toggleFormVisibility} redirectID={state} drivers={drivers} />
+        <AddCarForm onFinish={toggleFormVisibility} driverId={state} drivers={drivers} />
       </FormWrapper>
     </>
   );
