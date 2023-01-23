@@ -2,7 +2,7 @@ import { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
 import { useClickSaver } from "../../hooks/useClickSaver";
 import { EditorInput, EditorSpan } from "./styles";
 
-interface IDataEditor{
+interface IInputDataEditor{
   pattern: string;
   value: string;
   name: string;
@@ -10,7 +10,7 @@ interface IDataEditor{
   onUpdate: () => void;
 };
 
-export const DataEditor = ({ value, pattern, name, onChange, onUpdate }: IDataEditor) => {
+export const InputDataEditor = ({ value, pattern, name, onChange, onUpdate }: IInputDataEditor) => {
   const [isElementEdit, setElementEdit] = useState(false);
   const rootElement = useRef<HTMLInputElement>(null);
   const regex = new RegExp(pattern);
@@ -28,7 +28,7 @@ export const DataEditor = ({ value, pattern, name, onChange, onUpdate }: IDataEd
     };
   };
 
-  useClickSaver({ save: saveData, rootElement });
+  useClickSaver({ onSave: saveData, rootElement });
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "Enter") {

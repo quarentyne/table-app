@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Endpoints } from "../../../../api/endpoints";
 import { carsClassesTitleSelector } from "../../../../shared/helpers/carsClasses";
 import { ActionButtons } from "../../../../shared/components/ActionButtons/ActionButtons";
-import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor";
+import { InputDataEditor } from "../../../../shared/components/InputDataEditor/InputDataEditor";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
 import { CarStatusEditor } from "../../../../shared/components/CarStatusEditor/CarStatusEditor";
@@ -66,7 +66,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
         {driverName}
       </Name>
       <Mark>
-        <DataEditor
+        <InputDataEditor
           value={carOptions.mark}
           name="mark"
           onChange={handleChange}
@@ -74,7 +74,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
           pattern={namePattern} />
       </Mark>
       <Model>
-        <DataEditor
+        <InputDataEditor
           value={carOptions.model}
           name="model"
           onChange={handleChange}
@@ -82,7 +82,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
           pattern={modelPattern} />
       </Model>
       <PlateNumber>
-        <DataEditor
+        <InputDataEditor
           value={carOptions.plateNumber}
           name="plateNumber"
           onChange={handleChange}
@@ -90,7 +90,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
           pattern={numberPattern} />
       </PlateNumber>
       <Year>
-        <DataEditor
+        <InputDataEditor
           value={carOptions.year}
           name="year"
           onChange={handleChange}

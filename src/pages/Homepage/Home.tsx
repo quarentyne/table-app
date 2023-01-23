@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { DataBlock, DataImage, DataObject, HomepageBlock, HomepageLabel, HomepageParagraph, HomepageWrapper } from "./styles";
-import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
+import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import people from "../../assets/svg/main-people.svg";
 import car from "../../assets/svg/main-car.svg";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
@@ -14,8 +14,8 @@ export const Home = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const { drivers } = useTypedSelector(driversSelector);
-  const { cars } = useTypedSelector(carsSelector);
+  const { drivers } = useAppSelector(driversSelector);
+  const { cars } = useAppSelector(carsSelector);
 
   useEffect(() => {
     dispatch(requestCars());

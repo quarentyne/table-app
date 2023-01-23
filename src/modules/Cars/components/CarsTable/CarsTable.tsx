@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { Loading } from "../../../../shared/components/Loading/Loading";
-import { useTypedSelector } from "../../../../shared/hooks/useTypedSelector";
+import { useAppSelector } from "../../../../shared/hooks/useAppSelector";
 import { driversSelector } from "../../../Drivers/features/selector";
 import { deleteCar } from "../../features/actionCreators";
 import { Car } from "../Car/Car";
@@ -26,7 +26,7 @@ interface ICars {
 
 export const CarsTable = ({ cars, isRedirectable}: ICars) => {
   const dispatch = useDispatch();
-  const { drivers } = useTypedSelector(driversSelector);
+  const { drivers } = useAppSelector(driversSelector);
   
   if (!drivers) {
     return <Loading />

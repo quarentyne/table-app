@@ -29,8 +29,8 @@ export const CarStatusEditor = ({status, onUpdate, name, onChange}: ICarStatusEd
     onChange(e);
   };
 
-  const getOptions = getCarsStatusesOptionsParams(t);    
-  useClickSaver({ save: saveData, rootElement });
+  const statusOptions = getCarsStatusesOptionsParams(t);    
+  useClickSaver({ onSave: saveData, rootElement });
 
   return(
     <>
@@ -40,7 +40,7 @@ export const CarStatusEditor = ({status, onUpdate, name, onChange}: ICarStatusEd
           defaultValue={status}
           ref={rootElement}
           onChange={handleChangeEvent}>
-          {getOptions.map((item, i) => <option key={i} value={item.value}>{item.translation}</option>)}
+          {statusOptions.map((item, i) => <option key={i} value={item.value}>{item.translation}</option>)}
         </select>
         : <EditorSpan
           code={status}

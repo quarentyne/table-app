@@ -29,8 +29,8 @@ export const DriverStatusEditor = ({status, onUpdate, name, onChange}: IDriverSt
     onChange(e);
   };
   
-  const getOptions = getDriversStatusesOptionsParams(t);  
-  useClickSaver({ save: saveData, rootElement });
+  const statusOptions = getDriversStatusesOptionsParams(t);  
+  useClickSaver({ onSave: saveData, rootElement });
 
   return(
     <>
@@ -40,7 +40,7 @@ export const DriverStatusEditor = ({status, onUpdate, name, onChange}: IDriverSt
           defaultValue={status}
           ref={rootElement}
           onChange={handleChangeEvent}>
-          {getOptions.map((item, i) => <option key={i} value={item.value}>{item.translation}</option>)}
+          {statusOptions.map((item, i) => <option key={i} value={item.value}>{item.translation}</option>)}
         </select>
         : <EditorSpan
           code={status}

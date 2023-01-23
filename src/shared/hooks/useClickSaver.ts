@@ -1,11 +1,11 @@
 import { RefObject, useEffect } from "react";
 
 interface IClickSaver {
-  save: () => void;
+  onSave: () => void;
   rootElement: RefObject<HTMLSelectElement | HTMLInputElement>;
 }
 
-export const useClickSaver = ({ save, rootElement }: IClickSaver) => {
+export const useClickSaver = ({ onSave, rootElement }: IClickSaver) => {
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (!rootElement.current) {
@@ -31,7 +31,7 @@ export const useClickSaver = ({ save, rootElement }: IClickSaver) => {
         clickPosition.top < rootElementPosition.top ||
         clickPosition.top > rootElementPosition.top + rootElementPosition.height
       ) {
-        save();
+        onSave();
       }
     };
     document.addEventListener("click", onClick);

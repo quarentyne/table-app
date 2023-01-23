@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { ActionButtons } from "../../../../shared/components/ActionButtons/ActionButtons";
-import { DataEditor } from "../../../../shared/components/DataEditor/DataEditor";
+import { InputDataEditor } from "../../../../shared/components/InputDataEditor/InputDataEditor";
 import { DriverStatusEditor } from "../../../../shared/components/DriverStatusEditor/DriverStatusEditor";
 import { driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";
 import { datePattern, fullNamePattern } from "../../../../shared/helpers/inputPatterns";
@@ -71,7 +71,7 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
         {id}
       </ID>
       <Name>
-        <DataEditor
+        <InputDataEditor
           value={driverOptions.fullName}
           name="fullName"
           pattern={fullNamePattern}
@@ -79,7 +79,7 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
           onUpdate={updateDriverOptions} />
       </Name>
       <Birthday>
-        <DataEditor
+        <InputDataEditor
           value={driverOptions.birthDate}
           name="birthDate"
           pattern={datePattern}

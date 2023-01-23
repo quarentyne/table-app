@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Loading } from "../../shared/components/Loading/Loading";
-import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
+import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import { AddDriverButton, DriversHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
 import { NotFound } from "../Notfound/NotFound";
@@ -14,7 +14,7 @@ import { driverSelector } from "../../modules/Driver/features/selector";
 
 export const Driver = () => {
   const dispatch = useDispatch();
-  const {driver, isError, isLoading} = useTypedSelector(driverSelector)
+  const {driver, isError, isLoading} = useAppSelector(driverSelector)
   const { state } = useLocation();
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 

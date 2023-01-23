@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { useTypedSelector } from "../../shared/hooks/useTypedSelector";
+import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import { AddCarButton, CarsHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
 import { NotFound } from "../Notfound/NotFound";
@@ -16,8 +16,8 @@ import { carsSelector } from "../../modules/Cars/features/selector";
 
 export const Cars = () => {
   const dispatch = useDispatch();
-  const { cars, isError, isLoading } = useTypedSelector(carsSelector);
-  const { drivers } = useTypedSelector(driversSelector);
+  const { cars, isError, isLoading } = useAppSelector(carsSelector);
+  const { drivers } = useAppSelector(driversSelector);
   const { state } = useLocation();  
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
