@@ -1,7 +1,6 @@
 import {
   GET_CARS_REQUESTED,
   GET_CARS_SUCCESS,
-  GET_CARS_BY_ID_REQUESTED,
   ICarsActions,
   ICarsDefaultState,
 } from "./models";
@@ -19,7 +18,7 @@ export const carsReducer = (state = defaultState, action: ICarsActions) => {
       state.cars = action.payload.data;
       state.isError = action.payload.is_error;
       return { ...state };
-    case GET_CARS_REQUESTED || GET_CARS_BY_ID_REQUESTED:
+    case GET_CARS_REQUESTED:
       state.isLoading = true;
       return { ...state };
     default:

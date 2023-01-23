@@ -1,6 +1,6 @@
 import { useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Loading } from "../../shared/components/Loading/Loading";
 import { useAppSelector } from "../../shared/hooks/useAppSelector";
@@ -15,7 +15,6 @@ import { driverSelector } from "../../modules/Driver/features/selector";
 export const Driver = () => {
   const dispatch = useDispatch();
   const {driver, isError, isLoading} = useAppSelector(driverSelector)
-  const { state } = useLocation();
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
   const { id } = useParams();
@@ -44,7 +43,7 @@ export const Driver = () => {
           <img src={add} width={15} height={15} alt="add"/>{t("menu.addDriver")}
         </AddDriverButton>
       </DriversHeaderBlock>
-      <DriverTable driver={driver} isRedirectable={state} />
+      <DriverTable driver={driver}/>
       <FormWrapper isVisible={isVisibleForm}>
         <AddDriverForm onFinish={toggleFormVisibility}/>
       </FormWrapper>

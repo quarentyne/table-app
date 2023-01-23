@@ -110,7 +110,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
           deleteHint={t("ActionButtons.delete")}
           onDelete={onDelete.bind(null, Number(id), redirectID)}
           linkTo={`/${Endpoints.DRIVERS}${driverId}`}
-          state={driverId}
+          driverId={driverId}
         />
       </Action>
     </CarsTableInner>

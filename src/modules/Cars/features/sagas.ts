@@ -9,29 +9,16 @@ import {
   TFormatResponse,
 } from "../../../shared/helpers/httpClient";
 import { responseCars } from "./actionCreators";
-import {
-  ADD_CAR,
-  DELETE_CAR,
-  GET_CARS_BY_ID_REQUESTED,
-  GET_CARS_REQUESTED,
-  UPDATE_CAR,
-} from "./models";
+import { ADD_CAR, DELETE_CAR, GET_CARS_REQUESTED, UPDATE_CAR } from "./models";
 
 type TCars = {
   type?: string;
   id?: number;
   car?: string;
-  redirectId?: number;
+  driverId?: number;
 };
 
-function* getCars() {
-  const response: TFormatResponse = yield httpGet(
-    BASE_API_URL + Endpoints.CARS
-  );
-  yield put(responseCars(response.data));
-}
-
-function* getCarsByDriverId({ id }: TCars) {
+function* getCars({ id }: TCars) {
   const response: TFormatResponse = yield httpGet(
     `${BASE_API_URL}${Endpoints.CARS}/`,
     id
@@ -39,36 +26,23 @@ function* getCarsByDriverId({ id }: TCars) {
   yield put(responseCars(response.data));
 }
 
-function* deleteCar({ id, redirectId }: TCars) {
+function* deleteCar({ id, driverId }: TCars) {
   yield httpDelete(`${BASE_API_URL}${Endpoints.CARS}${id}/`);
-  if (redirectId) {
-    yield getCarsByDriverId({ id: redirectId });
-  } else {
-    yield getCars();
-  }
+  yield getCars({ id: driverId });
 }
 
-function* addCar({ car, redirectId }: TCars) {
+function* addCar({ car, driverId }: TCars) {
   yield httpPost(`${BASE_API_URL}${Endpoints.CARS}`, car);
-  if (redirectId) {
-    yield getCarsByDriverId({ id: redirectId });
-  } else {
-    yield getCars();
-  }
+  yield getCars({ id: driverId });
 }
 
-function* updateCar({ id, redirectId, car }: TCars) {
+function* updateCar({ id, driverId, car }: TCars) {
   yield httpPatch(`${BASE_API_URL}${Endpoints.CARS}${id}/`, car);
-  if (redirectId) {
-    yield getCarsByDriverId({ id: redirectId });
-  } else {
-    yield getCars();
-  }
+  yield getCars({ id: driverId });
 }
 
 export function* watchCarSagas() {
   yield takeEvery(GET_CARS_REQUESTED, getCars);
-  yield takeEvery(GET_CARS_BY_ID_REQUESTED, getCarsByDriverId);
   yield takeEvery(DELETE_CAR, deleteCar);
   yield takeEvery(ADD_CAR, addCar);
   yield takeEvery(UPDATE_CAR, updateCar);

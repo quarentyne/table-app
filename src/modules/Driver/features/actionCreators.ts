@@ -27,13 +27,8 @@ export const addDriver = (driver: string) => ({
   driver,
 });
 
-export const updateDriver = (
-  id: number,
-  driver: string,
-  redirectId: number | null
-) => ({
+export const updateDriver = (id: number, driver: string) => ({
   type: UPDATE_DRIVER,
   id,
   driver,
-  redirectId,
 });

@@ -21,7 +21,6 @@ type TDriver = {
   type?: string;
   id?: number;
   driver?: string;
-  redirectId?: number;
 };
 
 function* getDriverById({ id }: TDriver) {
@@ -41,13 +40,10 @@ function* addDriver({ driver }: TDriver) {
   yield getDrivers();
 }
 
-function* updateDriver({ id, redirectId, driver }: TDriver) {
+function* updateDriver({ id, driver }: TDriver) {
   yield httpPatch(`${BASE_API_URL}${Endpoints.DRIVERS}${id}/`, driver);
-  if (redirectId) {
-    yield getDriverById({ id: redirectId });
-  } else {
-    yield getDrivers();
-  }
+  yield getDriverById({ id });
+  yield getDrivers();
 }
 
 export function* watchDriverSagas() {

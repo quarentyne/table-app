@@ -4,23 +4,20 @@ import { DriversTableHeader } from "../../../DriversCommon/components/DriversTab
 import { deleteDriver } from "../../features/actionCreators";
 
 interface IDriver {
-  id: number;
-  first_name: string;
-  last_name: string;
-  date_created: number;
-  date_birth: number;
-  status: {
-    code: string;
-    title: string;
-  };
+  driver: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    date_created: number;
+    date_birth: number;
+    status: {
+      code: string;
+      title: string;
+    };
+  };  
 };
 
-interface IDrivers {
-  driver: IDriver;
-  isRedirectable: boolean;
-}
-
-export const DriverTable = ({driver, isRedirectable}: IDrivers) => { 
+export const DriverTable = ({ driver }: IDriver) => { 
   const dispatch = useDispatch();
 
   const onDelete = (id: number) => {
@@ -39,7 +36,6 @@ export const DriverTable = ({driver, isRedirectable}: IDrivers) => {
         dateCreated={driver.date_created}
         status={driver.status}
         onDelete={onDelete}
-        redirectID={isRedirectable ? driver.id : null}
       />
     </>
   );

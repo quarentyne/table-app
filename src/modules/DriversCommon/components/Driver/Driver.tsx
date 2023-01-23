@@ -19,11 +19,10 @@ interface IDriver{
     code: string;
     title: string;
   };
-  redirectID: number | null;
   onDelete: (id: number) => void;
 };
 
-export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status, redirectID, onDelete}: IDriver) => {
+export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status, onDelete}: IDriver) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();  
 
@@ -62,7 +61,7 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
         title,
       },
     });
-    dispatch(updateDriver(id, driver, redirectID));
+    dispatch(updateDriver(id, driver));
   };
 
   return (
@@ -102,7 +101,7 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
           deleteHint={t("ActionButtons.delete")}
           linkTo="/car"
           onDelete={onDelete.bind(null, id)}
-          state={id}
+          driverId={id}
         />
       </Action>
     </DriversTable>

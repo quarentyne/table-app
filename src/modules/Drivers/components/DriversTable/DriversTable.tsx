@@ -17,10 +17,9 @@ interface IDriver {
 
 interface IDrivers {
   drivers: IDriver[];
-  isRedirectable: boolean;
 }
 
-export const DriversTable = ({drivers, isRedirectable}: IDrivers) => { 
+export const DriversTable = ({drivers}: IDrivers) => { 
   const dispatch = useDispatch();
 
   const onDelete = (id: number) => {
@@ -39,7 +38,6 @@ export const DriversTable = ({drivers, isRedirectable}: IDrivers) => {
         dateCreated={driver.date_created}
         status={driver.status}
         onDelete={onDelete}
-        redirectID={isRedirectable ? driver.id : null}
       />
       )}
     </>
