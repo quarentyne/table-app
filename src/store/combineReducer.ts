@@ -4,9 +4,9 @@ import { driverReducer } from "../modules/Driver/features/reducer";
 import { driversReducer } from "../modules/Drivers/features/reducer";
 
 export const rootReducer = combineReducers({
-  driversReducer,
-  driverReducer,
-  carsReducer,
+  drivers: driversReducer,
+  driver: driverReducer,
+  cars: carsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

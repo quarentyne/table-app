@@ -17,13 +17,17 @@ export const driversReducer = (
 ) => {
   switch (action.type) {
     case GET_DRIVERS_SUCCESS:
-      state.drivers = action.payload.data;
-      state.isError = action.payload.is_error;
-      state.isLoading = false;
-      return { ...state };
+      return {
+        ...state,
+        drivers: action.payload.data,
+        isError: action.payload.is_error,
+        isLoading: false,
+      };
     case GET_DRIVERS_REQUESTED:
-      state.isLoading = true;
-      return { ...state };
+      return {
+        ...state,
+        isLoading: true,
+      };
     default:
       return state;
   }

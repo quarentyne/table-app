@@ -14,13 +14,17 @@ export const defaultState: ICarsDefaultState = {
 export const carsReducer = (state = defaultState, action: ICarsActions) => {
   switch (action.type) {
     case GET_CARS_SUCCESS:
-      state.isLoading = false;
-      state.cars = action.payload.data;
-      state.isError = action.payload.is_error;
-      return { ...state };
+      return {
+        ...state,
+        isLoading: false,
+        cars: action.payload.data,
+        isError: action.payload.is_error,
+      };
     case GET_CARS_REQUESTED:
-      state.isLoading = true;
-      return { ...state };
+      return {
+        ...state,
+        isLoading: true,
+      };
     default:
       return state;
   }

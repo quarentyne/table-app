@@ -14,13 +14,17 @@ const defaultState: IDriverDefaultState = {
 export const driverReducer = (state = defaultState, action: IDriverActions) => {
   switch (action.type) {
     case GET_DRIVER_SUCCESS:
-      state.driver = action.payload.data;
-      state.isError = action.payload.is_error;
-      state.isLoading = false;
-      return { ...state };
+      return {
+        ...state,
+        isLoading: false,
+        isError: action.payload.is_error,
+        driver: action.payload.data,
+      };
     case GET_DRIVER_REQUESTED:
-      state.isLoading = true;
-      return { ...state };
+      return {
+        ...state,
+        isLoading: true,
+      };
     default:
       return state;
   }

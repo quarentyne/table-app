@@ -1,3 +1,3 @@
 import { RootState } from "../../../store/combineReducer";
 
-export const driversSelector = (state: RootState) => state.driversReducer;
+export const driversSelector = (state: RootState) => state.drivers;
