@@ -9,16 +9,18 @@ import { NotFound } from "../Notfound/NotFound";
 import { Loading } from "../../shared/components/Loading/Loading";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
 import { requestCars } from "../../modules/Cars/features/actionCreators";
-import { CarsTable } from "../../modules/Cars/components/CarsTable/CarsTable";
-import { AddCarForm } from "../../modules/Cars/components/AddCarForm/AddCarForm";
+import { CarsTable } from "../../modules/CarsCommon/components/CarsTable/CarsTable";
+import { AddCarForm } from "../../modules/CarsCommon/components/AddCarForm/AddCarForm";
 import { driversSelector } from "../../modules/Drivers/features/selector";
 import { carsSelector } from "../../modules/Cars/features/selector";
+import { requestDriversCars } from "../../modules/DriversCars/features/actionCreators";
+import { driversCarsSelector } from "../../modules/DriversCars/features/selector";
 
 export const Cars = () => {
   const dispatch = useDispatch();
-  const { cars, isError, isLoading } = useAppSelector(carsSelector);
-  const { drivers } = useAppSelector(driversSelector);
   const { state } = useLocation();  
+  const { cars, isError, isLoading } = useAppSelector(state ? driversCarsSelector : carsSelector);
+  const { drivers } = useAppSelector(driversSelector);
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
 
@@ -27,7 +29,11 @@ export const Cars = () => {
   };
 
   useEffect(() => {
-    dispatch(requestCars(state));     
+    if (state) {
+      dispatch(requestDriversCars(state));     
+    } else {
+      dispatch(requestCars())
+    }
     dispatch(requestDrivers());
   }, [dispatch, state]);
 
@@ -48,7 +54,7 @@ export const Cars = () => {
           {t("menu.addCar")}
         </AddCarButton>
       </CarsHeaderBlock>
-      <CarsTable cars={cars} isRedirectable={state} />
+      <CarsTable cars={cars} />
       <FormWrapper isVisible={isVisibleForm}>
         <AddCarForm onFinish={toggleFormVisibility} driverId={state} drivers={drivers} />
       </FormWrapper>

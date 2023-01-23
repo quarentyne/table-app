@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { Loading } from "../../../../shared/components/Loading/Loading";
 import { useAppSelector } from "../../../../shared/hooks/useAppSelector";
 import { driversSelector } from "../../../Drivers/features/selector";
-import { deleteCar } from "../../features/actionCreators";
+import { deleteCar } from "../../../Cars/features/actionCreators";
 import { Car } from "../Car/Car";
 import { CarsTableHeader } from "../CarsTableHeader/CarsTableHeader";
 
@@ -21,10 +21,9 @@ interface ICar{
 
 interface ICars { 
   cars: ICar[];
-  isRedirectable: boolean;
 };
 
-export const CarsTable = ({ cars, isRedirectable}: ICars) => {
+export const CarsTable = ({ cars }: ICars) => {
   const dispatch = useDispatch();
   const { drivers } = useAppSelector(driversSelector);
   
@@ -53,7 +52,6 @@ export const CarsTable = ({ cars, isRedirectable}: ICars) => {
         number={car.number}
         status={car.status}
         year={car.year}
-        redirectID={isRedirectable ? car.driver_id : null}
         onDelete={onDelete}
         driverName={getDriverFullName(car.driver_id)}
       />)}

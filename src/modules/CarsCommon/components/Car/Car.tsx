@@ -8,7 +8,7 @@ import { InputDataEditor } from "../../../../shared/components/InputDataEditor/I
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
 import { CarStatusEditor } from "../../../../shared/components/CarStatusEditor/CarStatusEditor";
-import { updateCar } from "../../features/actionCreators";
+import { updateCar } from "../../../Cars/features/actionCreators";
 
 interface ICar{
   id: string;
@@ -21,12 +21,11 @@ interface ICar{
     title: string,
     code: string,
   },
-  redirectID: number | null;
   driverName: string;
-  onDelete: (carId: number, redirectID: number | null) => void;
+  onDelete: (carId: number, driverId: number | null) => void;
 };
 
-export const Car = ({id, model, mark, year, number, driverId, status, redirectID, onDelete, driverName }: ICar) => {
+export const Car = ({id, model, mark, year, number, driverId, status,  onDelete, driverName }: ICar) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [carOptions, setCarOptions] = useState({
@@ -54,7 +53,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
         title,
       }
     });
-    dispatch(updateCar(Number(id), car, redirectID))
+    dispatch(updateCar(Number(id), car, driverId))
   };
 
   return (
@@ -108,7 +107,7 @@ export const Car = ({id, model, mark, year, number, driverId, status, redirectID
         <ActionButtons
           eyeHint={t("actions.drivers")}
           deleteHint={t("actions.delete")}
-          onDelete={onDelete.bind(null, Number(id), redirectID)}
+          onDelete={onDelete.bind(null, Number(id), driverId)}
           linkTo={`/${Endpoints.DRIVERS}${driverId}`}
           driverId={driverId}
         />

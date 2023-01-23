@@ -7,7 +7,7 @@ import {
   ICarsServerResponse,
 } from "./models";
 
-export const requestCars = (id?: number) => ({ type: GET_CARS_REQUESTED, id });
+export const requestCars = () => ({ type: GET_CARS_REQUESTED });
 
 export const responseCars = (data: ICarsServerResponse) => ({
   type: GET_CARS_SUCCESS,

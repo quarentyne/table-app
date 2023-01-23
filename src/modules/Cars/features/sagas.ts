@@ -8,6 +8,7 @@ import {
   httpPost,
   TFormatResponse,
 } from "../../../shared/helpers/httpClient";
+import { getDriversCars } from "../../DriversCars/features/sagas";
 import { responseCars } from "./actionCreators";
 import { ADD_CAR, DELETE_CAR, GET_CARS_REQUESTED, UPDATE_CAR } from "./models";
 
@@ -18,27 +19,29 @@ type TCars = {
   driverId?: number;
 };
 
-function* getCars({ id }: TCars) {
+function* getCars() {
   const response: TFormatResponse = yield httpGet(
-    `${BASE_API_URL}${Endpoints.CARS}/`,
-    id
+    `${BASE_API_URL}${Endpoints.CARS}/`
   );
   yield put(responseCars(response.data));
 }
 
 function* deleteCar({ id, driverId }: TCars) {
   yield httpDelete(`${BASE_API_URL}${Endpoints.CARS}${id}/`);
-  yield getCars({ id: driverId });
+  yield getCars();
+  yield getDriversCars({ id: driverId });
 }
 
 function* addCar({ car, driverId }: TCars) {
   yield httpPost(`${BASE_API_URL}${Endpoints.CARS}`, car);
-  yield getCars({ id: driverId });
+  yield getCars();
+  yield getDriversCars({ id: driverId });
 }
 
 function* updateCar({ id, driverId, car }: TCars) {
   yield httpPatch(`${BASE_API_URL}${Endpoints.CARS}${id}/`, car);
-  yield getCars({ id: driverId });
+  yield getCars();
+  yield getDriversCars({ id: driverId });
 }
 
 export function* watchCarSagas() {
