@@ -97,8 +97,8 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
       </Status>
       <Action>
         <ActionButtons
-          eyeHint={t("ActionButtons.autos")}
-          deleteHint={t("ActionButtons.delete")}
+          eyeHint={t("actions.autos")}
+          deleteHint={t("actions.delete")}
           linkTo="/car"
           onDelete={onDelete.bind(null, id)}
           driverId={id}
