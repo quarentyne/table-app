@@ -10,7 +10,7 @@ import { addCar } from "../../../Cars/features/actionCreators";
 
 interface IAddCarForm{
   onFinish: () => void;
-  driverId: number | null;
+  driverId?: string;
   drivers: IDriver[];
 };
 

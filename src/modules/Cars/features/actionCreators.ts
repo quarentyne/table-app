@@ -14,7 +14,7 @@ export const responseCars = (data: ICarsServerResponse) => ({
   payload: data,
 });
 
-export const addCar = (car: string, driverId: number | null) => ({
+export const addCar = (car: string, driverId?: string) => ({
   type: ADD_CAR,
   car,
   driverId,

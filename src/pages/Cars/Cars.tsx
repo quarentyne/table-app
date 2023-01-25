@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import { AddCarButton, CarsHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
@@ -18,8 +18,8 @@ import { driversCarsSelector } from "../../modules/DriversCars/features/selector
 
 export const Cars = () => {
   const dispatch = useDispatch();
-  const { state } = useLocation();  
-  const { cars, isError, isLoading } = useAppSelector(state ? driversCarsSelector : carsSelector);
+  const { driverId } = useParams();
+  const { cars, isError, isLoading } = useAppSelector(driverId ? driversCarsSelector : carsSelector);
   const { drivers } = useAppSelector(driversSelector);
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
@@ -29,13 +29,13 @@ export const Cars = () => {
   };
 
   useEffect(() => {
-    if (state) {
-      dispatch(requestDriversCars(state));     
+    if (driverId) {
+      dispatch(requestDriversCars(driverId));     
     } else {
       dispatch(requestCars())
     }
     dispatch(requestDrivers());
-  }, [dispatch, state]);
+  }, [dispatch, driverId]);
 
   if (!cars || !drivers || isLoading) {
     return <Loading />
@@ -56,7 +56,7 @@ export const Cars = () => {
       </CarsHeaderBlock>
       <CarsTable cars={cars} />
       <FormWrapper isVisible={isVisibleForm}>
-        <AddCarForm onFinish={toggleFormVisibility} driverId={state} drivers={drivers} />
+        <AddCarForm onFinish={toggleFormVisibility} driverId={driverId} drivers={drivers} />
       </FormWrapper>
     </>
   );

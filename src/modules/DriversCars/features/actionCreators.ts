@@ -4,7 +4,7 @@ import {
   ICarsServerResponse,
 } from "./models";
 
-export const requestDriversCars = (id: number) => ({
+export const requestDriversCars = (id: string) => ({
   type: GET_DRIVERS_CARS_REQUESTED,
   id,
 });

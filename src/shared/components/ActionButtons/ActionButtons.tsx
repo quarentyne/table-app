@@ -8,14 +8,13 @@ interface IActions{
   deleteHint: string;
   onDelete: () => void;
   linkTo: string;
-  driverId?: number;
 };
 
-export const ActionButtons = ({eyeHint, deleteHint, linkTo, driverId, onDelete} :IActions) => {
+export const ActionButtons = ({eyeHint, deleteHint, linkTo, onDelete} :IActions) => {
   return (
     <ActionsList>
       <ActionsItem>
-        <Link to={linkTo} state={driverId}>
+        <Link to={linkTo}>
           <img
             src={eye}
             alt="look"

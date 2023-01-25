@@ -14,6 +14,7 @@ export const RouterConfig = () => {
         <Route path='driver' element={<Drivers />} />
         <Route path='driver/:id' element={<Driver />} />
         <Route path='car' element={<Cars />} />
+        <Route path='car/driverId=:driverId' element={<Cars />} />
         <Route path='*' element={<NotFound />} />
       </Route>
     </Routes>
