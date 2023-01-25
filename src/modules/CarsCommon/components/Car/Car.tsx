@@ -22,7 +22,7 @@ interface ICar{
     code: string,
   },
   driverName: string;
-  onDelete: (carId: number, driverId: number | null) => void;
+  onDelete: (carId: number, driverId: number) => void;
 };
 
 export const Car = ({id, model, mark, year, number, driverId, status,  onDelete, driverName }: ICar) => {

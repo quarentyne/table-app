@@ -36,8 +36,8 @@ export const CarsTable = ({ cars }: ICars) => {
     return `${driver?.first_name} ${driver?.last_name}`;
   };
 
-  const onDelete = (carId: number, redirectID: number | null) => {
-    dispatch(deleteCar(carId, redirectID))
+  const onDelete = (carId: number, driverId: number) => {
+    dispatch(deleteCar(carId, driverId))
   };
 
   return (

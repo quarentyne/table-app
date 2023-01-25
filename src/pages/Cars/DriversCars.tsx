@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import { AddCarButton, CarsHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
 import { NotFound } from "../Notfound/NotFound";
 import { Loading } from "../../shared/components/Loading/Loading";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
-import { requestCars } from "../../modules/Cars/features/actionCreators";
 import { CarsTable } from "../../modules/CarsCommon/components/CarsTable/CarsTable";
 import { AddCarForm } from "../../modules/CarsCommon/components/AddCarForm/AddCarForm";
 import { driversSelector } from "../../modules/Drivers/features/selector";
-import { carsSelector } from "../../modules/Cars/features/selector";
+import { requestDriversCars } from "../../modules/DriversCars/features/actionCreators";
+import { driversCarsSelector } from "../../modules/DriversCars/features/selector";
 
-export const Cars = () => {
+export const DriversCars = () => {
   const dispatch = useDispatch();
-  const { cars, isError, isLoading } = useAppSelector( carsSelector);
+  const { driverId } = useParams();
+  const { cars, isError, isLoading } = useAppSelector(driversCarsSelector);
   const { drivers } = useAppSelector(driversSelector);
   const { t } = useTranslation();
   const [isVisibleForm, setIsVisibleForm] = useState(false); 
@@ -25,15 +27,18 @@ export const Cars = () => {
   };
 
   useEffect(() => {
-    dispatch(requestCars())
+    if (!driverId) {
+      return;
+    };
+    dispatch(requestDriversCars(driverId));     
     dispatch(requestDrivers());
-  }, [dispatch]);
+  }, [dispatch, driverId]);
 
   if (!cars || !drivers || isLoading) {
     return <Loading />
   };  
 
-  if (isError) {
+  if (isError || !driverId) {
     return <NotFound />
   };
 
@@ -48,7 +53,7 @@ export const Cars = () => {
       </CarsHeaderBlock>
       <CarsTable cars={cars} />
       <FormWrapper isVisible={isVisibleForm}>
-        <AddCarForm onFinish={toggleFormVisibility} drivers={drivers} />
+        <AddCarForm onFinish={toggleFormVisibility} driverId={driverId} drivers={drivers} />
       </FormWrapper>
     </>
   );
