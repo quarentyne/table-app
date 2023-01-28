@@ -15,4 +15,4 @@ export const Layout: FC = () => {
       </GlobalMain>
     </>
   );
-}
+};
