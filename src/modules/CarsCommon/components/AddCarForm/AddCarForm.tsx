@@ -14,7 +14,7 @@ interface IAddCarForm{
   drivers: IDriver[];
 };
 
-export const AddCarForm = ({ onFinish, driverId, drivers }: IAddCarForm) => {
+export const AddCarForm = ({ onFinish, drivers }: IAddCarForm) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [carOptions, setCarOptions] = useState({
@@ -44,7 +44,7 @@ export const AddCarForm = ({ onFinish, driverId, drivers }: IAddCarForm) => {
         title,
       },
     });    
-    dispatch(addCar(newCar, driverId));
+    dispatch(addCar(newCar));
     cancelHandler();
   };
 

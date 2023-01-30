@@ -1,29 +1,38 @@
 import {
-  GET_CARS_REQUESTED,
-  GET_CARS_SUCCESS,
-  ICarsActions,
-  ICarsDefaultState,
+  carsActions,
+  // ICarsActions,
+  ICarsState,
+  TCarsActions,
 } from "./models";
 
-export const defaultState: ICarsDefaultState = {
+export const defaultState: ICarsState = {
   isError: null,
   isLoading: false,
   cars: null,
 };
 
-export const carsReducer = (state = defaultState, action: ICarsActions) => {
+export const carsReducer = (
+  state = defaultState,
+  action: TCarsActions
+): ICarsState => {
   switch (action.type) {
-    case GET_CARS_SUCCESS:
+    case carsActions.SET_CARS:
       return {
         ...state,
         isLoading: false,
         cars: action.payload.data,
         isError: action.payload.is_error,
       };
-    case GET_CARS_REQUESTED:
+    case carsActions.GET_CARS:
       return {
         ...state,
         isLoading: true,
+      };
+    case carsActions.DELETE_CAR:
+      const cars = state.cars?.filter((car) => car.id !== action.id) || null;
+      return {
+        ...state,
+        cars,
       };
     default:
       return state;

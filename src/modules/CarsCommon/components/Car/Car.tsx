@@ -22,7 +22,7 @@ interface ICar{
     code: string,
   },
   driverName: string;
-  onDelete: (carId: number, driverId: number) => void;
+  onDelete: (carId: string) => void;
 };
 
 export const Car = ({id, model, mark, year, number, driverId, status,  onDelete, driverName }: ICar) => {
@@ -53,7 +53,7 @@ export const Car = ({id, model, mark, year, number, driverId, status,  onDelete,
         title,
       }
     });
-    dispatch(updateCar(Number(id), car, driverId))
+    dispatch(updateCar(Number(id), car))
   };
 
   return (
@@ -107,7 +107,7 @@ export const Car = ({id, model, mark, year, number, driverId, status,  onDelete,
         <ActionButtons
           eyeHint={t("actions.drivers")}
           deleteHint={t("actions.delete")}
-          onDelete={onDelete.bind(null, Number(id), driverId)}
+          onDelete={onDelete.bind(null, id)}
           linkTo={`/${Endpoints.DRIVERS}${driverId}`}
         />
       </Action>

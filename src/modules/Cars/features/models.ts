@@ -1,8 +1,12 @@
-export const GET_CARS_SUCCESS = "GET_CARS_SUCCESS";
-export const GET_CARS_REQUESTED = "GET_CARS_REQUESTED";
-export const ADD_CAR = "ADD_CAR";
-export const UPDATE_CAR = "UPDATE_CAR";
-export const DELETE_CAR = "DELETE_CAR";
+export enum carsActions {
+  SET_CARS = "SET_CARS",
+  GET_CARS = "GET_CARS",
+  ADD_CAR = "ADD_CAR",
+  ADD_CAR_SUCCESSFUL = "ADD_CAR_SUCCESSFUL",
+  UPDATE_CAR = "UPDATE_CAR",
+  UPDATE_CAR_SUCCESSFUL = "UPDATE_CAR_SUCCESSFUL",
+  DELETE_CAR = "DELETE_CAR",
+}
 
 interface ICar {
   id: string;
@@ -17,10 +21,24 @@ interface ICar {
   };
 }
 
-export interface ICarsDefaultState {
+export interface ICarsState {
   isError: boolean | null;
   isLoading: boolean;
   cars: ICar[] | null;
+}
+
+export interface test {
+  type: carsActions.SET_CARS;
+  payload: ICarsServerResponse;
+}
+
+export interface test2 {
+  type: carsActions.GET_CARS;
+}
+
+export interface IDeleteCarAction {
+  type: carsActions.DELETE_CAR;
+  id: string;
 }
 
 export interface ICarsServerResponse {
@@ -28,7 +46,9 @@ export interface ICarsServerResponse {
   is_error: boolean;
 }
 
-export interface ICarsActions {
-  type: string;
-  payload: ICarsServerResponse;
-}
+// export interface ICarsActions {
+//   type: string;
+//   payload: ICarsServerResponse;
+// }
+
+export type TCarsActions = test | test2 | IDeleteCarAction;

@@ -6,7 +6,7 @@ import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import people from "../../assets/svg/main-people.svg";
 import car from "../../assets/svg/main-car.svg";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
-import { requestCars } from "../../modules/Cars/features/actionCreators";
+import { getCars } from "../../modules/Cars/features/actionCreators";
 import { driversSelector } from "../../modules/Drivers/features/selector";
 import { carsSelector } from "../../modules/Cars/features/selector";
 
@@ -18,7 +18,7 @@ export const Home = () => {
   const { cars } = useAppSelector(carsSelector);
 
   useEffect(() => {
-    dispatch(requestCars());
+    dispatch(getCars());
   }, [dispatch]);
   useEffect(() => {
     dispatch(requestDrivers());

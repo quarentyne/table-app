@@ -7,7 +7,7 @@ import add from "../../assets/svg/add.svg";
 import { NotFound } from "../Notfound/NotFound";
 import { Loading } from "../../shared/components/Loading/Loading";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
-import { requestCars } from "../../modules/Cars/features/actionCreators";
+import { getCars } from "../../modules/Cars/features/actionCreators";
 import { CarsTable } from "../../modules/CarsCommon/components/CarsTable/CarsTable";
 import { AddCarForm } from "../../modules/CarsCommon/components/AddCarForm/AddCarForm";
 import { driversSelector } from "../../modules/Drivers/features/selector";
@@ -25,7 +25,7 @@ export const Cars = () => {
   };
 
   useEffect(() => {
-    dispatch(requestCars())
+    dispatch(getCars())
     dispatch(requestDrivers());
   }, [dispatch]);
 
