@@ -1,4 +1,4 @@
-import { carsActions, ICarsServerResponse } from "./models";
+import { carsActions, ICarServerResponse, ICarsServerResponse } from "./models";
 
 export const getCars = () => ({ type: carsActions.GET_CARS });
 
@@ -12,10 +12,20 @@ export const addCar = (car: string) => ({
   car,
 });
 
-export const updateCar = (id: number, car: string) => ({
+export const addCarSuccessful = (data: ICarServerResponse) => ({
+  type: carsActions.ADD_CAR_SUCCESSFUL,
+  payload: data,
+});
+
+export const updateCar = (id: string, car: string) => ({
   type: carsActions.UPDATE_CAR,
   id,
   car,
+});
+
+export const updateCarSuccessful = (data: ICarServerResponse) => ({
+  type: carsActions.UPDATE_CAR_SUCCESSFUL,
+  payload: data,
 });
 
 export const deleteCar = (id: string) => ({

@@ -53,7 +53,7 @@ export const Car = ({id, model, mark, year, number, driverId, status,  onDelete,
         title,
       }
     });
-    dispatch(updateCar(Number(id), car))
+    dispatch(updateCar(id, car))
   };
 
   return (

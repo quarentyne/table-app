@@ -8,14 +8,17 @@ import {
   httpPost,
   TFormatResponse,
 } from "../../../shared/helpers/httpClient";
-import { setCarsData } from "./actionCreators";
-import { carsActions, IDeleteCarAction } from "./models";
-
-type TCars = {
-  type?: string;
-  id?: string;
-  car?: string;
-};
+import {
+  addCarSuccessful,
+  setCarsData,
+  updateCarSuccessful,
+} from "./actionCreators";
+import {
+  carsActions,
+  IAddCarAction,
+  IDeleteCarAction,
+  IUpdateCarAction,
+} from "./models";
 
 function* getCars() {
   const response: TFormatResponse = yield call(
@@ -29,13 +32,22 @@ function* deleteCar({ id }: IDeleteCarAction) {
   yield call(httpDelete, `${BASE_API_URL}${Endpoints.CARS}${id}/`);
 }
 
-function* addCar({ car }: TCars) {
-  yield call(httpPost, `${BASE_API_URL}${Endpoints.CARS}`, car);
-  yield call(getCars);
+function* addCar({ car }: IAddCarAction) {
+  const response: TFormatResponse = yield call(
+    httpPost,
+    `${BASE_API_URL}${Endpoints.CARS}`,
+    car
+  );
+  yield put(addCarSuccessful(response.data));
 }
 
-function* updateCar({ id, car }: TCars) {
-  yield call(httpPatch, `${BASE_API_URL}${Endpoints.CARS}${id}/`, car);
+function* updateCar({ id, car }: IUpdateCarAction) {
+  const response: TFormatResponse = yield call(
+    httpPatch,
+    `${BASE_API_URL}${Endpoints.CARS}${id}/`,
+    car
+  );
+  yield put(updateCarSuccessful(response.data));
 }
 
 export function* watchCarSagas() {

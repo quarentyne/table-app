@@ -27,13 +27,23 @@ export interface ICarsState {
   cars: ICar[] | null;
 }
 
-export interface test {
-  type: carsActions.SET_CARS;
-  payload: ICarsServerResponse;
+export interface ICarsServerResponse {
+  data: ICar[];
+  is_error: boolean;
 }
 
-export interface test2 {
+export interface ICarServerResponse {
+  data: ICar;
+  is_error: boolean;
+}
+
+export interface IGetCarsAction {
   type: carsActions.GET_CARS;
+}
+
+export interface ISetCarsAction {
+  type: carsActions.SET_CARS;
+  payload: ICarsServerResponse;
 }
 
 export interface IDeleteCarAction {
@@ -41,14 +51,30 @@ export interface IDeleteCarAction {
   id: string;
 }
 
-export interface ICarsServerResponse {
-  data: ICar[];
-  is_error: boolean;
+export interface IAddCarAction {
+  type: carsActions.ADD_CAR;
+  car: string;
 }
 
-// export interface ICarsActions {
-//   type: string;
-//   payload: ICarsServerResponse;
-// }
+export interface IAddCarActionSuccessful {
+  type: carsActions.ADD_CAR_SUCCESSFUL;
+  payload: ICarServerResponse;
+}
 
-export type TCarsActions = test | test2 | IDeleteCarAction;
+export interface IUpdateCarAction {
+  type: carsActions.UPDATE_CAR;
+  car: string;
+  id: string;
+}
+
+export interface IUpdateCarActionSuccessful {
+  type: carsActions.UPDATE_CAR_SUCCESSFUL;
+  payload: ICarServerResponse;
+}
+
+export type TCarsActions =
+  | ISetCarsAction
+  | IGetCarsAction
+  | IDeleteCarAction
+  | IAddCarActionSuccessful
+  | IUpdateCarActionSuccessful;

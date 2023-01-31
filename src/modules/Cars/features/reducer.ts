@@ -1,9 +1,4 @@
-import {
-  carsActions,
-  // ICarsActions,
-  ICarsState,
-  TCarsActions,
-} from "./models";
+import { carsActions, ICarsState, TCarsActions } from "./models";
 
 export const defaultState: ICarsState = {
   isError: null,
@@ -29,10 +24,29 @@ export const carsReducer = (
         isLoading: true,
       };
     case carsActions.DELETE_CAR:
-      const cars = state.cars?.filter((car) => car.id !== action.id) || null;
       return {
         ...state,
-        cars,
+        cars: state.cars?.filter((car) => car.id !== action.id) || null,
+      };
+    case carsActions.ADD_CAR_SUCCESSFUL:
+      return {
+        ...state,
+        cars: state.cars?.concat([action.payload.data]) || [
+          action.payload.data,
+        ],
+        isError: action.payload.is_error,
+      };
+    case carsActions.UPDATE_CAR_SUCCESSFUL:
+      return {
+        ...state,
+        cars:
+          state.cars?.map((car) => {
+            if (car.id === String(action.payload.data.id)) {
+              return { ...car, ...action.payload.data };
+            }
+            return car;
+          }) || null,
+        isError: action.payload.is_error,
       };
     default:
       return state;
