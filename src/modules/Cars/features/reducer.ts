@@ -28,7 +28,7 @@ export const carsReducer = (
         ...state,
         cars: state.cars?.filter((car) => car.id !== action.id) || null,
       };
-    case carsActions.ADD_CAR_SUCCESSFUL:
+    case carsActions.SET_NEW_CAR:
       return {
         ...state,
         cars: state.cars?.concat([action.payload.data]) || [
@@ -36,7 +36,7 @@ export const carsReducer = (
         ],
         isError: action.payload.is_error,
       };
-    case carsActions.UPDATE_CAR_SUCCESSFUL:
+    case carsActions.SET_UPDATED_CAR_DATA:
       return {
         ...state,
         cars:

@@ -2,9 +2,9 @@ export enum carsActions {
   SET_CARS = "SET_CARS",
   GET_CARS = "GET_CARS",
   ADD_CAR = "ADD_CAR",
-  ADD_CAR_SUCCESSFUL = "ADD_CAR_SUCCESSFUL",
+  SET_NEW_CAR = "SET_NEW_CAR",
   UPDATE_CAR = "UPDATE_CAR",
-  UPDATE_CAR_SUCCESSFUL = "UPDATE_CAR_SUCCESSFUL",
+  SET_UPDATED_CAR_DATA = "SET_UPDATED_CAR_DATA",
   DELETE_CAR = "DELETE_CAR",
 }
 
@@ -57,7 +57,7 @@ export interface IAddCarAction {
 }
 
 export interface IAddCarActionSuccessful {
-  type: carsActions.ADD_CAR_SUCCESSFUL;
+  type: carsActions.SET_NEW_CAR;
   payload: ICarServerResponse;
 }
 
@@ -68,7 +68,7 @@ export interface IUpdateCarAction {
 }
 
 export interface IUpdateCarActionSuccessful {
-  type: carsActions.UPDATE_CAR_SUCCESSFUL;
+  type: carsActions.SET_UPDATED_CAR_DATA;
   payload: ICarServerResponse;
 }
 
