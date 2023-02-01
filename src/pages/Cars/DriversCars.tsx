@@ -8,11 +8,11 @@ import add from "../../assets/svg/add.svg";
 import { NotFound } from "../Notfound/NotFound";
 import { Loading } from "../../shared/components/Loading/Loading";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
-import { CarsTable } from "../../modules/CarsCommon/components/CarsTable/CarsTable";
 import { AddCarForm } from "../../modules/CarsCommon/components/AddCarForm/AddCarForm";
 import { driversSelector } from "../../modules/Drivers/features/selector";
-import { requestDriversCars } from "../../modules/DriversCars/features/actionCreators";
 import { driversCarsSelector } from "../../modules/DriversCars/features/selector";
+import { addDriversCar, getDriversCars } from "../../modules/DriversCars/features/actionCreators";
+import { CarsTable } from "../../modules/DriversCars/components/CarsTable";
 
 export const DriversCars = () => {
   const dispatch = useDispatch();
@@ -26,11 +26,15 @@ export const DriversCars = () => {
     setIsVisibleForm(!isVisibleForm);
   };
 
+  const addNewCar = (car: string) => {
+    dispatch(addDriversCar(car));
+  };
+
   useEffect(() => {
     if (!driverId) {
       return;
     };
-    dispatch(requestDriversCars(driverId));     
+    dispatch(getDriversCars(driverId));     
     dispatch(requestDrivers());
   }, [dispatch, driverId]);
 
@@ -53,7 +57,7 @@ export const DriversCars = () => {
       </CarsHeaderBlock>
       <CarsTable cars={cars} />
       <FormWrapper isVisible={isVisibleForm}>
-        <AddCarForm onFinish={toggleFormVisibility} driverId={driverId} drivers={drivers} />
+        <AddCarForm closeForm={toggleFormVisibility} onAdd={addNewCar} drivers={drivers} />
       </FormWrapper>
     </>
   );

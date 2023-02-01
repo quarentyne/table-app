@@ -56,7 +56,7 @@ export interface IAddCarAction {
   car: string;
 }
 
-export interface IAddCarActionSuccessful {
+export interface ISetNewCarAction {
   type: carsActions.SET_NEW_CAR;
   payload: ICarServerResponse;
 }
@@ -67,7 +67,7 @@ export interface IUpdateCarAction {
   id: string;
 }
 
-export interface IUpdateCarActionSuccessful {
+export interface ISetUpdatedCarDataAction {
   type: carsActions.SET_UPDATED_CAR_DATA;
   payload: ICarServerResponse;
 }
@@ -76,5 +76,5 @@ export type TCarsActions =
   | ISetCarsAction
   | IGetCarsAction
   | IDeleteCarAction
-  | IAddCarActionSuccessful
-  | IUpdateCarActionSuccessful;
+  | ISetNewCarAction
+  | ISetUpdatedCarDataAction;

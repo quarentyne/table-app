@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 import { Endpoints } from "../../../../api/endpoints";
 import { carsClassesTitleSelector } from "../../../../shared/helpers/carsClasses";
 import { ActionButtons } from "../../../../shared/components/ActionButtons/ActionButtons";
@@ -8,7 +7,6 @@ import { InputDataEditor } from "../../../../shared/components/InputDataEditor/I
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
 import { Action, CarsTableInner, ID, Mark, Model, Name, PlateNumber, Status, Year } from "./styles";
 import { CarStatusEditor } from "../../../../shared/components/CarStatusEditor/CarStatusEditor";
-import { updateCar } from "../../../Cars/features/actionCreators";
 
 interface ICar{
   id: string;
@@ -23,10 +21,10 @@ interface ICar{
   },
   driverName: string;
   onDelete: (carId: string) => void;
+  dispatchNewCarOption: (id: string, car: string) => void;
 };
 
-export const Car = ({id, model, mark, year, number, driverId, status,  onDelete, driverName }: ICar) => {
-  const dispatch = useDispatch();
+export const Car = ({id, model, mark, year, number, driverId, status,  onDelete, driverName, dispatchNewCarOption }: ICar) => {
   const { t } = useTranslation();
   const [carOptions, setCarOptions] = useState({
     model: model,
@@ -53,7 +51,7 @@ export const Car = ({id, model, mark, year, number, driverId, status,  onDelete,
         title,
       }
     });
-    dispatch(updateCar(id, car))
+    dispatchNewCarOption(id, car);
   };
 
   return (

@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux";
 import { Loading } from "../../../../shared/components/Loading/Loading";
 import { useAppSelector } from "../../../../shared/hooks/useAppSelector";
 import { driversSelector } from "../../../Drivers/features/selector";
-import { deleteCar } from "../../../Cars/features/actionCreators";
-import { Car } from "../Car/Car";
-import { CarsTableHeader } from "../CarsTableHeader/CarsTableHeader";
+import { deleteCar, updateCar } from "../../features/actionCreators";
+import { Car } from "../../../CarsCommon/components/Car/Car";
+import { CarsTableHeader } from "../../../CarsCommon/components/CarsTableHeader/CarsTableHeader";
 
 interface ICar{
   id: string;
@@ -40,6 +40,10 @@ export const CarsTable = ({ cars }: ICars) => {
     dispatch(deleteCar(carId));
   };
 
+  const onUpdateCarOptions = (id: string, car: string) => {
+    dispatch(updateCar(id, car));
+  };
+
   return (
     <>
       <CarsTableHeader />
@@ -54,6 +58,7 @@ export const CarsTable = ({ cars }: ICars) => {
         year={car.year}
         onDelete={onDelete}
         driverName={getDriverFullName(car.driver_id)}
+        dispatchNewCarOption={onUpdateCarOptions}
       />)}
     </>
   );

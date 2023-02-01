@@ -7,8 +7,8 @@ import add from "../../assets/svg/add.svg";
 import { NotFound } from "../Notfound/NotFound";
 import { Loading } from "../../shared/components/Loading/Loading";
 import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
-import { getCars } from "../../modules/Cars/features/actionCreators";
-import { CarsTable } from "../../modules/CarsCommon/components/CarsTable/CarsTable";
+import { addCar, getCars } from "../../modules/Cars/features/actionCreators";
+import { CarsTable } from "../../modules/Cars/components/CarsTable/CarsTable";
 import { AddCarForm } from "../../modules/CarsCommon/components/AddCarForm/AddCarForm";
 import { driversSelector } from "../../modules/Drivers/features/selector";
 import { carsSelector } from "../../modules/Cars/features/selector";
@@ -22,6 +22,10 @@ export const Cars = () => {
 
   const toggleFormVisibility = () => {
     setIsVisibleForm(!isVisibleForm);
+  };
+
+  const addNewCar = (car: string) => {
+    dispatch(addCar(car));
   };
 
   useEffect(() => {
@@ -48,7 +52,7 @@ export const Cars = () => {
       </CarsHeaderBlock>
       <CarsTable cars={cars} />
       <FormWrapper isVisible={isVisibleForm}>
-        <AddCarForm onFinish={toggleFormVisibility} drivers={drivers} />
+        <AddCarForm closeForm={toggleFormVisibility} onAdd={addNewCar} drivers={drivers} />
       </FormWrapper>
     </>
   );

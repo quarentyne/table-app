@@ -1,22 +1,19 @@
 import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 import { modelPattern, namePattern, numberPattern, yearPattern } from "../../../../shared/helpers/inputPatterns";
 import { FormButtons } from "../../../../shared/components/FormButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 import { carsClassesTitleSelector, carsStatusCodes, mappedCarsStatusCodes } from "../../../../shared/helpers/carsClasses";
 import { IDriver } from "../../../Drivers/features/models";
-import { addCar } from "../../../Cars/features/actionCreators";
 
 interface IAddCarForm{
-  onFinish: () => void;
-  driverId?: string;
+  closeForm: () => void;
+  onAdd: (car: string) => void;
   drivers: IDriver[];
 };
 
-export const AddCarForm = ({ onFinish, drivers }: IAddCarForm) => {
+export const AddCarForm = ({ closeForm, onAdd, drivers }: IAddCarForm) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const [carOptions, setCarOptions] = useState({
     mark: "",
     model: "",
@@ -44,7 +41,7 @@ export const AddCarForm = ({ onFinish, drivers }: IAddCarForm) => {
         title,
       },
     });    
-    dispatch(addCar(newCar));
+    onAdd(newCar);
     cancelHandler();
   };
 
@@ -57,7 +54,7 @@ export const AddCarForm = ({ onFinish, drivers }: IAddCarForm) => {
       class: carsStatusCodes.STANDARD,
       driver: String(drivers[0]?.id),
     });
-    onFinish();
+    closeForm();
   };
 
   const submitForm = (e: FormEvent<HTMLFormElement>) => {
@@ -79,7 +76,7 @@ export const AddCarForm = ({ onFinish, drivers }: IAddCarForm) => {
 
   return (
     <AddForm onSubmit={submitForm}>
-      <FormLabel htmlFor="driver">{t("addCar.driver")}</FormLabel>
+      <FormLabel htmlFor="driver">{t("addCar.owner")}</FormLabel>
       <FormSelect
         id="driver"
         name="driver"
