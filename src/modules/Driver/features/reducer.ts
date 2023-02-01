@@ -1,11 +1,6 @@
-import {
-  GET_DRIVER_REQUESTED,
-  GET_DRIVER_SUCCESS,
-  IDriverActions,
-  IDriverDefaultState,
-} from "./models";
+import { driverActions, IDriverActions, IDriverState } from "./models";
 
-const defaultState: IDriverDefaultState = {
+const defaultState: IDriverState = {
   isError: null,
   driver: null,
   isLoading: false,
@@ -13,17 +8,23 @@ const defaultState: IDriverDefaultState = {
 
 export const driverReducer = (state = defaultState, action: IDriverActions) => {
   switch (action.type) {
-    case GET_DRIVER_SUCCESS:
+    case driverActions.SET_DRIVER:
       return {
         ...state,
         isLoading: false,
         isError: action.payload.is_error,
         driver: action.payload.data,
       };
-    case GET_DRIVER_REQUESTED:
+    case driverActions.GET_DRIVER:
       return {
         ...state,
         isLoading: true,
+      };
+    case driverActions.SET_UPDATED_CURRENT_DRIVER_DATA:
+      return {
+        ...state,
+        driver: action.payload.data,
+        isError: action.payload.is_error,
       };
     default:
       return state;

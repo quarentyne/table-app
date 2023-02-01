@@ -9,8 +9,8 @@ import add from "../../assets/svg/add.svg";
 import { NotFound } from "../Notfound/NotFound";
 import { AddDriverForm } from "../../modules/DriversCommon/components/AddDriverForm/AddDriverForm";
 import { DriverTable } from "../../modules/Driver/components/DriverTable/DriverTable";
-import { requestDriverById } from "../../modules/Driver/features/actionCreators";
 import { driverSelector } from "../../modules/Driver/features/selector";
+import { getDriverById } from "../../modules/Driver/features/actionCreators";
 
 export const Driver = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,10 @@ export const Driver = () => {
   };
 
   useEffect(() => {
-    dispatch(requestDriverById(Number(id)))
+    if (!id) {
+      return;
+    }
+    dispatch(getDriverById(id))
   }, [dispatch, id]);  
 
   if (isLoading || !driver) {
@@ -45,7 +48,7 @@ export const Driver = () => {
       </DriversHeaderBlock>
       <DriverTable driver={driver}/>
       <FormWrapper isVisible={isVisibleForm}>
-        <AddDriverForm onFinish={toggleFormVisibility}/>
+        <AddDriverForm closeForm={toggleFormVisibility}/>
       </FormWrapper>
     </>
   );

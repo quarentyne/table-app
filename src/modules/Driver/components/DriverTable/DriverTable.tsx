@@ -1,7 +1,10 @@
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Endpoints } from "../../../../api/endpoints";
+import { deleteDriver } from "../../../Drivers/features/actionCreators";
 import { Driver } from "../../../DriversCommon/components/Driver/Driver";
 import { DriversTableHeader } from "../../../DriversCommon/components/DriversTableHeader/DriversTableHeader";
-import { deleteDriver } from "../../features/actionCreators";
+import { updateCurrentDriver } from "../../features/actionCreators";
 
 interface IDriver {
   driver: {
@@ -19,10 +22,16 @@ interface IDriver {
 
 export const DriverTable = ({ driver }: IDriver) => { 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onDelete = (id: number) => {
     dispatch(deleteDriver(id));
+    navigate(`/${Endpoints.DRIVERS}`)
   };
+
+  const onUpdateDriverData = (id: number, driver: string) => {
+    dispatch(updateCurrentDriver(id, driver));
+  }
 
   return (
     <>
@@ -36,6 +45,7 @@ export const DriverTable = ({ driver }: IDriver) => {
         dateCreated={driver.date_created}
         status={driver.status}
         onDelete={onDelete}
+        onUpdate={onUpdateDriverData}
       />
     </>
   );

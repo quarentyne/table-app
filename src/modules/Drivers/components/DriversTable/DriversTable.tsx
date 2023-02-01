@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { deleteDriver } from "../../../Driver/features/actionCreators";
 import { Driver } from "../../../DriversCommon/components/Driver/Driver";
 import { DriversTableHeader } from "../../../DriversCommon/components/DriversTableHeader/DriversTableHeader";
+import { deleteDriver, updateDriverData } from "../../features/actionCreators";
 
 interface IDriver {
   id: number;
@@ -26,6 +26,10 @@ export const DriversTable = ({drivers}: IDrivers) => {
     dispatch(deleteDriver(id));
   };
 
+  const onUpdateDriverData = (id: number, driver: string) => {
+    dispatch(updateDriverData(id, driver));
+  }
+
   return (
     <>
       <DriversTableHeader />
@@ -38,6 +42,7 @@ export const DriversTable = ({drivers}: IDrivers) => {
         dateCreated={driver.date_created}
         status={driver.status}
         onDelete={onDelete}
+        onUpdate={onUpdateDriverData}
       />
       )}
     </>

@@ -1,8 +1,9 @@
-export const GET_DRIVER_SUCCESS = "GET_DRIVER_SUCCESS";
-export const GET_DRIVER_REQUESTED = "GET_DRIVER_REQUESTED";
-export const ADD_DRIVER = "ADD_DRIVER";
-export const DELETE_DRIVER = "DELETE_DRIVER";
-export const UPDATE_DRIVER = "UPDATE_DRIVER";
+export enum driverActions {
+  GET_DRIVER = "GET_DRIVER",
+  SET_DRIVER = "SET_DRIVER",
+  UPDATE_CURRENT_DRIVER_DATA = "UPDATE_CURRENT_DRIVER_DATA",
+  SET_UPDATED_CURRENT_DRIVER_DATA = "SET_UPDATED_CURRENT_DRIVER_DATA",
+}
 
 export interface IDriver {
   id: number;
@@ -16,7 +17,7 @@ export interface IDriver {
   };
 }
 
-export interface IDriverDefaultState {
+export interface IDriverState {
   isError: boolean | null;
   driver: IDriver | null;
   isLoading: boolean;
@@ -27,7 +28,29 @@ export interface IDriverServerResponse {
   data: IDriver;
 }
 
-export interface IDriverActions {
-  type: string;
+export interface IGetDriverAction {
+  type: driverActions.GET_DRIVER;
+  id: string;
+}
+
+export interface ISetDriverAction {
+  type: driverActions.SET_DRIVER;
   payload: IDriverServerResponse;
 }
+
+export interface IUpdateDriverDataAction {
+  type: driverActions.UPDATE_CURRENT_DRIVER_DATA;
+  driver: string;
+  id: number;
+}
+
+export interface ISetUpdatedDriverDataAction {
+  type: driverActions.SET_UPDATED_CURRENT_DRIVER_DATA;
+  payload: IDriverServerResponse;
+}
+
+export type IDriverActions =
+  | IGetDriverAction
+  | ISetDriverAction
+  | IUpdateDriverDataAction
+  | ISetUpdatedDriverDataAction;

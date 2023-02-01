@@ -5,13 +5,13 @@ import { datePattern, namePattern } from "../../../../shared/helpers/inputPatter
 import { FormButtons } from "../../../../shared/components/FormButtons/FormButtons";
 import { AddForm, FormInput, FormLabel, FormSelect } from "./styles";
 import { driverStatusCodes,  driverStatusTitleSelector, mappedDriverStatusCodes } from "../../../../shared/helpers/driversStatuses";
-import { addDriver } from "../../../Driver/features/actionCreators";
+import { addDriver } from "../../../Drivers/features/actionCreators";
 
 interface IAddDriverForm{
-  onFinish: () => void;
+  closeForm: () => void;
 };
 
-export const AddDriverForm = ({ onFinish }: IAddDriverForm) => {
+export const AddDriverForm = ({ closeForm }: IAddDriverForm) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [driverOptions, setDriverOptions] = useState({
@@ -49,7 +49,7 @@ export const AddDriverForm = ({ onFinish }: IAddDriverForm) => {
       birthDate: "",
       status: driverStatusCodes.ACTIVE,
     });
-    onFinish();
+    closeForm();
   };
 
   const submitForm = (e: FormEvent<HTMLFormElement>) => { 

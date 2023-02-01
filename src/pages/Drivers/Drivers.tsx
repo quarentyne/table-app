@@ -6,7 +6,7 @@ import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import { AddDriverButton, DriversHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
 import { NotFound } from "../Notfound/NotFound";
-import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
+import { getDrivers } from "../../modules/Drivers/features/actionCreators";
 import { AddDriverForm } from "../../modules/DriversCommon/components/AddDriverForm/AddDriverForm";
 import { DriversTable } from "../../modules/Drivers/components/DriversTable/DriversTable";
 import { driversSelector } from "../../modules/Drivers/features/selector";
@@ -22,7 +22,7 @@ export const Drivers = () => {
   };
 
   useEffect(() => {
-    dispatch(requestDrivers());
+    dispatch(getDrivers());
   }, [dispatch]);
   
   if (isLoading || !drivers) {
@@ -43,7 +43,7 @@ export const Drivers = () => {
       </DriversHeaderBlock>
       <DriversTable drivers={drivers} />
       <FormWrapper isVisible={isVisibleForm}>
-        <AddDriverForm onFinish={toggleFormVisibility}/>
+        <AddDriverForm closeForm={toggleFormVisibility}/>
       </FormWrapper>
     </>
   );

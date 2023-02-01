@@ -1,11 +1,6 @@
-import {
-  GET_DRIVERS_REQUESTED,
-  GET_DRIVERS_SUCCESS,
-  IDriversActions,
-  IDriversDefaultState,
-} from "./models";
+import { driversActions, IDriversActions, IDriversState } from "./models";
 
-const defaultState: IDriversDefaultState = {
+const defaultState: IDriversState = {
   isError: null,
   drivers: null,
   isLoading: false,
@@ -16,17 +11,43 @@ export const driversReducer = (
   action: IDriversActions
 ) => {
   switch (action.type) {
-    case GET_DRIVERS_SUCCESS:
+    case driversActions.SET_DRIVERS:
       return {
         ...state,
         drivers: action.payload.data,
         isError: action.payload.is_error,
         isLoading: false,
       };
-    case GET_DRIVERS_REQUESTED:
+    case driversActions.GET_DRIVERS:
       return {
         ...state,
         isLoading: true,
+      };
+    case driversActions.SET_NEW_DRIVER:
+      return {
+        ...state,
+        drivers: state.drivers?.concat([action.payload.data]) || [
+          action.payload.data,
+        ],
+        isError: action.payload.is_error,
+      };
+    case driversActions.SET_UPDATED_DRIVER_DATA:
+      return {
+        ...state,
+        drivers:
+          state.drivers?.map((driver) => {
+            if (driver.id === action.payload.data.id) {
+              return { ...driver, ...action.payload.data };
+            }
+            return driver;
+          }) || null,
+        isError: action.payload.is_error,
+      };
+    case driversActions.DELETE_DRIVER:
+      return {
+        ...state,
+        drivers:
+          state.drivers?.filter((driver) => driver.id !== action.id) || null,
       };
     default:
       return state;

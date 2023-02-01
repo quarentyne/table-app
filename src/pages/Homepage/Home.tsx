@@ -5,7 +5,7 @@ import { DataBlock, DataImage, DataObject, HomepageBlock, HomepageLabel, Homepag
 import { useAppSelector } from "../../shared/hooks/useAppSelector";
 import people from "../../assets/svg/main-people.svg";
 import car from "../../assets/svg/main-car.svg";
-import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
+import { getDrivers } from "../../modules/Drivers/features/actionCreators";
 import { getCars } from "../../modules/Cars/features/actionCreators";
 import { driversSelector } from "../../modules/Drivers/features/selector";
 import { carsSelector } from "../../modules/Cars/features/selector";
@@ -21,7 +21,7 @@ export const Home = () => {
     dispatch(getCars());
   }, [dispatch]);
   useEffect(() => {
-    dispatch(requestDrivers());
+    dispatch(getDrivers());
   }, [dispatch]);
 
   return (

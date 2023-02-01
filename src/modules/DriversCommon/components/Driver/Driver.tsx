@@ -1,12 +1,10 @@
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 import { ActionButtons } from "../../../../shared/components/ActionButtons/ActionButtons";
 import { InputDataEditor } from "../../../../shared/components/InputDataEditor/InputDataEditor";
 import { DriverStatusEditor } from "../../../../shared/components/DriverStatusEditor/DriverStatusEditor";
 import { driverStatusTitleSelector } from "../../../../shared/helpers/driversStatuses";
 import { datePattern, fullNamePattern } from "../../../../shared/helpers/inputPatterns";
-import { updateDriver } from "../../../Driver/features/actionCreators";
 import { Action, Birthday, DriversTable, ID, Name, Registration, Status } from "./styles";
 
 interface IDriver{
@@ -20,11 +18,11 @@ interface IDriver{
     title: string;
   };
   onDelete: (id: number) => void;
+  onUpdate: (id: number, driver: string) => void;
 };
 
-export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status, onDelete}: IDriver) => {
+export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status, onDelete, onUpdate}: IDriver) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();  
 
   const birthDate: Date = new Date(dateBirth);
   const joinDate: Date = new Date(dateCreated);
@@ -61,7 +59,7 @@ export const Driver = ({id, firstName, lastName, dateBirth, dateCreated, status,
         title,
       },
     });
-    dispatch(updateDriver(id, driver));
+    onUpdate(id, driver)
   };
 
   return (

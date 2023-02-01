@@ -7,7 +7,7 @@ import { AddCarButton, CarsHeaderBlock, FormWrapper } from "./styles";
 import add from "../../assets/svg/add.svg";
 import { NotFound } from "../Notfound/NotFound";
 import { Loading } from "../../shared/components/Loading/Loading";
-import { requestDrivers } from "../../modules/Drivers/features/actionCreators";
+import { getDrivers } from "../../modules/Drivers/features/actionCreators";
 import { AddCarForm } from "../../modules/CarsCommon/components/AddCarForm/AddCarForm";
 import { driversSelector } from "../../modules/Drivers/features/selector";
 import { driversCarsSelector } from "../../modules/DriversCars/features/selector";
@@ -35,7 +35,7 @@ export const DriversCars = () => {
       return;
     };
     dispatch(getDriversCars(driverId));     
-    dispatch(requestDrivers());
+    dispatch(getDrivers());
   }, [dispatch, driverId]);
 
   if (!cars || !drivers || isLoading) {

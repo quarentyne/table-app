@@ -1,34 +1,22 @@
-import {
-  DELETE_DRIVER,
-  GET_DRIVER_REQUESTED,
-  GET_DRIVER_SUCCESS,
-  ADD_DRIVER,
-  UPDATE_DRIVER,
-  IDriverServerResponse,
-} from "./models";
+import { driverActions, IDriverServerResponse } from "./models";
 
-export const requestDriverById = (id: number) => ({
-  type: GET_DRIVER_REQUESTED,
+export const getDriverById = (id: string) => ({
+  type: driverActions.GET_DRIVER,
   id,
 });
 
 export const responseDriver = (data: IDriverServerResponse) => ({
-  type: GET_DRIVER_SUCCESS,
+  type: driverActions.SET_DRIVER,
   payload: data,
 });
 
-export const deleteDriver = (id: number) => ({
-  type: DELETE_DRIVER,
+export const updateCurrentDriver = (id: number, driver: string) => ({
+  type: driverActions.UPDATE_CURRENT_DRIVER_DATA,
+  driver,
   id,
 });
 
-export const addDriver = (driver: string) => ({
-  type: ADD_DRIVER,
-  driver,
-});
-
-export const updateDriver = (id: number, driver: string) => ({
-  type: UPDATE_DRIVER,
-  id,
-  driver,
+export const setUpdatedCurrentDriverData = (data: IDriverServerResponse) => ({
+  type: driverActions.SET_UPDATED_CURRENT_DRIVER_DATA,
+  payload: data,
 });
