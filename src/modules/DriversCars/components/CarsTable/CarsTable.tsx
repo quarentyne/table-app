@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
-import { Loading } from "../../../shared/components/Loading/Loading";
-import { useAppSelector } from "../../../shared/hooks/useAppSelector";
-import { Car } from "../../CarsCommon/components/Car/Car";
-import { CarsTableHeader } from "../../CarsCommon/components/CarsTableHeader/CarsTableHeader";
-import { driversSelector } from "../../Drivers/features/selector";
-import { deleteDriversCar, updateDriversCar } from "../features/actionCreators";
+import { Loading } from "../../../../shared/components/Loading/Loading";
+import { useAppSelector } from "../../../../shared/hooks/useAppSelector";
+import { Car } from "../../../CarsCommon/components/Car/Car";
+import { CarsTableHeader } from "../../../CarsCommon/components/CarsTableHeader/CarsTableHeader";
+import { driversSelector } from "../../../Drivers/features/selector";
+import { deleteDriversCar, updateDriversCar } from "../../features/actionCreators";
 
 
 interface ICar{

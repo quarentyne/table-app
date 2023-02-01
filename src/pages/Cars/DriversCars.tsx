@@ -12,7 +12,7 @@ import { AddCarForm } from "../../modules/CarsCommon/components/AddCarForm/AddCa
 import { driversSelector } from "../../modules/Drivers/features/selector";
 import { driversCarsSelector } from "../../modules/DriversCars/features/selector";
 import { addDriversCar, getDriversCars } from "../../modules/DriversCars/features/actionCreators";
-import { CarsTable } from "../../modules/DriversCars/components/CarsTable";
+import { CarsTable } from "../../modules/DriversCars/components/CarsTable/CarsTable";
 
 export const DriversCars = () => {
   const dispatch = useDispatch();
