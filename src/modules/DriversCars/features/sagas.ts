@@ -10,7 +10,7 @@ import {
 } from "../../../shared/helpers/httpClient";
 import {
   setDriversCarsData,
-  setNewDriversCar,
+  setNewDriversCarData,
   setUpdatedDriversCarData,
 } from "./actionCreators";
 import {
@@ -40,7 +40,7 @@ function* addDriversCar({ car }: IAddDriversCarAction) {
     `${BASE_API_URL}${Endpoints.CARS}`,
     car
   );
-  yield put(setNewDriversCar(response.data));
+  yield put(setNewDriversCarData(response.data));
 }
 
 function* updateDriversCar({ id, car }: IUpdateDriversCarAction) {

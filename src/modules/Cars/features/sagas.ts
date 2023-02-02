@@ -8,7 +8,11 @@ import {
   httpPost,
   TFormatResponse,
 } from "../../../shared/helpers/httpClient";
-import { setNewCar, setCarsData, setUpdatedCarData } from "./actionCreators";
+import {
+  setNewCarData,
+  setCarsData,
+  setUpdatedCarData,
+} from "./actionCreators";
 import {
   carsActions,
   IAddCarAction,
@@ -34,7 +38,7 @@ function* addCar({ car }: IAddCarAction) {
     `${BASE_API_URL}${Endpoints.CARS}`,
     car
   );
-  yield put(setNewCar(response.data));
+  yield put(setNewCarData(response.data));
 }
 
 function* updateCar({ id, car }: IUpdateCarAction) {

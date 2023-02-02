@@ -8,7 +8,7 @@ export const getDrivers = () => ({
   type: driversActions.GET_DRIVERS,
 });
 
-export const setDrivers = (data: IDriversServerResponse) => ({
+export const setDriversData = (data: IDriversServerResponse) => ({
   type: driversActions.SET_DRIVERS,
   payload: data,
 });
@@ -18,7 +18,7 @@ export const addDriver = (driver: string) => ({
   driver,
 });
 
-export const setNewDriver = (data: IDriverServerResponse) => ({
+export const setNewDriverData = (data: IDriverServerResponse) => ({
   type: driversActions.SET_NEW_DRIVER,
   payload: data,
 });

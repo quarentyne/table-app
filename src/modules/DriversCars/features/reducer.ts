@@ -37,12 +37,16 @@ export const driversCarsReducer = (
         isError: action.payload.is_error,
       };
     case driversCarsActions.SET_UPDATED_DRIVERS_CAR_DATA:
+      action.payload.data.id = String(action.payload.data.id);
       return {
         ...state,
         cars:
           state.cars?.map((car) => {
-            if (car.id === String(action.payload.data.id)) {
-              return { ...car, ...action.payload.data };
+            if (car.id === action.payload.data.id) {
+              return {
+                ...car,
+                ...action.payload.data,
+              };
             }
             return car;
           }) || null,

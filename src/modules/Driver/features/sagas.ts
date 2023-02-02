@@ -6,7 +6,7 @@ import {
   httpPatch,
   TFormatResponse,
 } from "../../../shared/helpers/httpClient";
-import { responseDriver, setUpdatedCurrentDriverData } from "./actionCreators";
+import { setDriverData, setUpdatedCurrentDriverData } from "./actionCreators";
 import {
   driverActions,
   IGetDriverAction,
@@ -18,7 +18,7 @@ function* getDriverById({ id }: IGetDriverAction) {
     httpGet,
     `${BASE_API_URL}${Endpoints.DRIVERS}${id}/`
   );
-  yield put(responseDriver(response.data));
+  yield put(setDriverData(response.data));
 }
 
 function* updateDriver({ id, driver }: IUpdateDriverDataAction) {

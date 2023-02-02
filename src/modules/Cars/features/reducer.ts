@@ -37,11 +37,12 @@ export const carsReducer = (
         isError: action.payload.is_error,
       };
     case carsActions.SET_UPDATED_CAR_DATA:
+      action.payload.data.id = String(action.payload.data.id);
       return {
         ...state,
         cars:
           state.cars?.map((car) => {
-            if (car.id === String(action.payload.data.id)) {
+            if (car.id === action.payload.data.id) {
               return { ...car, ...action.payload.data };
             }
             return car;

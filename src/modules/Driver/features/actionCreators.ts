@@ -5,7 +5,7 @@ export const getDriverById = (id: string) => ({
   id,
 });
 
-export const responseDriver = (data: IDriverServerResponse) => ({
+export const setDriverData = (data: IDriverServerResponse) => ({
   type: driverActions.SET_DRIVER,
   payload: data,
 });

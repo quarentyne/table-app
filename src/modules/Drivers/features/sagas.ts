@@ -9,8 +9,8 @@ import {
   TFormatResponse,
 } from "../../../shared/helpers/httpClient";
 import {
-  setDrivers,
-  setNewDriver,
+  setDriversData,
+  setNewDriverData,
   setUpdatedDriverData,
 } from "./actionCreators";
 import {
@@ -25,7 +25,7 @@ function* getDrivers() {
     httpGet,
     BASE_API_URL + Endpoints.DRIVERS
   );
-  yield put(setDrivers(response.data));
+  yield put(setDriversData(response.data));
 }
 
 function* addDriver({ driver }: IAddDriverAction) {
@@ -34,7 +34,7 @@ function* addDriver({ driver }: IAddDriverAction) {
     `${BASE_API_URL}${Endpoints.DRIVERS}`,
     driver
   );
-  yield put(setNewDriver(response.data));
+  yield put(setNewDriverData(response.data));
 }
 
 function* deleteDriver({ id }: IDeleteDriverAction) {

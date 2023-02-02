@@ -12,7 +12,7 @@ export const addCar = (car: string) => ({
   car,
 });
 
-export const setNewCar = (data: ICarServerResponse) => ({
+export const setNewCarData = (data: ICarServerResponse) => ({
   type: carsActions.SET_NEW_CAR,
   payload: data,
 });

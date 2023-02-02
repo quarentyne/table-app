@@ -19,7 +19,7 @@ export const addDriversCar = (car: string) => ({
   car,
 });
 
-export const setNewDriversCar = (data: ICarServerResponse) => ({
+export const setNewDriversCarData = (data: ICarServerResponse) => ({
   type: driversCarsActions.SET_NEW_DRIVERS_CAR,
   payload: data,
 });
@@ -39,33 +39,3 @@ export const deleteDriversCar = (id: string) => ({
   type: driversCarsActions.DELETE_DRIVERS_CAR,
   id,
 });
-
-// export const requestCars = () => ({ type: GET_CARS });
-
-// export const responseCars = (data: ICarsServerResponse) => ({
-//   type: SET_CARS,
-//   payload: data,
-// });
-
-// export const addCar = (car: string, driverId?: string) => ({
-//   type: ADD_CAR,
-//   car,
-//   driverId,
-// });
-
-// export const updateCar = (
-//   id: number,
-//   car: string,
-//   driverId: number | null
-// ) => ({
-//   type: UPDATE_CAR,
-//   id,
-//   car,
-//   driverId,
-// });
-
-// export const deleteCar = (id: number, driverId: number | null) => ({
-//   type: DELETE_CAR,
-//   id,
-//   driverId,
-// });
