@@ -40,14 +40,15 @@ export const driversReducer = (
               return { ...driver, ...action.payload.data };
             }
             return driver;
-          }) || null,
+          }) || state.drivers,
         isError: action.payload.is_error,
       };
     case driversActions.DELETE_DRIVER:
       return {
         ...state,
         drivers:
-          state.drivers?.filter((driver) => driver.id !== action.id) || null,
+          state.drivers?.filter((driver) => driver.id !== action.id) ||
+          state.drivers,
       };
     default:
       return state;

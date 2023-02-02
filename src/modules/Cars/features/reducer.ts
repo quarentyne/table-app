@@ -26,7 +26,7 @@ export const carsReducer = (
     case carsActions.DELETE_CAR:
       return {
         ...state,
-        cars: state.cars?.filter((car) => car.id !== action.id) || null,
+        cars: state.cars?.filter((car) => car.id !== action.id) || state.cars,
       };
     case carsActions.SET_NEW_CAR:
       return {
@@ -46,7 +46,7 @@ export const carsReducer = (
               return { ...car, ...action.payload.data };
             }
             return car;
-          }) || null,
+          }) || state.cars,
         isError: action.payload.is_error,
       };
     default:
