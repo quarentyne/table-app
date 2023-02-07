@@ -41,15 +41,9 @@ export const driversCarsReducer = (
       return {
         ...state,
         cars:
-          state.cars?.map((car) => {
-            if (car.id === action.payload.data.id) {
-              return {
-                ...car,
-                ...action.payload.data,
-              };
-            }
-            return car;
-          }) || state.cars,
+          state.cars
+            ?.filter((car) => car.id !== action.payload.data.id)
+            .concat([action.payload.data]) || state.cars,
         isError: action.payload.is_error,
       };
     default:

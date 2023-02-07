@@ -23,7 +23,7 @@ import {
 function* getDrivers() {
   const response: TFormatResponse = yield call(
     httpGet,
-    BASE_API_URL + Endpoints.DRIVERS
+    `${BASE_API_URL}${Endpoints.DRIVERS}`
   );
   yield put(setDriversData(response.data));
 }

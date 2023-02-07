@@ -35,12 +35,9 @@ export const driversReducer = (
       return {
         ...state,
         drivers:
-          state.drivers?.map((driver) => {
-            if (driver.id === action.payload.data.id) {
-              return { ...driver, ...action.payload.data };
-            }
-            return driver;
-          }) || state.drivers,
+          state.drivers
+            ?.filter((driver) => driver.id !== action.payload.data.id)
+            .concat([action.payload.data]) || state.drivers,
         isError: action.payload.is_error,
       };
     case driversActions.DELETE_DRIVER:
